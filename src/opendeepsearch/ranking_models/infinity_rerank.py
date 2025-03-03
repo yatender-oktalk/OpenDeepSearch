@@ -3,7 +3,7 @@ import requests
 import json
 from typing import List, Dict, Union, Optional
 
-class SemanticSearch:
+class SemanticSearcher:
     """
     A semantic reranking model that uses the Infinity Embedding API for text embeddings.
     
@@ -61,11 +61,18 @@ class SemanticSearch:
         Get embeddings for a list of texts.
         
         Args:
-            texts: List of text strings to embed
+            texts: List of text strings to embed. If more than 2048 texts are provided,
+                  the list will be truncated and a warning will be issued.
             
         Returns:
             torch.Tensor containing the embeddings
         """
+        MAX_TEXTS = 2048
+        if len(texts) > MAX_TEXTS:
+            import warnings
+            warnings.warn(f"Number of texts ({len(texts)}) exceeds maximum of {MAX_TEXTS}. List will be truncated.")
+            texts = texts[:MAX_TEXTS]
+
         response = requests.post(
             self.embedding_endpoint,
             json={
@@ -76,7 +83,6 @@ class SemanticSearch:
         
         content_str = response.content.decode('utf-8')
         content_json = json.loads(content_str)
-        
         return torch.tensor([item['embedding'] for item in content_json['data']])
 
     def calculate_scores(
