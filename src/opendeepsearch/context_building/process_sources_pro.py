@@ -51,7 +51,7 @@ class SourceProcessor:
             return ""
         try:
             # Split the HTML content into chunks
-            documents = self.chunker.split_texts([html])
+            documents = self.chunker.split_text(html)
             
             # Rerank the chunks based on the query
             reranked_content = self.semantic_searcher.get_reranked_documents(
@@ -75,5 +75,5 @@ class SourceProcessor:
     ) -> List[dict]:
         for (i, source), html in zip(valid_sources, html_contents):
             source['html'] = self._process_html_content(html, query)
-            sources[i] = source
+            # sources[i] = source
         return sources

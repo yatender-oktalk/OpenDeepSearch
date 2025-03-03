@@ -20,7 +20,7 @@ def process_html_content(organic_results: List[Dict]) -> List[str]:
     
     # We're using a recursive character splitter to chunk the HTML content, since the HTML is cleaned we're taking around 300 tokens which is around 1-2 paragraphs
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,
+        chunk_size=175,
         chunk_overlap=50,
         length_function=len
     )
