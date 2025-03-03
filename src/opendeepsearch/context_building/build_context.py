@@ -100,12 +100,6 @@ def build_context(
                     full_query,
                     top_res=rerank_top_res
                 )
-            elif ranking_mode == "llm":
-                return get_llm_ranking(
-                    combined_list,
-                    full_query,
-                    top_res=rerank_top_res
-                )
         
         return combined_list
 

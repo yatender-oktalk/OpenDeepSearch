@@ -17,7 +17,7 @@ class Chunker:
 
     def __init__(
         self,
-        chunk_size: int = 250,
+        chunk_size: int = 150,
         chunk_overlap: int = 50,
         separators: Optional[List[str]] = None,
         length_function: callable = len
@@ -34,7 +34,7 @@ class Chunker:
         """
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
-        self.separators = separators or ["\n\n", "\n", " "]
+        self.separators = separators or ["\n\n", "\n"]
         self.length_function = length_function
         
         self.splitter = RecursiveCharacterTextSplitter(

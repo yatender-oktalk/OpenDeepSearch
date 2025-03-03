@@ -172,3 +172,28 @@ class SemanticSearcher:
         
         # Return single list for single query, list of lists for multiple queries
         return results[0] if isinstance(query, str) else results
+
+    def get_reranked_documents(
+        self,
+        query: Union[str, List[str]],
+        documents: List[str],
+        top_k: int = 5,
+        normalize: str = "softmax"
+    ) -> Union[List[str], List[List[str]]]:
+        """
+        Returns only the reranked documents without scores.
+        
+        Args:
+            query: Query string or list of query strings
+            documents: List of documents to rerank
+            top_k: Number of top results to return per query
+            normalize: Normalization method for scores ("softmax", "scale", or "none")
+            
+        Returns:
+            For single query: List of reranked document strings
+            For multiple queries: List of lists of reranked document strings
+        """
+        
+        results = self.rerank(query, documents, top_k, normalize)
+
+        return "\n".join([x['document'].strip() for x in results])

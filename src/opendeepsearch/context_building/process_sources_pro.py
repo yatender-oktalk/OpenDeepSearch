@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 from src.opendeepsearch.context_scraping.crawl4ai_scraper import WebScraper
+from src.opendeepsearch.ranking_models.infinity_rerank import SemanticSearcher
+from src.opendeepsearch.ranking_models.chunker import Chunker 
 
 @dataclass
 class Source:
@@ -13,7 +15,7 @@ class SourceProcessor:
         self, 
         top_results: int = 5,
         strategies: List[str] = ["no_extraction"],
-        filter_content: bool = True
+        filter_content: bool = True,
     ):
         self.strategies = strategies
         self.filter_content = filter_content
@@ -22,6 +24,8 @@ class SourceProcessor:
             filter_content=self.filter_content
         )
         self.top_results = top_results
+        self.chunker = Chunker()
+        self.semantic_searcher = SemanticSearcher()
 
     async def process_sources(self, sources: List[dict], num_elements: int, query: str) -> List[dict]:
         try:
@@ -30,13 +34,13 @@ class SourceProcessor:
                 return sources
 
             html_contents = await self._fetch_html_contents([s[1]['link'] for s in valid_sources])
-            return self._update_sources_with_content(sources, valid_sources, html_contents, query)
+            return self._update_sources_with_content(sources.data, valid_sources, html_contents, query)
         except Exception as e:
             print(f"Error in process_sources: {e}")
             return sources
 
     def _get_valid_sources(self, sources: List[dict], num_elements: int) -> List[Tuple[int, dict]]:
-        return [(i, source) for i, source in enumerate(sources[:num_elements]) if source]
+        return [(i, source) for i, source in enumerate(sources.data['organic'][:num_elements]) if source]
 
     async def _fetch_html_contents(self, links: List[str]) -> List[str]:
         raw_contents = await self.scraper.scrape_many(links)
@@ -46,13 +50,18 @@ class SourceProcessor:
         if not html:
             return ""
         try:
-            chunked_content = get_chunking(html)
-            reranked_content = get_reranking_nvidia(
-                chunked_content, 
-                query, 
-                top_res=self.top_results
+            # Split the HTML content into chunks
+            documents = self.chunker.split_texts([html])
+            
+            # Rerank the chunks based on the query
+            reranked_content = self.semantic_searcher.get_reranked_documents(
+                query,
+                documents,
+                top_k=self.top_results
             )
-            return "\n\n".join(reranked_content)
+            
+            return reranked_content
+        
         except Exception as e:
             print(f"Error in content processing: {e}")
             return ""
