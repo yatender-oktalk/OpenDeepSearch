@@ -41,7 +41,8 @@ class SemanticSearch:
     def __init__(
         self, 
         embedding_endpoint: str = "http://localhost:7997/embeddings",
-        model_name: str = "Alibaba-NLP/gte-Qwen2-7B-instruct"
+        model_name: str = "Alibaba-NLP/gte-Qwen2-7B-instruct",
+        instruction_prefix: str = "Instruct: Given a web search query, retrieve relevant passages that answer the query\nQuery: "
     ):
         """
         Initialize the semantic search engine with Infinity Embedding API settings.
@@ -49,9 +50,11 @@ class SemanticSearch:
         Args:
             embedding_endpoint: URL of the Infinity Embedding API endpoint
             model_name: Name of the embedding model available in Infinity API
+            instruction_prefix: Prefix to add to queries for better search relevance
         """
         self.embedding_endpoint = embedding_endpoint
         self.model_name = model_name
+        self.instruction_prefix = instruction_prefix
 
     def _get_embeddings(self, texts: List[str]) -> torch.Tensor:
         """
@@ -96,8 +99,11 @@ class SemanticSearch:
         Returns:
             torch.Tensor of shape (num_queries, num_documents) containing similarity scores
         """
+        # Use the instruction prefix from the instance
+        formatted_queries = [self.instruction_prefix + q for q in queries]
+        
         # Get embeddings for queries and documents
-        query_embeddings = self._get_embeddings(queries)
+        query_embeddings = self._get_embeddings(formatted_queries)
         doc_embeddings = self._get_embeddings(documents)
         
         # Calculate similarity scores
