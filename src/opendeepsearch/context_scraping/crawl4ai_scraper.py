@@ -69,13 +69,31 @@ class WebScraper:
         Args:
             url: Target URL to scrape
         """
+        # Handle Wikipedia URLs
+        if 'wikipedia.org/wiki/' in url:
+            from src.opendeepsearch.context_scraping.utils import get_wikipedia_content
+            try:
+                content = get_wikipedia_content(url)
+                # Create same result for all strategies since we're using Wikipedia content
+                return {
+                    strategy_name: ExtractionResult(
+                        name=strategy_name,
+                        success=True,
+                        content=content
+                    ) for strategy_name in self.strategies
+                }
+            except Exception as e:
+                if self.debug:
+                    print(f"Debug: Wikipedia extraction failed: {str(e)}")
+                # If Wikipedia extraction fails, fall through to normal scraping
+        
+        # Normal scraping for non-Wikipedia URLs or if Wikipedia extraction failed
         results = {}
         for strategy_name in self.strategies:
             config = ExtractionConfig(
                 name=strategy_name,
                 strategy=self.strategy_map[strategy_name]()
             )
-            
             result = await self.extract(config, url)
             results[strategy_name] = result
             

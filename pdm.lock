@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:808cd4e9c64188b779ef2447ef96c9e0bcfcc36ea5d149d747612873ca963373"
+content_hash = "sha256:8a594585ca60e10dbddf8c2b30a7866b12aff3091ec1cc08e13a9e403982cbf7"
 
 [[metadata.targets]]
 requires_python = ">=3.10"
@@ -3363,6 +3363,18 @@ groups = ["default"]
 files = [
     {file = "widgetsnbextension-4.0.13-py3-none-any.whl", hash = "sha256:74b2692e8500525cc38c2b877236ba51d34541e6385eeed5aec15a70f88a6c71"},
     {file = "widgetsnbextension-4.0.13.tar.gz", hash = "sha256:ffcb67bc9febd10234a362795f643927f4e0c05d9342c727b65d2384f8feacb6"},
+]
+
+[[package]]
+name = "wikipedia-api"
+version = "0.8.1"
+summary = "Python Wrapper for Wikipedia"
+groups = ["default"]
+dependencies = [
+    "requests",
+]
+files = [
+    {file = "wikipedia_api-0.8.1.tar.gz", hash = "sha256:b31e93b3f5407c1a1ba413ed7326a05379a3c270df6cf6a211aca67a14c5658b"},
 ]
 
 [[package]]

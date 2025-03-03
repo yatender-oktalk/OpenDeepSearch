@@ -2,6 +2,7 @@ import re
 from typing import List, Tuple
 import fasttext
 from huggingface_hub import hf_hub_download
+import wikipediaapi
 
 # Load the model
 model = fasttext.load_model(hf_hub_download("kenhktsui/llm-data-textbook-quality-fasttext-classifer-v2", "model.bin"))
@@ -107,3 +108,25 @@ def predict_educational_value(text_list: List[str]) -> List[float]:
             score += score_dict[_l] * _s
         score_list.append(float(score))
     return score_list
+
+def get_wikipedia_content(url: str) -> str | None:
+    """
+    Extract content from a Wikipedia URL.
+    
+    Args:
+        url: Wikipedia URL to scrape
+        
+    Returns:
+        str: Page content if found, None otherwise
+    """
+    wiki = wikipediaapi.Wikipedia(user_agent="opendeepsearch", language='en')
+    
+    # Extract the page title from URL (everything after /wiki/)
+    try:
+        title = url.split('/wiki/')[-1]
+        page = wiki.page(title)
+        if page.exists():
+            return page.text
+        return None
+    except Exception:
+        return None
