@@ -33,10 +33,10 @@ def extract_top_stories(top_stories: Optional[List[Dict]]) -> List[str]:
         if 'title' in item
     ]
 
-def extract_graph_and_answer_box(
+def extract_answer_box(
     answer_box: Optional[Dict]
 ) -> List[str]:
-    """Extract information from graph and answer box."""
+    """Extract information from answer box."""
     results = []
     
     if answer_box:
@@ -48,7 +48,7 @@ def extract_graph_and_answer_box(
 
 def build_context(
     sources_result: Dict,
-) -> List[str]:
+) -> str:
     """
     Build context from search results.
     
@@ -56,23 +56,39 @@ def build_context(
         sources_result: Dictionary containing search results
         
     Returns:
-        List of context strings
+        A formatted string containing all relevant search results
     """
     try:
         # Build context from different components
         organic_results = extract_information(sources_result.get('organic', []))
         top_stories = extract_top_stories(sources_result.get('topStories'))
-        graph_and_answer_box = extract_graph_and_answer_box(
+        answer_box = extract_answer_box(
             sources_result.get('answerBox')
         )
         
-        final_results = {
-            'graph_and_answer_box': graph_and_answer_box,
-            'organic_results': organic_results,
-            'top_stories': top_stories
-        }
-
-        return final_results
+        # Combine all results into a single string
+        context_parts = []
+        
+        # Add answer box if available
+        if answer_box:
+            context_parts.append("ANSWER BOX:")
+            context_parts.extend(answer_box)
+            context_parts.append("")  # Empty line for separation
+        
+        # Add organic results
+        if organic_results:
+            context_parts.append("SEARCH RESULTS:")
+            context_parts.extend(organic_results)
+            context_parts.append("")  # Empty line for separation
+        
+        # Add top stories if available
+        if top_stories:
+            context_parts.append("TOP STORIES:")
+            context_parts.extend(top_stories)
+        
+        # Join all parts with newlines
+        return "\n".join(context_parts)
 
     except Exception as e:
         logger.exception(f"An error occurred while building context: {e}")
+        return ""  # Return empty string in case of error

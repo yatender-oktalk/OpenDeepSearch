@@ -16,9 +16,11 @@ class SourceProcessor:
         top_results: int = 5,
         strategies: List[str] = ["no_extraction"],
         filter_content: bool = True,
+        pro_mode: bool = False,
     ):
         self.strategies = strategies
         self.filter_content = filter_content
+        self.pro_mode = pro_mode
         self.scraper = WebScraper(
             strategies=self.strategies, 
             filter_content=self.filter_content
@@ -32,6 +34,16 @@ class SourceProcessor:
             valid_sources = self._get_valid_sources(sources, num_elements)
             if not valid_sources:
                 return sources
+
+            if not self.pro_mode:
+                # import ipdb; ipdb.set_trace()
+                # Check if there's a Wikipedia article among valid sources
+                wiki_sources = [(i, source) for i, source in valid_sources 
+                              if 'wikipedia.org' in source['link']]
+                if not wiki_sources:
+                    return sources.data
+                # If Wikipedia article exists, only process that
+                valid_sources = wiki_sources[:1]  # Take only the first Wikipedia source
 
             html_contents = await self._fetch_html_contents([s[1]['link'] for s in valid_sources])
             return self._update_sources_with_content(sources.data, valid_sources, html_contents, query)
