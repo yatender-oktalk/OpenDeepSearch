@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
-from src.opendeepsearch.context_scraping.crawl4ai_scraper import WebScraper
-from src.opendeepsearch.ranking_models.infinity_rerank import SemanticSearcher
-from src.opendeepsearch.ranking_models.chunker import Chunker 
+from opendeepsearch.context_scraping.crawl4ai_scraper import WebScraper
+from opendeepsearch.ranking_models.infinity_rerank import InfinitySemanticSearcher
+from opendeepsearch.ranking_models.chunker import Chunker 
 
 @dataclass
 class Source:
@@ -16,27 +16,30 @@ class SourceProcessor:
         top_results: int = 5,
         strategies: List[str] = ["no_extraction"],
         filter_content: bool = True,
-        pro_mode: bool = False,
     ):
         self.strategies = strategies
         self.filter_content = filter_content
-        self.pro_mode = pro_mode
         self.scraper = WebScraper(
             strategies=self.strategies, 
             filter_content=self.filter_content
         )
         self.top_results = top_results
         self.chunker = Chunker()
-        self.semantic_searcher = SemanticSearcher()
+        self.semantic_searcher = InfinitySemanticSearcher()
 
-    async def process_sources(self, sources: List[dict], num_elements: int, query: str) -> List[dict]:
+    async def process_sources(
+        self, 
+        sources: List[dict], 
+        num_elements: int, 
+        query: str, 
+        pro_mode: bool = False
+    ) -> List[dict]:
         try:
             valid_sources = self._get_valid_sources(sources, num_elements)
             if not valid_sources:
                 return sources
 
-            if not self.pro_mode:
-                # import ipdb; ipdb.set_trace()
+            if not pro_mode:
                 # Check if there's a Wikipedia article among valid sources
                 wiki_sources = [(i, source) for i, source in valid_sources 
                               if 'wikipedia.org' in source['link']]
