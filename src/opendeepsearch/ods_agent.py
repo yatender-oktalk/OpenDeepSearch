@@ -3,6 +3,10 @@ from opendeepsearch.serp_search.serp_search import SerperAPI
 from opendeepsearch.context_building.process_sources_pro import SourceProcessor
 from opendeepsearch.context_building.build_context import build_context
 from litellm import completion
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 class OpenDeepSearchAgent:
     def __init__(
@@ -15,27 +19,36 @@ class OpenDeepSearchAgent:
         top_p: float = 0.3, # Focus on high-confidence tokens
     ):
         """
-        Initialize OpenDeepSearch with customizable configurations.
-        
+        Initialize an OpenDeepSearch agent that combines web search, content processing, and LLM capabilities.
+
+        This agent performs web searches using SerperAPI, processes the search results to extract relevant
+        information, and uses a language model to generate responses based on the gathered context.
+
         Args:
-            serper_api_key (str, optional): API key for SerperAPI
-            source_processor_config (dict, optional): Configuration for SourceProcessor
-                Example: {
-                    'strategies': ["no_extraction"],  # Content extraction strategies
-                    'filter_content': True,  # Enable content filtering
-                    'top_results': 5  # Number of top results to process
-                }
-            system_prompt (str, optional): System prompt to use for the LLM
-            model (str): Model to use for completions
-            temperature (float): Controls randomness in the output (0.0 to 1.0)
-            top_p (float): Controls diversity via nucleus sampling (0.0 to 1.0)
+            model (str): The identifier for the language model to use (compatible with LiteLLM).
+            system_prompt (str, optional): Custom system prompt for the language model. If not provided,
+                uses a default prompt that instructs the model to answer based on context.
+            serper_api_key (str, optional): API key for SerperAPI. If not provided, uses default
+                authentication method.
+            source_processor_config (Dict[str, Any], optional): Configuration dictionary for the
+                SourceProcessor. Supports the following options:
+                - strategies (List[str]): Content extraction strategies to use
+                - filter_content (bool): Whether to enable content filtering
+                - top_results (int): Number of top results to process
+            temperature (float, default=0.2): Controls randomness in model outputs. Lower values make
+                the output more focused and deterministic.
+            top_p (float, default=0.3): Controls nucleus sampling for model outputs. Lower values make
+                the output more focused on high-probability tokens.
         """
         # Initialize SerperAPI with optional API key
         self.serp_search = SerperAPI(api_key=serper_api_key) if serper_api_key else SerperAPI()
         
         # Initialize SourceProcessor with provided config or defaults
-        processor_config = source_processor_config
-        self.source_processor = SourceProcessor(**processor_config)
+        self.source_processor = (
+            SourceProcessor(**source_processor_config)
+            if source_processor_config is not None
+            else SourceProcessor()
+        )
         
         # Initialize LLM settings
         self.model = model
@@ -54,15 +67,21 @@ class OpenDeepSearchAgent:
         pro_mode: bool = False
     ) -> str:
         """
-        Main function to perform search and build context from results.
-        
+        Performs a web search and builds a context from the search results.
+
+        This method executes a search query, processes the returned sources, and builds a
+        consolidated context, inspired by FreshPrompt in the FreshLLMs paper, that can be used for answering questions.
+
         Args:
-            query (str): User's search query
-            max_sources (int): Maximum number of sources to scrape if pro_mode is True (overrides top_results
-                             from source_processor_config if smaller)
-            pro_mode (bool): enable pro mode/deeper search for this query
+            query (str): The search query to execute.
+            max_sources (int, default=2): Maximum number of sources to process. If pro_mode
+                is enabled, this overrides the top_results setting in source_processor_config
+                when it's smaller.
+            pro_mode (bool, default=False): When enabled, performs a deeper search and more
+                thorough content processing.
+
         Returns:
-            str: Built context from processed sources
+            str: A formatted context string built from the processed search results.
         """
         # Get sources from SERP
         sources = self.serp_search.get_sources(query)
@@ -85,25 +104,30 @@ class OpenDeepSearchAgent:
         pro_mode: bool = False,
     ) -> str:
         """
-        Search for information and answer the query using an LLM.
-        
+        Searches for information and generates an AI response to the query.
+
+        This method combines web search, context building, and AI completion to provide
+        informed answers to questions. It first gathers relevant information through search,
+        then uses an LLM to generate a response based on the collected context.
+
         Args:
-            query (str): User's question
-            max_sources (int): Maximum number of sources to process/scrape
-            pro_mode (bool): enable pro mode/deeper search for this query
-            
+            query (str): The question or query to answer.
+            max_sources (int, default=2): Maximum number of sources to include in the context.
+            pro_mode (bool, default=False): When enabled, performs a more comprehensive search
+                and analysis of sources.
+
         Returns:
-            str: AI-generated response based on the search results
+            str: An AI-generated response that answers the query based on the gathered context.
         """
         # Get context from search results
         context = await self.search_and_build_context(query, max_sources, pro_mode)
-        
         # Prepare messages for the LLM
         messages = [
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
         ]
         
+
         # Get completion from LLM
         response = completion(
             model=self.model,

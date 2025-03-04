@@ -20,7 +20,7 @@ class BaseSemanticSearcher(ABC):
             texts: List of text strings to embed
             
         Returns:
-            torch.Tensor containing the embeddings
+            torch.Tensor containing the embeddings shape: (num_texts, embedding_dim)
         """
         pass
 
