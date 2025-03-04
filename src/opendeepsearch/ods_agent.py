@@ -5,14 +5,14 @@ from opendeepsearch.context_building.build_context import build_context
 from litellm import completion
 from dotenv import load_dotenv
 import os
-
+from opendeepsearch.prompts import SEARCH_SYSTEM_PROMPT
 load_dotenv()
 
 class OpenDeepSearchAgent:
     def __init__(
         self,
         model: str, #We use LiteLLM to call the model
-        system_prompt: Optional[str] = None,
+        system_prompt: Optional[str] = SEARCH_SYSTEM_PROMPT,
         serper_api_key: Optional[str] = None,
         source_processor_config: Optional[Dict[str, Any]] = None,
         temperature: float = 0.2, # Slight variation while maintaining reliability
@@ -54,11 +54,7 @@ class OpenDeepSearchAgent:
         self.model = model
         self.temperature = temperature
         self.top_p = top_p
-        self.system_prompt = system_prompt or (
-            "You are a helpful AI assistant. Use the provided context to answer "
-            "questions accurately. If you're unsure or the context doesn't contain "
-            "the relevant information, please say so."
-        )
+        self.system_prompt = system_prompt
 
     async def search_and_build_context(
         self,

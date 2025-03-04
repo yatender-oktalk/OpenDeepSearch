@@ -1,0 +1,7 @@
+Adding packages to default dependencies: pillow
+⠋ 0:00:28 Resolve for environment (>=3.10) 155 resolved, 0 to resolve
+Changes are written to pyproject.toml.
+All packages are synced to date, nothing to do.
+  ✔ Update opendeepsearch 0.1.0 -> 0.1.0 successful
+
+  0:00:00 🎉 All complete! 0/0
