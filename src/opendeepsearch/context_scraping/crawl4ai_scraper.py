@@ -12,9 +12,9 @@ from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.content_filter_strategy import PruningContentFilter
 from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
 
-from src.opendeepsearch.context_scraping.extraction_result import ExtractionResult, print_extraction_result
-from src.opendeepsearch.context_scraping.basic_web_scraper import ExtractionConfig
-from src.opendeepsearch.context_scraping.strategy_factory import StrategyFactory
+from opendeepsearch.context_scraping.extraction_result import ExtractionResult, print_extraction_result
+from opendeepsearch.context_scraping.basic_web_scraper import ExtractionConfig
+from opendeepsearch.context_scraping.strategy_factory import StrategyFactory
 
 class WebScraper:
     """Unified scraper that encapsulates all extraction strategies and configuration"""

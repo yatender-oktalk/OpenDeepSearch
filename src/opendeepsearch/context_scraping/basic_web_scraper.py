@@ -8,7 +8,7 @@ from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.markdown_generation_strategy import DefaultMarkdownGenerator
 from crawl4ai.content_filter_strategy import PruningContentFilter
 
-from src.opendeepsearch.context_scraping.extraction_result import ExtractionResult
+from opendeepsearch.context_scraping.extraction_result import ExtractionResult
 from crawl4ai.extraction_strategy import ExtractionStrategy
 
 @dataclass
