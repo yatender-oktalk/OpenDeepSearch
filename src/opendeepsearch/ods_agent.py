@@ -124,8 +124,6 @@ class OpenDeepSearchAgent:
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
         ]
-        
-
         # Get completion from LLM
         response = completion(
             model=self.model,
