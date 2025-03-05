@@ -6,6 +6,8 @@ from litellm import completion
 from dotenv import load_dotenv
 import os
 from opendeepsearch.prompts import SEARCH_SYSTEM_PROMPT
+import asyncio
+import nest_asyncio
 load_dotenv()
 
 class OpenDeepSearchAgent:
@@ -133,3 +135,25 @@ class OpenDeepSearchAgent:
         )
         
         return response.choices[0].message.content
+
+    def ask_sync(
+        self,
+        query: str,
+        max_sources: int = 2,
+        pro_mode: bool = False,
+    ) -> str:
+        """
+        Synchronous version of ask() method.
+        """
+        try:
+            # Try getting the current event loop
+            loop = asyncio.get_event_loop()
+            if loop.is_running():
+                # If we're in a running event loop (e.g., Jupyter), use nest_asyncio
+                nest_asyncio.apply()
+        except RuntimeError:
+            # If there's no event loop, create a new one
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+        
+        return loop.run_until_complete(self.ask(query, max_sources, pro_mode))
