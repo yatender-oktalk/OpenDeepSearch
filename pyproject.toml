@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "Salaheddin Alzu'bi", email = "salaheddin@sentient.xyz"},
 ]
-dependencies = ["openai>=1.65.1", "datasets>=3.3.2", "transformers>=4.49.0", "litellm>=1.61.20", "ipdb>=0.13.13", "ipykernel>=6.29.5", "loguru>=0.7.3", "langchain>=0.3.19", "torch>=2.6.0", "crawl4ai @ git+https://github.com/havspect/crawl4ai.git@fix-pil-versions", "fasttext>=0.9.3", "ipywidgets>=8.1.5", "wikipedia-api>=0.8.1", "pillow>=10.4.0", "smolagents>=1.9.2", "vllm>=0.1.2", "triton>=3.2.0"]
+dependencies = ["openai>=1.65.1", "datasets>=3.3.2", "transformers>=4.49.0", "litellm>=1.61.20", "ipdb>=0.13.13", "ipykernel>=6.29.5", "loguru>=0.7.3", "langchain>=0.3.19", "crawl4ai @ git+https://github.com/havspect/crawl4ai.git@fix-pil-versions", "fasttext>=0.9.3", "ipywidgets>=8.1.5", "wikipedia-api>=0.8.1", "pillow>=10.4.0", "smolagents>=1.9.2", "torch==2.5.1", "vllm==0.7.2", "triton>=3.1.0"]
 requires-python = ">=3.10"
 readme = "README.md"
 license = {text = "MIT"}
