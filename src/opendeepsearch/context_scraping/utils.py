@@ -139,6 +139,12 @@ COMMENT_PATTERN = r"<[ ]*!--.*?--[ ]*>"
 LINK_PATTERN = r"<[ ]*link.*?>"
 BASE64_IMG_PATTERN = r'<img[^>]+src="data:image/[^;]+;base64,[^"]+"[^>]*>'
 SVG_PATTERN = r"(<svg[^>]*>)(.*?)(<\/svg>)"
+IFRAME_PATTERN = r"<[ ]*iframe.*?\/[ ]*iframe[ ]*>"
+NOSCRIPT_PATTERN = r"<[ ]*noscript.*?\/[ ]*noscript[ ]*>"
+HEADER_PATTERN = r"<[ ]*header.*?\/[ ]*header[ ]*>"
+FOOTER_PATTERN = r"<[ ]*footer.*?\/[ ]*footer[ ]*>"
+NAV_PATTERN = r"<[ ]*nav.*?\/[ ]*nav[ ]*>"
+FORM_PATTERN = r"<[ ]*form.*?\/[ ]*form[ ]*>"
 
 
 def replace_svg(html: str, new_content: str = "this is a placeholder") -> str:
@@ -155,27 +161,34 @@ def replace_base64_images(html: str, new_image_src: str = "#") -> str:
 
 
 def clean_html(html: str, clean_svg: bool = False, clean_base64: bool = False):
-    html = re.sub(
-        SCRIPT_PATTERN, "", html, flags=re.IGNORECASE | re.MULTILINE | re.DOTALL
-    )
-    html = re.sub(
-        STYLE_PATTERN, "", html, flags=re.IGNORECASE | re.MULTILINE | re.DOTALL
-    )
-    html = re.sub(
-        META_PATTERN, "", html, flags=re.IGNORECASE | re.MULTILINE | re.DOTALL
-    )
-    html = re.sub(
-        COMMENT_PATTERN, "", html, flags=re.IGNORECASE | re.MULTILINE | re.DOTALL
-    )
-    html = re.sub(
-        LINK_PATTERN, "", html, flags=re.IGNORECASE | re.MULTILINE | re.DOTALL
-    )
+    """Clean HTML content by removing various elements."""
+    patterns = [
+        SCRIPT_PATTERN,
+        STYLE_PATTERN,
+        META_PATTERN,
+        COMMENT_PATTERN,
+        LINK_PATTERN,
+        IFRAME_PATTERN,
+        NOSCRIPT_PATTERN,
+        HEADER_PATTERN,
+        FOOTER_PATTERN,
+        NAV_PATTERN,
+        FORM_PATTERN
+    ]
+    
+    for pattern in patterns:
+        html = re.sub(pattern, "", html, flags=re.IGNORECASE | re.MULTILINE | re.DOTALL)
 
     if clean_svg:
         html = replace_svg(html)
     if clean_base64:
         html = replace_base64_images(html)
-    return html
+        
+    # Remove empty lines and excessive whitespace
+    html = re.sub(r'\n\s*\n', '\n', html)
+    html = re.sub(r'\s+', ' ', html)
+    
+    return html.strip()
 
 JSON_SCHEMA = """
 {

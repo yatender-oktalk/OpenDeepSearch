@@ -101,7 +101,7 @@ class WebScraper:
     
     async def scrape_many(self, urls: List[str]) -> Dict[str, Dict[str, ExtractionResult]]:
         """
-        Scrape multiple URLs using configured strategies
+        Scrape multiple URLs using configured strategies in parallel
         
         Args:
             urls: List of target URLs to scrape
@@ -109,9 +109,16 @@ class WebScraper:
         Returns:
             Dictionary mapping URLs to their extraction results
         """
+        # Create tasks for all URLs
+        tasks = [self.scrape(url) for url in urls]
+        # Run all tasks concurrently
+        results_list = await asyncio.gather(*tasks)
+        
+        # Build results dictionary
         results = {}
-        for url in urls:
-            results[url] = await self.scrape(url)
+        for url, result in zip(urls, results_list):
+            results[url] = result
+            
         return results
 
     async def extract(self, extraction_config: ExtractionConfig, url: str) -> ExtractionResult:

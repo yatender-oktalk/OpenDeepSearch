@@ -18,13 +18,34 @@ from opendeepsearch.context_scraping.utils import clean_html, get_wikipedia_cont
 class LLMConfig:
     """Configuration for LLM-based extraction"""
     model_name: str = 'jinaai/ReaderLM-v2'
-    max_model_len: int = 256000
+    max_model_len: int = 512_000
     temperature: float = 0.0
     top_k: int = 1
     presence_penalty: float = 0.25
     frequency_penalty: float = 0.25
     repetition_penalty: float = 1.13
-    max_tokens: int = 8192
+    max_tokens: int = 16_384
+
+# DEFAULT_SCHEMA = """
+# {
+#   "type": "object",
+#   "properties": {
+#     "title": {
+#       "type": "string"
+#     },
+#     "author": {
+#       "type": "string"
+#     },
+#     "date": {
+#       "type": "string"
+#     },
+#     "content": {
+#       "type": "string"
+#     }
+#   },
+#   "required": ["title", "author", "date", "content"]
+# }
+# """
 
 class FastWebScraper:
     """Enhanced scraper with LLM-powered extraction and multiple strategies"""
@@ -38,7 +59,7 @@ class FastWebScraper:
         self.debug = debug
         self.browser_config = browser_config or BrowserConfig(headless=True, verbose=debug)
         self.llm_config = llm_config or LLMConfig()
-        self.json_schema = json_schema
+        self.json_schema = None #json_schema or json.loads(DEFAULT_SCHEMA)
         
         # Initialize LLM
         self.sampling_params = SamplingParams(
@@ -80,7 +101,44 @@ class FastWebScraper:
         prompt = self._create_prompt(cleaned_html, instruction)
         
         outputs = self.llm.generate(prompt, self.sampling_params)
-        return outputs[0].outputs[0].text
+        raw_text = outputs[0].outputs[0].text
+        return self._parse_llm_output(raw_text)
+
+    def _parse_llm_output(self, text: str) -> str:
+        """
+        Parse LLM output, handling both single dictionaries and lists of dictionaries.
+        Returns the content field from the most appropriate dictionary.
+        """
+        try:
+            # Strip any markdown code block markers
+            text = text.strip()
+            if text.startswith('```') and text.endswith('```'):
+                text = text.split('```')[1]
+                if text.startswith('json'):
+                    text = text[4:]
+            
+            data = json.loads(text.strip())
+            
+            if isinstance(data, dict):
+                return data.get('content', '')
+            
+            if isinstance(data, list):
+                # First try to find a dictionary with non-empty content
+                for item in data:
+                    if isinstance(item, dict) and item.get('content'):
+                        return item['content']
+                
+                # If no content found, return content from last item or empty string
+                last_item = data[-1]
+                return last_item.get('content', '') if isinstance(last_item, dict) else ''
+            
+            return ''
+            
+        except json.JSONDecodeError:
+            # If JSON parsing fails, return the original text
+            return text.strip()
+        except Exception:
+            return ''
 
     async def scrape(self, url: str, instruction: Optional[str] = None) -> ExtractionResult:
         """

@@ -2,24 +2,14 @@ from smolagents import Tool
 from opendeepsearch.ods_agent import OpenDeepSearchAgent
 
 class OpenDeepSearchTool(Tool):
-    name = "OpenDeepSearch"
+    name = "web_search"
     description = """
-    This is a tool that answers user questions, using a web-search, on any topic."""
+    Performs web search based on your query (think a Google search) then returns the final answer that is processed by an llm."""
     inputs = {
-        "question": {
+        "query": {
             "type": "string",
-            "description": "the user question to answer",
+            "description": "The search query to perform",
         },
-        "max_sources": {
-            "type": "integer",
-            "nullable": True,
-            "description": "the maximum number of sources to retrieve from the web",
-        },
-        "pro_mode": {
-            "type": "boolean",
-            "nullable": True,
-            "description": "whether to use in-depth search mode",
-        }
     }
     output_type = "string"
 
@@ -27,8 +17,8 @@ class OpenDeepSearchTool(Tool):
         super().__init__()
         self.search_model_name = model_name #LiteLLM model name
 
-    def forward(self, question: str, max_sources: int = 2, pro_mode: bool = False):
-        answer = self.search_tool.ask_sync(question, max_sources, pro_mode)
+    def forward(self, query: str):
+        answer = self.search_tool.ask_sync(query, max_sources=2, pro_mode=True)
         return answer
 
     def setup(self):
