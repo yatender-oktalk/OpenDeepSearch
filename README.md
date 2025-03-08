@@ -61,17 +61,6 @@ print(result)
 
 [LiteLLM](https://github.com/BerriAI/litellm) is a lightweight and efficient wrapper that enables seamless integration with multiple LLM APIs. OpenDeepSearch leverages LiteLLM, meaning you can use **any LLM from any provider** that LiteLLM supports. This includes OpenAI, Anthropic, Cohere, and others. **OpenRouter** is a great example of a provider that gives access to multiple models through a single API.
 
-### Installing LiteLLM
-
-[LiteLLM](https://github.com/BerriAI/litellm) is a lightweight and efficient wrapper that enables seamless integration with multiple LLM APIs. OpenDeepSearch leverages LiteLLM for model inference.
-
-### Installing LiteLLM
-
-To install LiteLLM, run:
-
-```bash
-pip install litellm
-```
 
 ### Using LiteLLM with OpenDeepSearch
 
