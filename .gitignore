@@ -7,6 +7,7 @@ __pycache__/
 *.so
 *.ipynb
 *.ipynb_checkpoints
+output/
 
 # Distribution / packaging
 .Python
