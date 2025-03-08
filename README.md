@@ -4,7 +4,7 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 
 ## Features ✨
 
-- **Semantic Search** 🧠: Leverages Infinity Embedding API for high-quality search results.
+- **Semantic Search** 🧠: Leverages **[Infinity Embeddings API](https://github.com/michaelfeil/infinity)** for high-quality search results.
 - **Two Modes of Operation** ⚡:
   - **Default Mode**: Quick and efficient search with minimal latency.
   - **Pro Mode (Deep Search)**: More in-depth and accurate results at the cost of additional processing time.
@@ -12,7 +12,7 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 - **Fast and Lightweight** ⚡: Designed for speed and efficiency with minimal setup.
 - **Extensible** 🔌: Easily configurable to work with different models and APIs.
 
-## Installation 📦
+## Installation 📚
 
 To install OpenDeepSearch, run:
 
@@ -20,7 +20,21 @@ To install OpenDeepSearch, run:
 pip install opendeepsearch
 ```
 
-## Usage 🏗️
+## Setup
+
+1. **Sign up for Serper.dev**: Get **free 2500 credits** and add your API key.
+   - Visit [serper.dev](https://serper.dev) to create an account.
+   - Retrieve your API key and store it as an environment variable:
+   
+   ```bash
+   export SERPER_API_KEY='your-api-key-here'
+   ```
+
+2. **Set up Infinity Embeddings server or implement a base reranker**:
+   - Run the **[Infinity Embeddings](https://github.com/michaelfeil/infinity)** server for enhanced search capabilities.
+   - Alternatively, integrate a **base_reranker** for custom ranking of search results.
+
+## Usage 🏠️
 
 You can use OpenDeepSearch independently or integrate it with **SmolAgents** for enhanced reasoning and code generation capabilities.
 
@@ -59,8 +73,7 @@ print(result)
 
 ## LiteLLM Setup & Usage 🔥
 
-[LiteLLM](https://github.com/BerriAI/litellm) is a lightweight and efficient wrapper that enables seamless integration with multiple LLM APIs. OpenDeepSearch leverages LiteLLM, meaning you can use **any LLM from any provider** that LiteLLM supports. This includes OpenAI, Anthropic, Cohere, and others. **OpenRouter** is a great example of a provider that gives access to multiple models through a single API.
-
+**[LiteLLM](https://www.litellm.ai/)** is a lightweight and efficient wrapper that enables seamless integration with multiple LLM APIs. OpenDeepSearch leverages LiteLLM, meaning you can use **any LLM from any provider** that LiteLLM supports. This includes OpenAI, Anthropic, Cohere, and others. **OpenRouter** is a great example of a provider that gives access to multiple models through a single API.
 
 ### Using LiteLLM with OpenDeepSearch
 
@@ -72,24 +85,16 @@ export OPENROUTER_API_KEY='your-api-key-here'
 
 Then, you can use it as shown in the SmolAgents integration example above.
 
-## Configuration ⚙️
-
-You can configure OpenDeepSearch with environment variables or parameters:
-
-- `OPENROUTER_API_KEY`: API key for accessing OpenRouter models.
-- `MODEL_NAME`: Model used for search (default: `openrouter/google/gemini-2.0-flash-001`).
-- `PRO_MODE`: Set to `True` to enable deep search for more accurate results.
-
 ## Acknowledgments 💡
 
 OpenDeepSearch is built on the shoulders of great open-source projects:
 
 - **[Crawl4AI](https://github.com/crawl4ai)** 🕷️ – Provides data crawling support.
-- **[Infinity Embedding API](https://infinity.ai)** 🌍 – Powers semantic search capabilities.
-- **LiteLLM** 🔥 – Used for efficient AI model integration.
+- **[Infinity Embedding API](https://github.com/michaelfeil/infinity)** 🌍 – Powers semantic search capabilities.
+- **[LiteLLM](https://www.litellm.ai/)** 🔥 – Used for efficient AI model integration.
 - **Various Open-Source Libraries** 📚 – Enhancing search and retrieval functionalities.
 
-## License 📜
+## License 📝
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
@@ -103,7 +108,7 @@ We welcome contributions! If you'd like to improve OpenDeepSearch, please:
 
 For major changes, open an issue to discuss your ideas first.
 
-## Contact 📬
+## Contact 📩
 
 For questions or collaborations, open an issue or reach out to the maintainers.
 
