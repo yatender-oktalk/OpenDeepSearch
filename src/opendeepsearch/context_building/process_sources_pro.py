@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import List, Optional, Tuple
 from opendeepsearch.context_scraping.crawl4ai_scraper import WebScraper
 from opendeepsearch.ranking_models.infinity_rerank import InfinitySemanticSearcher
+from opendeepsearch.ranking_models.jina_reranker import JinaReranker
 from opendeepsearch.ranking_models.chunker import Chunker 
 
 @dataclass
@@ -16,6 +17,7 @@ class SourceProcessor:
         top_results: int = 5,
         strategies: List[str] = ["no_extraction"],
         filter_content: bool = True,
+        reranker: str = "infinity"
     ):
         self.strategies = strategies
         self.filter_content = filter_content
@@ -25,7 +27,14 @@ class SourceProcessor:
         )
         self.top_results = top_results
         self.chunker = Chunker()
-        self.semantic_searcher = InfinitySemanticSearcher()
+        
+        # Initialize the appropriate reranker
+        if reranker.lower() == "jina":
+            self.semantic_searcher = JinaReranker()
+            print("Using Jina Reranker")
+        else:  # default to infinity
+            self.semantic_searcher = InfinitySemanticSearcher()
+            print("Using Infinity Reranker")
 
     async def process_sources(
         self, 

@@ -19,6 +19,7 @@ class OpenDeepSearchAgent:
         source_processor_config: Optional[Dict[str, Any]] = None,
         temperature: float = 0.2, # Slight variation while maintaining reliability
         top_p: float = 0.3, # Focus on high-confidence tokens
+        reranker: Optional[str] = None, # Optional reranker identifier
     ):
         """
         Initialize an OpenDeepSearch agent that combines web search, content processing, and LLM capabilities.
@@ -41,16 +42,20 @@ class OpenDeepSearchAgent:
                 the output more focused and deterministic.
             top_p (float, default=0.3): Controls nucleus sampling for model outputs. Lower values make
                 the output more focused on high-probability tokens.
+            reranker (str, optional): Identifier for the reranker to use. If not provided,
+                uses the default reranker from SourceProcessor.
         """
         # Initialize SerperAPI with optional API key
         self.serp_search = SerperAPI(api_key=serper_api_key) if serper_api_key else SerperAPI()
         
+        # Update source_processor_config with reranker if provided
+        if source_processor_config is None:
+            source_processor_config = {}
+        if reranker:
+            source_processor_config['reranker'] = reranker
+        
         # Initialize SourceProcessor with provided config or defaults
-        self.source_processor = (
-            SourceProcessor(**source_processor_config)
-            if source_processor_config is not None
-            else SourceProcessor()
-        )
+        self.source_processor = SourceProcessor(**source_processor_config)
         
         # Initialize LLM settings
         self.model = model

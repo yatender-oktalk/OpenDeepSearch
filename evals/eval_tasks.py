@@ -26,7 +26,6 @@ from smolagents.agents import ActionStep
 
 
 load_dotenv()
-os.makedirs("eval_outputs", exist_ok=True)
 
 APPEND_ANSWER_LOCK = threading.Lock()
 
@@ -199,12 +198,11 @@ def answer_questions(
     model_dir = model_id.replace('/', '__')
     
     for task in eval_ds:
-        # Updated nested directory structure to include model_id
         task_dir = os.path.join(output_dir, model_dir, action_type, task)
         os.makedirs(task_dir, exist_ok=True)
         
         for trial in range(num_trials):
-            file_name = f"{task_dir}/{model_id.replace('/', '__')}__{action_type}__{task}__{date}_trial{trial}.jsonl"
+            file_name = f"{task_dir}/{model_id.replace('/', '__')}__{action_type}__{task}__trial{trial}.jsonl"
             print(f"Starting processing trial {trial + 1}/{num_trials} and writing output to '{file_name}'")
             answered_questions = []
             if os.path.exists(file_name):
