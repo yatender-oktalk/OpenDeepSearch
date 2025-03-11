@@ -4,7 +4,7 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 
 ## Table of Contents 📑
 
-- [OpenDeepSearch 🚀🔍](#opendeepsearch-)
+- [🔍OpenDeepSearch: Democratizing Search with Open-source Reasoning Models and Reasoning Agents 🚀](#opendeepsearch-democratizing-search-with-open-source-reasoning-models-and-reasoning-agents-)
   - [Table of Contents 📑](#table-of-contents-)
   - [Features ✨](#features-)
   - [Installation 📚](#installation-)
@@ -81,7 +81,13 @@ You can use OpenDeepSearch independently or integrate it with **SmolAgents** for
 from opendeepsearch import OpenDeepSearchTool
 import os
 
-search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True)  # Set pro_mode for deep search
+# Set environment variables for API keys
+os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
+os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
+os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
+
+search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True, reranker="jina")  # Set pro_mode for deep search
+# Set reranker to "jina", or "infinity" for self-hosted reranking
 query = "Fastest land animal?"
 result = search_agent.search(query)
 print(result)
@@ -94,11 +100,15 @@ from opendeepsearch import OpenDeepSearchTool
 from smolagents import CodeAgent, LiteLLMModel
 import os
 
-search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True)
+# Set environment variables for API keys
+os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
+os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
+os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
+
+search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True, reranker="jina") # Set reranker to "jina" or "infinity"
 model = LiteLLMModel(
     "openrouter/google/gemini-2.0-flash-001",
-    temperature=0.2,
-    api_key=os.environ["OPENROUTER_API_KEY"]
+    temperature=0.2
 )
 
 code_agent = CodeAgent(tools=[search_agent], model=model)
