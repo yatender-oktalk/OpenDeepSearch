@@ -55,6 +55,7 @@ Also note the following things:
     - Predicted answers "around 100k" and "more than 50k" are considered NOT_ATTEMPTED because they neither confirm nor contradict the gold target.
     - The presence or absence of commas in numbers (e.g., "5,876" vs "5876") does not affect grading.
     - Numbers written as words or digits are equivalent (e.g., "2 million" vs "2000000" vs "2,000,000" are all considered the same).
+    - For large numerical answers, a margin of error of ±1% is acceptable (e.g., if the gold answer is 855, predicted answers between 846.45 and 863.55 are CORRECT).
 - The gold target may contain more information than the question. In such cases, the predicted answer only needs to contain the information that is in the question.
     - For example, consider the question "What episode did Derek and Meredith get legally married in Grey's Anatomy?" with gold target "Season 7, Episode 20: White Wedding". Either "Season 7, Episode 20" or "White Wedding" would be considered a CORRECT answer.
 - Do not punish predicted answers if they omit information that would be clearly inferred from the question.
