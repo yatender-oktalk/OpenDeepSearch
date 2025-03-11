@@ -11,6 +11,7 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
   - [Setup](#setup)
   - [Usage ️](#usage-️)
     - [Using OpenDeepSearch Standalone 🔍](#using-opendeepsearch-standalone-)
+    - [Running the Gradio Demo 🖥️](#running-the-gradio-demo-️)
     - [Integrating with SmolAgents \& LiteLLM 🤖⚙️](#integrating-with-smolagents--litellm-️)
   - [Search Modes 🔄](#search-modes-)
     - [Default Mode ⚡](#default-mode-)
@@ -92,6 +93,16 @@ query = "Fastest land animal?"
 result = search_agent.search(query)
 print(result)
 ```
+
+### Running the Gradio Demo 🖥️
+
+To try out OpenDeepSearch with a user-friendly interface, simply run:
+
+```bash
+python gradio_demo.py
+```
+
+This will launch a local web interface where you can test different search queries and modes interactively. You can also change the model, reranker, and search mode in `gradio_demo.py`.
 
 ### Integrating with SmolAgents & LiteLLM 🤖⚙️
 
