@@ -36,7 +36,8 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 To install OpenDeepSearch, run:
 
 ```bash
-pip install opendeepsearch
+pip install -e .
+pip install -r requirements.txt
 ```
 
 ## Setup
