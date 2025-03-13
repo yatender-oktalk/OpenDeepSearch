@@ -2,9 +2,28 @@
 
 OpenDeepSearch is a lightweight yet powerful search tool designed for seamless integration with AI agents. It enables deep web search and retrieval, optimized for use with Hugging Face's **[SmolAgents](https://github.com/huggingface/smolagents)** ecosystem.
 
+## Table of Contents 📑
+
+- [🔍OpenDeepSearch: Democratizing Search with Open-source Reasoning Models and Reasoning Agents 🚀](#opendeepsearch-democratizing-search-with-open-source-reasoning-models-and-reasoning-agents-)
+  - [Table of Contents 📑](#table-of-contents-)
+  - [Features ✨](#features-)
+  - [Installation 📚](#installation-)
+  - [Setup](#setup)
+  - [Usage ️](#usage-️)
+    - [Using OpenDeepSearch Standalone 🔍](#using-opendeepsearch-standalone-)
+    - [Running the Gradio Demo 🖥️](#running-the-gradio-demo-️)
+    - [Integrating with SmolAgents \& LiteLLM 🤖⚙️](#integrating-with-smolagents--litellm-️)
+  - [Search Modes 🔄](#search-modes-)
+    - [Default Mode ⚡](#default-mode-)
+    - [Pro Mode 🔍](#pro-mode-)
+  - [Acknowledgments 💡](#acknowledgments-)
+  - [License 📝](#license-)
+  - [Contributing 🤝](#contributing-)
+  - [Contact 📩](#contact-)
+
 ## Features ✨
 
-- **Semantic Search** 🧠: Leverages **[Infinity Embeddings API](https://github.com/michaelfeil/infinity)** for high-quality search results.
+- **Semantic Search** 🧠: Leverages **[Crawl4AI](https://github.com/crawl4ai)** and semantic search rerankers (such as [Qwen2-7B-instruct](https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct/tree/main) and [Jina AI](https://jina.ai/)) to provide in-depth results
 - **Two Modes of Operation** ⚡:
   - **Default Mode**: Quick and efficient search with minimal latency.
   - **Pro Mode (Deep Search)**: More in-depth and accurate results at the cost of additional processing time.
@@ -17,7 +36,8 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 To install OpenDeepSearch, run:
 
 ```bash
-pip install opendeepsearch
+pip install -e .
+pip install -r requirements.txt
 ```
 
 ## Setup
@@ -30,11 +50,30 @@ pip install opendeepsearch
    export SERPER_API_KEY='your-api-key-here'
    ```
 
-2. **Set up Infinity Embeddings server or implement a base reranker**:
-   - Run the **[Infinity Embeddings](https://github.com/michaelfeil/infinity)** server for enhanced search capabilities.
-   - Alternatively, integrate a **base_reranker** for custom ranking of search results.
+2. **Choose a Reranking Solution**:
+   - **Quick Start with Jina**: Sign up at [Jina AI](https://jina.ai/) to get an API key for immediate use
+   - **Self-hosted Option**: Set up [Infinity Embeddings](https://github.com/michaelfeil/infinity) server locally with open source models such as [Qwen2-7B-instruct](https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct/tree/main)
+   - For more details on reranking options, see our [Rerankers Guide](src/opendeepsearch/ranking_models/README.md)
 
-## Usage 🏠️
+3. **Set up LiteLLM Provider**:
+   - Choose a provider from the [supported list](https://docs.litellm.ai/docs/providers/), including:
+     - OpenAI
+     - Anthropic
+     - Google (Gemini)
+     - OpenRouter
+     - HuggingFace
+     - Fireworks
+     - And many more!
+   - Set your chosen provider's API key as an environment variable:
+   ```bash
+   export <PROVIDER>_API_KEY='your-api-key-here'  # e.g., OPENAI_API_KEY, ANTHROPIC_API_KEY
+   ```
+   - When initializing OpenDeepSearch, specify your chosen model using the provider's format:
+   ```python
+   search_agent = OpenDeepSearchTool(model_name="provider/model-name")  # e.g., "anthropic/claude-3-opus-20240229", 'huggingface/microsoft/codebert-base', 'openrouter/google/gemini-2.0-flash-001'
+   ```
+
+## Usage ️
 
 You can use OpenDeepSearch independently or integrate it with **SmolAgents** for enhanced reasoning and code generation capabilities.
 
@@ -44,11 +83,27 @@ You can use OpenDeepSearch independently or integrate it with **SmolAgents** for
 from opendeepsearch import OpenDeepSearchTool
 import os
 
-search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True)  # Set pro_mode for deep search
+# Set environment variables for API keys
+os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
+os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
+os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
+
+search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True, reranker="jina")  # Set pro_mode for deep search
+# Set reranker to "jina", or "infinity" for self-hosted reranking
 query = "Fastest land animal?"
 result = search_agent.search(query)
 print(result)
 ```
+
+### Running the Gradio Demo 🖥️
+
+To try out OpenDeepSearch with a user-friendly interface, simply run:
+
+```bash
+python gradio_demo.py
+```
+
+This will launch a local web interface where you can test different search queries and modes interactively. You can also change the model, reranker, and search mode in `gradio_demo.py`.
 
 ### Integrating with SmolAgents & LiteLLM 🤖⚙️
 
@@ -57,11 +112,15 @@ from opendeepsearch import OpenDeepSearchTool
 from smolagents import CodeAgent, LiteLLMModel
 import os
 
-search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True)
+# Set environment variables for API keys
+os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
+os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
+os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
+
+search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True, reranker="jina") # Set reranker to "jina" or "infinity"
 model = LiteLLMModel(
     "openrouter/google/gemini-2.0-flash-001",
-    temperature=0.2,
-    api_key=os.environ["OPENROUTER_API_KEY"]
+    temperature=0.2
 )
 
 code_agent = CodeAgent(tools=[search_agent], model=model)
@@ -71,24 +130,33 @@ result = code_agent.run(query)
 print(result)
 ```
 
-## LiteLLM Setup & Usage 🔥
+## Search Modes 🔄
 
-**[LiteLLM](https://www.litellm.ai/)** is a lightweight and efficient wrapper that enables seamless integration with multiple LLM APIs. OpenDeepSearch leverages LiteLLM, meaning you can use **any LLM from any provider** that LiteLLM supports. This includes OpenAI, Anthropic, Cohere, and others. **OpenRouter** is a great example of a provider that gives access to multiple models through a single API.
+OpenDeepSearch offers two distinct search modes to balance between speed and depth:
 
-### Using LiteLLM with OpenDeepSearch
+### Default Mode ⚡
+- Uses SERP-based interaction for quick results
+- Minimal processing overhead
+- Ideal for single-hop, straightforward queries
+- Fast response times
+- Perfect for basic information retrieval
 
-You need to set up your API key in your environment variables before using LiteLLM:
-
-```bash
-export OPENROUTER_API_KEY='your-api-key-here'
-```
-
-Then, you can use it as shown in the SmolAgents integration example above.
+### Pro Mode 🔍
+- Involves comprehensive web scraping
+- Implements semantic reranking of results
+- Includes advanced post-processing of data
+- Slightly longer processing time
+- Excels at:
+  - Multi-hop queries
+  - Complex search requirements
+  - Detailed information gathering
+  - Questions requiring cross-reference verification
 
 ## Acknowledgments 💡
 
 OpenDeepSearch is built on the shoulders of great open-source projects:
 
+- **[SmolAgents](https://huggingface.co/docs/smolagents/index)** 🤗 – Powers the agent framework and reasoning capabilities.
 - **[Crawl4AI](https://github.com/crawl4ai)** 🕷️ – Provides data crawling support.
 - **[Infinity Embedding API](https://github.com/michaelfeil/infinity)** 🌍 – Powers semantic search capabilities.
 - **[LiteLLM](https://www.litellm.ai/)** 🔥 – Used for efficient AI model integration.

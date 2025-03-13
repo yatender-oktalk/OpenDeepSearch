@@ -19,7 +19,7 @@ class OpenDeepSearchAgent:
         source_processor_config: Optional[Dict[str, Any]] = None,
         temperature: float = 0.2, # Slight variation while maintaining reliability
         top_p: float = 0.3, # Focus on high-confidence tokens
-        reranker: Optional[str] = None, # Optional reranker identifier
+        reranker: Optional[str] = "None", # Optional reranker identifier
     ):
         """
         Initialize an OpenDeepSearch agent that combines web search, content processing, and LLM capabilities.
