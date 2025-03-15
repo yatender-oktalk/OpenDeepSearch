@@ -108,14 +108,15 @@ This will launch a local web interface where you can test different search queri
 ### Integrating with SmolAgents & LiteLLM 🤖⚙️
 
 ```python
-from opendeepsearch import OpenDeepSearchTool
-from smolagents import CodeAgent, LiteLLMModel
+from opendeepsearch import OpenDeepSearchTool, REACT_PROMPT, WolframAlphaTool
+from smolagents import CodeAgent, LiteLLMModel, ToolCallingAgent
 import os
 
 # Set environment variables for API keys
 os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
 os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
 os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
+os.environ["WOLFRAM_ALPHA_APP_ID"] = "your-wolfram-alpha-app-id-here"
 
 search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True, reranker="jina") # Set reranker to "jina" or "infinity"
 model = LiteLLMModel(
@@ -128,6 +129,20 @@ query = "How long would a cheetah at full speed take to run the length of Pont A
 result = code_agent.run(query)
 
 print(result)
+
+# Initialize the Wolfram Alpha tool
+wolfram_tool = WolframAlphaTool(app_id=os.environ["WOLFRAM_ALPHA_APP_ID"])
+
+# Initialize the React Agent with search and wolfram tools 
+react_agent = ToolCallingAgent(
+    tools=[search_agent, wolfram_tool],
+    model=model,
+    system_prompt=REACT_PROMPT  # Using REACT_PROMPT as system prompt
+)
+
+# Example query for the React Agent
+query = "What is the distance, in metres, between the Colosseum in Rome and the Rialto bridge in Venice"
+result = react_agent.run(query)
 ```
 
 ## Search Modes 🔄
