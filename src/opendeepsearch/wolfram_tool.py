@@ -4,7 +4,7 @@ import json
 import os
 
 class WolframAlphaTool(Tool):
-    name = "wolfram_alpha"
+    name = "calculate"
     description = """
     Performs computational, mathematical, and factual queries using Wolfram Alpha's computational knowledge engine.
     """
