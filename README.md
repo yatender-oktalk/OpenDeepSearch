@@ -131,7 +131,7 @@ os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
 os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
 os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
 
-search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True, reranker="jina")  # Set pro_mode for deep search
+search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", reranker="jina")  # Set pro_mode for deep search
 # Set reranker to "jina", or "infinity" for self-hosted reranking
 query = "Fastest land animal?"
 result = search_agent.search(query)
@@ -160,7 +160,7 @@ os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
 os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
 os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
 
-search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", pro_mode=True, reranker="jina") # Set reranker to "jina" or "infinity"
+search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", reranker="jina") # Set reranker to "jina" or "infinity"
 model = LiteLLMModel(
     "openrouter/google/gemini-2.0-flash-001",
     temperature=0.2
