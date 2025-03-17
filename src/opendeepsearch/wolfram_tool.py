@@ -19,6 +19,11 @@ class WolframAlphaTool(Tool):
     def __init__(self, app_id: str):
         super().__init__()
         self.app_id = app_id
+    
+    def setup(self):
+        self.search_tool = WolframAlphaTool(
+            self.app_id,
+        )
         
     def forward(self, query: str):
             
