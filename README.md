@@ -79,9 +79,13 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 To install OpenDeepSearch, run:
 
 ```bash
-pip install -e .
-pip install -r requirements.txt
+pip install -e . #you can also use: uv pip install -e .
+pip install -r requirements.txt #you can also use: uv pip install -r requirements.txt
 ```
+
+Note: you must have `torch` installed.
+Note: using `uv` instead of regular `pip` makes life much easier!
+
 
 ## Setup
 
