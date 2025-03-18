@@ -41,8 +41,8 @@
 
 OpenDeepSearch is a lightweight yet powerful search tool designed for seamless integration with AI agents. It enables deep web search and retrieval, optimized for use with Hugging Face's **[SmolAgents](https://github.com/huggingface/smolagents)** ecosystem.
 
-- **Performance**: ODS performs on par with closed source search alternatives on single-hop queries such as [SimpleQA](#) 🔍.
-- **Advanced Capabilities**: ODS performs much better than closed source search alternatives on multi-hop queries such as [FRAMEs bench](#) 🚀.
+- **Performance**: ODS performs on par with closed source search alternatives on single-hop queries such as [SimpleQA](https://openai.com/index/introducing-simpleqa/) 🔍.
+- **Advanced Capabilities**: ODS performs much better than closed source search alternatives on multi-hop queries such as [FRAMEs bench](https://huggingface.co/datasets/google/frames-benchmark) 🚀.
 
 ## Table of Contents 📑
 
@@ -209,19 +209,14 @@ OpenDeepSearch is built on the shoulders of great open-source projects:
 - **[LiteLLM](https://www.litellm.ai/)** 🔥 – Used for efficient AI model integration.
 - **Various Open-Source Libraries** 📚 – Enhancing search and retrieval functionalities.
 
-## License 📝
+## Citation
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+If you use `OpenDeepSearch` in your works, please cite it using the following BibTex entry:
 
-## Contributing 🤝
+```
+@TODO
+```
 
-We welcome contributions! If you'd like to improve OpenDeepSearch, please:
-
-1. Fork the repository.
-2. Create a new branch (`feature-xyz`).
-3. Submit a pull request.
-
-For major changes, open an issue to discuss your ideas first.
 
 ## Contact 📩
 
