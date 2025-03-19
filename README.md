@@ -42,7 +42,7 @@
 OpenDeepSearch is a lightweight yet powerful search tool designed for seamless integration with AI agents. It enables deep web search and retrieval, optimized for use with Hugging Face's **[SmolAgents](https://github.com/huggingface/smolagents)** ecosystem.
 
 <div align="center">
-    <img src="./assets/evals.png" alt="Evaluation Results" width="80%"/>
+    <img src="assets/evals.png" alt="Evaluation Results" width="80%"/>
 </div>
 
 - **Performance**: ODS performs on par with closed source search alternatives on single-hop queries such as [SimpleQA](https://openai.com/index/introducing-simpleqa/) 🔍.
