@@ -154,6 +154,8 @@ This will launch a local web interface where you can test different search queri
 
 ### Integrating with SmolAgents & LiteLLM 🤖⚙️
 
+#### 
+
 ```python
 from opendeepsearch import OpenDeepSearchTool
 from smolagents import CodeAgent, LiteLLMModel
@@ -173,6 +175,44 @@ model = LiteLLMModel(
 code_agent = CodeAgent(tools=[search_agent], model=model)
 query = "How long would a cheetah at full speed take to run the length of Pont Alexandre III?"
 result = code_agent.run(query)
+
+print(result)
+```
+### ReAct agent with math and search tools 🤖⚙️
+
+#### 
+```python
+from opendeepsearch import OpenDeepSearchTool 
+from opendeepsearch.wolfram_tool import WolframAlphaTool
+from opendeepsearch.prompts import REACT_PROMPT
+from smolagents import LiteLLMModel, ToolCallingAgent, Tool 
+import os
+
+# Set environment variables for API keys
+os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
+os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
+os.environ["WOLFRAM_ALPHA_APP_ID"] = "your-wolfram-alpha-app-id-here"
+os.environ["FIREWORKS_API_KEY"] = "your-fireworks-api-key-here"
+
+model = LiteLLMModel(
+    "fireworks_ai/llama-v3p1-70b-instruct",  # Your Fireworks Deepseek model
+    temperature=0.7
+)
+search_agent = OpenDeepSearchTool(model_name="fireworks_ai/llama-v3p1-70b-instruct", reranker="jina") # Set reranker to "jina" or "infinity"
+
+# Initialize the Wolfram Alpha tool
+wolfram_tool = WolframAlphaTool(app_id=os.environ["WOLFRAM_ALPHA_APP_ID"])
+
+# Initialize the React Agent with search and wolfram tools 
+react_agent = ToolCallingAgent(
+    tools=[search_agent, wolfram_tool],
+    model=model,
+    prompt_templates=REACT_PROMPT # Using REACT_PROMPT as system prompt
+)
+
+# Example query for the React Agent
+query = "What is the distance, in metres, between the Colosseum in Rome and the Rialto bridge in Venice"
+result = react_agent.run(query)
 
 print(result)
 ```

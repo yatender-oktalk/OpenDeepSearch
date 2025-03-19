@@ -5,7 +5,8 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:97e32121a76b37b1056d30d9f2a35870bebe223f9ab4545abc388b9297b2e7d0"
+content_hash = "sha256:2864614fb2e1f65ee4e7ea861432c45b9426df1fb1f29f4f907243a3f4e2f695"
+
 
 [[metadata.targets]]
 requires_python = ">=3.10"
@@ -301,6 +302,18 @@ files = [
     {file = "audioop_lts-0.2.1-cp313-cp313t-win_amd64.whl", hash = "sha256:f0f2f336aa2aee2bce0b0dcc32bbba9178995454c7b979cf6ce086a8801e14c7"},
     {file = "audioop_lts-0.2.1-cp313-cp313t-win_arm64.whl", hash = "sha256:78bfb3703388c780edf900be66e07de5a3d4105ca8e8720c5c4d67927e0b15d0"},
     {file = "audioop_lts-0.2.1.tar.gz", hash = "sha256:e81268da0baa880431b68b1308ab7257eb33f356e57a5f9b1f915dfb13dd1387"},
+]
+
+[[package]]
+name = "backports-tarfile"
+version = "1.2.0"
+requires_python = ">=3.8"
+summary = "Backport of CPython tarfile module"
+groups = ["default"]
+marker = "python_version < \"3.12\""
+files = [
+    {file = "backports.tarfile-1.2.0-py3-none-any.whl", hash = "sha256:77e284d754527b01fb1e6fa8a1afe577858ebe4e9dad8919e34c862cb399bc34"},
+    {file = "backports_tarfile-1.2.0.tar.gz", hash = "sha256:d75e02c268746e1b8144c278978b6e98e85de6ad16f8e4b0844a154557eca991"},
 ]
 
 [[package]]
@@ -1590,6 +1603,20 @@ files = [
 ]
 
 [[package]]
+name = "jaraco-context"
+version = "6.0.1"
+requires_python = ">=3.8"
+summary = "Useful decorators and context managers"
+groups = ["default"]
+dependencies = [
+    "backports-tarfile; python_version < \"3.12\"",
+]
+files = [
+    {file = "jaraco.context-6.0.1-py3-none-any.whl", hash = "sha256:f797fc481b490edb305122c9181830a3a5b76d84ef6d1aef2fb9b47ab956f9e4"},
+    {file = "jaraco_context-6.0.1.tar.gz", hash = "sha256:9bae4ea555cf0b14938dc0aee7c9f32ed303aa20a3b73e7dc80111628792d1b3"},
+]
+
+[[package]]
 name = "jedi"
 version = "0.19.2"
 requires_python = ">=3.6"
@@ -2152,6 +2179,17 @@ dependencies = [
 files = [
     {file = "mistral_common-1.5.3-py3-none-any.whl", hash = "sha256:918af99501282bdd14cc453d561fbce13ba1416654604b94bed22c6aaebbb819"},
     {file = "mistral_common-1.5.3.tar.gz", hash = "sha256:1e9cc740197a55f9bc20d44160ce9230d9fff399da2e781d91c2677011765eff"},
+]
+
+[[package]]
+name = "more-itertools"
+version = "10.6.0"
+requires_python = ">=3.9"
+summary = "More routines for operating on iterables, beyond itertools"
+groups = ["default"]
+files = [
+    {file = "more-itertools-10.6.0.tar.gz", hash = "sha256:2cd7fad1009c31cc9fb6a035108509e6547547a7a738374f10bd49a09eb3ee3b"},
+    {file = "more_itertools-10.6.0-py3-none-any.whl", hash = "sha256:6eb054cb4b6db1473f6e15fcc676a08e4732548acd47c708f0e179c2c7c01e89"},
 ]
 
 [[package]]
@@ -5018,6 +5056,24 @@ files = [
 ]
 
 [[package]]
+name = "wolframalpha"
+version = "5.1.3"
+requires_python = ">=3.8"
+summary = "Wolfram|Alpha 2.0 API client"
+groups = ["default"]
+dependencies = [
+    "httpx",
+    "jaraco-context",
+    "more-itertools",
+    "multidict",
+    "xmltodict",
+]
+files = [
+    {file = "wolframalpha-5.1.3-py3-none-any.whl", hash = "sha256:549b44e64595c5845be4c94f2b306a84832157bef422b20937cbca44b48ee117"},
+    {file = "wolframalpha-5.1.3.tar.gz", hash = "sha256:56226efeca0f55acec5e17dd2f6537a178d0bf4feec4df0615165e2968bb49b8"},
+]
+
+[[package]]
 name = "wrapt"
 version = "1.17.2"
 requires_python = ">=3.8"
@@ -5136,6 +5192,17 @@ files = [
     {file = "xgrammar-0.1.14-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:39ff13d85c30c52b6d0751c8f45f28b3950ee3dae32a54e6f5208cb856ec22a9"},
     {file = "xgrammar-0.1.14-cp313-cp313-win_amd64.whl", hash = "sha256:31f54118cc50c7b979e2544e16298361cae1aa335a703e8d2aa43a32ee49ef4d"},
     {file = "xgrammar-0.1.14.tar.gz", hash = "sha256:b0d11ee9d10a9812f2b646a40b149e8ead88251ff1f3cac2709efd31882176f2"},
+]
+
+[[package]]
+name = "xmltodict"
+version = "0.14.2"
+requires_python = ">=3.6"
+summary = "Makes working with XML feel like you are working with JSON"
+groups = ["default"]
+files = [
+    {file = "xmltodict-0.14.2-py2.py3-none-any.whl", hash = "sha256:20cc7d723ed729276e808f26fb6b3599f786cbc37e06c65e192ba77c40f20aac"},
+    {file = "xmltodict-0.14.2.tar.gz", hash = "sha256:201e7c28bb210e374999d1dde6382923ab0ed1a8a5faeece48ab525b7810a553"},
 ]
 
 [[package]]
