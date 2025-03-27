@@ -31,7 +31,7 @@
 </div>
 
 <h4 align="center">
-        <a href="https://arxiv.org/pdf/2502.07760"> Paper  </a> 
+        <a href="https://arxiv.org/pdf/2503.20201"> Paper  </a> 
 </h4>
 
 ## Description 📝
