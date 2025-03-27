@@ -43,7 +43,7 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 </div>
 
 - **Performance**: ODS performs on par with closed source search alternatives on single-hop queries such as [SimpleQA](https://openai.com/index/introducing-simpleqa/) 🔍.
-- **Advanced Capabilities**: ODS performs much better than closed source search alternatives on multi-hop queries such as [FRAMEs bench](https://huggingface.co/datasets/google/frames-benchmark) 🚀.
+- **Advanced Capabilities**: ODS performs much better than closed source search alternatives on multi-hop queries such as [FRAMES bench](https://huggingface.co/datasets/google/frames-benchmark) 🚀.
 
 ## Table of Contents 📑
 
