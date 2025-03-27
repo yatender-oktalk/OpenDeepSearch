@@ -258,7 +258,13 @@ OpenDeepSearch is built on the shoulders of great open-source projects:
 If you use `OpenDeepSearch` in your works, please cite it using the following BibTex entry:
 
 ```
-@TODO
+@article{alzubi2025open,
+  title={Open Deep Search: Democratizing Search with Open-source Reasoning Agents},
+  author={Salahaddin Alzubi and Creston Brooks and Purva Chiniya and Edoardo Contente and Chiara von Gerlach and Lucas Irwin and Yihan Jiang and Arda Kaz and Windsor Nguyen and Sewoong Oh and Himanshu Tyagi and Pramod Viswanath},
+  journal={arXiv preprint arXiv:2503.20201},
+  year={2025},
+  url={https://arxiv.org/abs/2503.20201}
+}
 ```
 
 
