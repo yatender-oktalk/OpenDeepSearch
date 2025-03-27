@@ -31,10 +31,7 @@
 </div>
 
 <h4 align="center">
-    <p>
-        <a href="https://arxiv.org/pdf/2502.07760"> Paper  </a> |
-        Demo (Coming soon)</a>
-    <p>
+        <a href="https://arxiv.org/pdf/2502.07760"> Paper  </a> 
 </h4>
 
 ## Description 📝
