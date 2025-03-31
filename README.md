@@ -245,7 +245,7 @@ OpenDeepSearch offers two distinct search modes to balance between speed and dep
 OpenDeepSearch is built on the shoulders of great open-source projects:
 
 - **[SmolAgents](https://huggingface.co/docs/smolagents/index)** 🤗 – Powers the agent framework and reasoning capabilities.
-- **[Crawl4AI](https://github.com/crawl4ai)** 🕷️ – Provides data crawling support.
+- **[Crawl4AI](https://github.com/unclecode/crawl4ai)** 🕷️ – Provides data crawling support.
 - **[Infinity Embedding API](https://github.com/michaelfeil/infinity)** 🌍 – Powers semantic search capabilities.
 - **[LiteLLM](https://www.litellm.ai/)** 🔥 – Used for efficient AI model integration.
 - **Various Open-Source Libraries** 📚 – Enhancing search and retrieval functionalities.
