@@ -67,7 +67,7 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 
 ## Features ✨
 
-- **Semantic Search** 🧠: Leverages **[Crawl4AI](https://github.com/crawl4ai)** and semantic search rerankers (such as [Qwen2-7B-instruct](https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct/tree/main) and [Jina AI](https://jina.ai/)) to provide in-depth results
+- **Semantic Search** 🧠: Leverages **[Crawl4AI](https://github.com/unclecode/crawl4ai)** and semantic search rerankers (such as [Qwen2-7B-instruct](https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct/tree/main) and [Jina AI](https://jina.ai/)) to provide in-depth results
 - **Two Modes of Operation** ⚡:
   - **Default Mode**: Quick and efficient search with minimal latency.
   - **Pro Mode (Deep Search)**: More in-depth and accurate results at the cost of additional processing time.
@@ -139,7 +139,7 @@ os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
 search_agent = OpenDeepSearchTool(model_name="openrouter/google/gemini-2.0-flash-001", reranker="jina")  # Set pro_mode for deep search
 # Set reranker to "jina", or "infinity" for self-hosted reranking
 query = "Fastest land animal?"
-result = search_agent.search(query)
+result = search_agent.forward(query)
 print(result)
 ```
 
