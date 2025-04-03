@@ -89,6 +89,29 @@ pip install -r requirements.txt #you can also use: uv pip install -r requirement
 Note: you must have `torch` installed.
 Note: using `uv` instead of regular `pip` makes life much easier!
 
+### Using PDM (Alternative Package Manager) 📦
+
+You can also use PDM as an alternative package manager for OpenDeepSearch. PDM is a modern Python package and dependency manager supporting the latest PEP standards.
+
+```bash
+# Install PDM if you haven't already
+curl -sSL https://raw.githubusercontent.com/pdm-project/pdm/main/install-pdm.py | python3 -
+
+# Initialize a new PDM project
+pdm init
+
+# Install OpenDeepSearch and its dependencies
+pdm install
+
+# Activate the virtual environment
+eval "$(pdm venv activate)"
+```
+
+PDM offers several advantages:
+- Lockfile support for reproducible installations
+- PEP 582 support (no virtual environment needed)
+- Fast dependency resolution
+- Built-in virtual environment management
 
 ## Setup
 
@@ -181,6 +204,9 @@ search_agent = OpenDeepSearchTool(
 #     searxng_api_key="your-api-key-here"  # Optional
 # )
 
+if not search_agent.is_initialized:
+    search_agent.setup()
+    
 query = "Fastest land animal?"
 result = search_agent.forward(query)
 print(result)
