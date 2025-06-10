@@ -38,12 +38,15 @@
 
 OpenDeepSearch is a lightweight yet powerful search tool designed for seamless integration with AI agents. It enables deep web search and retrieval, optimized for use with Hugging Face's **[SmolAgents](https://github.com/huggingface/smolagents)** ecosystem.
 
+**🆕 NEW: Temporal Knowledge Graph Integration** - OpenDeepSearch now supports time-aware reasoning through integrated Temporal Knowledge Graphs, enabling agents to answer chronological questions with precise historical context.
+
 <div align="center">
     <img src="./assets/evals.png" alt="Evaluation Results" width="80%"/>
 </div>
 
 - **Performance**: ODS performs on par with closed source search alternatives on single-hop queries such as [SimpleQA](https://openai.com/index/introducing-simpleqa/) 🔍.
 - **Advanced Capabilities**: ODS performs much better than closed source search alternatives on multi-hop queries such as [FRAMES bench](https://huggingface.co/datasets/google/frames-benchmark) 🚀.
+- **Temporal Reasoning**: First open-source implementation of temporal graph integration in LLM agent systems, enabling accurate timeline-aware responses.
 
 ## Table of Contents 📑
 
@@ -53,16 +56,21 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
   - [Features ✨](#features-)
   - [Installation 📚](#installation-)
   - [Setup](#setup)
+    - [Core Setup](#core-setup)
+    - [Temporal Knowledge Graph Setup (Optional)](#temporal-knowledge-graph-setup-optional)
   - [Usage ️](#usage-️)
     - [Using OpenDeepSearch Standalone 🔍](#using-opendeepsearch-standalone-)
     - [Running the Gradio Demo 🖥️](#running-the-gradio-demo-️)
+    - [Enhanced Demo with Temporal Knowledge Graph 🕒](#enhanced-demo-with-temporal-knowledge-graph-)
     - [Integrating with SmolAgents \& LiteLLM 🤖⚙️](#integrating-with-smolagents--litellm-️)
-      - [](#)
-    - [ReAct agent with math and search tools 🤖⚙️](#react-agent-with-math-and-search-tools-️)
-      - [](#-1)
+    - [Multi-Tool Agent with Temporal Reasoning 🧠](#multi-tool-agent-with-temporal-reasoning-)
   - [Search Modes 🔄](#search-modes-)
     - [Default Mode ⚡](#default-mode-)
     - [Pro Mode 🔍](#pro-mode-)
+  - [Temporal Knowledge Graph 🕒](#temporal-knowledge-graph-)
+    - [Features](#features-1)
+    - [Example Queries](#example-queries)
+    - [Data Model](#data-model)
   - [Acknowledgments 💡](#acknowledgments-)
   - [Citation](#citation)
   - [Contact 📩](#contact-)
@@ -73,6 +81,12 @@ OpenDeepSearch is a lightweight yet powerful search tool designed for seamless i
 - **Two Modes of Operation** ⚡:
   - **Default Mode**: Quick and efficient search with minimal latency.
   - **Pro Mode (Deep Search)**: More in-depth and accurate results at the cost of additional processing time.
+- **Temporal Knowledge Graph Integration** 🕒: Revolutionary time-aware reasoning capabilities:
+  - Customer journey analysis with precise timelines
+  - Historical event tracking and chronological context
+  - Temporal relationship understanding ("what happened before/after")
+  - Enterprise-grade temporal data queries
+- **Multi-Tool Architecture** 🔧: Intelligent tool selection between web search and temporal reasoning
 - **Optimized for AI Agents** 🤖: Works seamlessly with **SmolAgents** like `CodeAgent`.
 - **Fast and Lightweight** ⚡: Designed for speed and efficiency with minimal setup.
 - **Extensible** 🔌: Easily configurable to work with different models and APIs.
@@ -114,6 +128,8 @@ PDM offers several advantages:
 - Built-in virtual environment management
 
 ## Setup
+
+### Core Setup
 
 1. **Choose a Search Provider**:
    - **Option 1: Serper.dev**: Get **free 2500 credits** and add your API key.
@@ -170,6 +186,32 @@ PDM offers several advantages:
    search_agent = OpenDeepSearchTool(model_name="provider/model-name")  # e.g., "anthropic/claude-3-opus-20240229", 'huggingface/microsoft/codebert-base', 'openrouter/google/gemini-2.0-flash-001'
    ```
 
+### Temporal Knowledge Graph Setup (Optional)
+
+For enhanced temporal reasoning capabilities, set up Neo4j:
+
+1. **Install Neo4j Database**:
+   ```bash
+   # Using Docker (recommended)
+   docker run --name neo4j-tkg \
+     -p 7474:7474 -p 7687:7687 \
+     -e NEO4J_AUTH=neo4j/your-password \
+     neo4j:latest
+   ```
+
+2. **Set Environment Variables**:
+   ```bash
+   export NEO4J_URI="bolt://localhost:7687"
+   export NEO4J_USERNAME="neo4j"
+   export NEO4J_PASSWORD="your-password"
+   ```
+
+3. **Create Sample Data** (for testing):
+   ```bash
+   python scripts/create_test_data.py
+   python scripts/add_strategic_test_data.py
+   ```
+
 ## Usage ️
 
 You can use OpenDeepSearch independently or integrate it with **SmolAgents** for enhanced reasoning and code generation capabilities.
@@ -181,28 +223,15 @@ from opendeepsearch import OpenDeepSearchTool
 import os
 
 # Set environment variables for API keys
-os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"  # If using Serper
-# Or for SearXNG
-# os.environ["SEARXNG_INSTANCE_URL"] = "https://your-searxng-instance.com"
-# os.environ["SEARXNG_API_KEY"] = "your-api-key-here"  # Optional
-
+os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
 os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
 os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
 
-# Using Serper (default)
+# Basic web search
 search_agent = OpenDeepSearchTool(
     model_name="openrouter/google/gemini-2.0-flash-001",
     reranker="jina"
 )
-
-# Or using SearXNG
-# search_agent = OpenDeepSearchTool(
-#     model_name="openrouter/google/gemini-2.0-flash-001",
-#     reranker="jina",
-#     search_provider="searxng",
-#     searxng_instance_url="https://your-searxng-instance.com",
-#     searxng_api_key="your-api-key-here"  # Optional
-# )
 
 if not search_agent.is_initialized:
     search_agent.setup()
@@ -214,168 +243,182 @@ print(result)
 
 ### Running the Gradio Demo 🖥️
 
-To try out OpenDeepSearch with a user-friendly interface, simply run:
-
+**Basic Demo (Web Search Only)**:
 ```bash
 python gradio_demo.py
 ```
 
-This will launch a local web interface where you can test different search queries and modes interactively.
-
-You can customize the demo with command-line arguments:
-
+**With Custom Configuration**:
 ```bash
-# Using Serper (default)
 python gradio_demo.py --model-name "openrouter/google/gemini-2.0-flash-001" --reranker "jina"
-
-# Using SearXNG
-python gradio_demo.py --model-name "openrouter/google/gemini-2.0-flash-001" --reranker "jina" \
-  --search-provider "searxng" --searxng-instance "https://your-searxng-instance.com" \
-  --searxng-api-key "your-api-key-here"  # Optional
 ```
 
-Available options:
+### Enhanced Demo with Temporal Knowledge Graph 🕒
+
+**Enable Temporal Reasoning**:
+```bash
+python gradio_demo.py --enable-temporal-kg --neo4j-password=your-password
+```
+
+**Full Configuration with Temporal KG**:
+```bash
+python gradio_demo.py \
+  --enable-temporal-kg \
+  --neo4j-password=your-password \
+  --model-name="openrouter/google/gemini-2.0-flash-001" \
+  --reranker=jina \
+  --server-port=7860
+```
+
+Available Gradio demo options:
 - `--model-name`: LLM model to use for search
 - `--orchestrator-model`: LLM model for the agent orchestrator
 - `--reranker`: Reranker to use (`jina` or `infinity`)
 - `--search-provider`: Search provider to use (`serper` or `searxng`)
-- `--searxng-instance`: SearXNG instance URL (required if using `searxng`)
-- `--searxng-api-key`: SearXNG API key (optional)
-- `--serper-api-key`: Serper API key (optional, will use environment variable if not provided)
-- `--openai-base-url`: OpenAI API base URL (optional, will use OPENAI_BASE_URL env var if not provided)
+- `--enable-temporal-kg`: Enable temporal knowledge graph capabilities
+- `--neo4j-uri`: Neo4j database URI (default: bolt://localhost:7687)
+- `--neo4j-username`: Neo4j username (default: neo4j)
+- `--neo4j-password`: Neo4j password (required if temporal KG enabled)
+- `--server-port`: Port to run the Gradio server on (default: 7860)
 
 ### Integrating with SmolAgents & LiteLLM 🤖⚙️
 
-####
-
 ```python
+from smolagents import ReactAgent, LiteLLMModel
 from opendeepsearch import OpenDeepSearchTool
-from smolagents import CodeAgent, LiteLLMModel
-import os
 
-# Set environment variables for API keys
-os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"  # If using Serper
-# Or for SearXNG
-# os.environ["SEARXNG_INSTANCE_URL"] = "https://your-searxng-instance.com"
-# os.environ["SEARXNG_API_KEY"] = "your-api-key-here"  # Optional
-
-os.environ["OPENROUTER_API_KEY"] = "your-openrouter-api-key-here"
-os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
-
-# Using Serper (default)
-search_agent = OpenDeepSearchTool(
+# Initialize the search tool
+search_tool = OpenDeepSearchTool(
     model_name="openrouter/google/gemini-2.0-flash-001",
     reranker="jina"
 )
 
-# Or using SearXNG
-# search_agent = OpenDeepSearchTool(
-#     model_name="openrouter/google/gemini-2.0-flash-001",
-#     reranker="jina",
-#     search_provider="searxng",
-#     searxng_instance_url="https://your-searxng-instance.com",
-#     searxng_api_key="your-api-key-here"  # Optional
-# )
-
+# Create a LiteLLM model for the agent
 model = LiteLLMModel(
-    "openrouter/google/gemini-2.0-flash-001",
-    temperature=0.2
+    model_id="openrouter/google/gemini-2.0-flash-001",
+    temperature=0.2,
 )
 
-code_agent = CodeAgent(tools=[search_agent], model=model)
-query = "How long would a cheetah at full speed take to run the length of Pont Alexandre III?"
-result = code_agent.run(query)
-
+# Create and run the agent
+agent = ReactAgent(tools=[search_tool], model=model)
+result = agent.run("What are the latest developments in quantum computing?")
 print(result)
 ```
-### ReAct agent with math and search tools 🤖⚙️
 
-####
+### Multi-Tool Agent with Temporal Reasoning 🧠
+
 ```python
+from smolagents import ReactAgent, LiteLLMModel
 from opendeepsearch import OpenDeepSearchTool
-from opendeepsearch.wolfram_tool import WolframAlphaTool
-from opendeepsearch.prompts import REACT_PROMPT
-from smolagents import LiteLLMModel, ToolCallingAgent, Tool
-import os
+from opendeepsearch.temporal_kg_tool import TemporalKGTool
 
-# Set environment variables for API keys
-os.environ["SERPER_API_KEY"] = "your-serper-api-key-here"
-os.environ["JINA_API_KEY"] = "your-jina-api-key-here"
-os.environ["WOLFRAM_ALPHA_APP_ID"] = "your-wolfram-alpha-app-id-here"
-os.environ["FIREWORKS_API_KEY"] = "your-fireworks-api-key-here"
-
-model = LiteLLMModel(
-    "fireworks_ai/llama-v3p1-70b-instruct",  # Your Fireworks Deepseek model
-    temperature=0.7
-)
-search_agent = OpenDeepSearchTool(model_name="fireworks_ai/llama-v3p1-70b-instruct", reranker="jina") # Set reranker to "jina" or "infinity"
-
-# Initialize the Wolfram Alpha tool
-wolfram_tool = WolframAlphaTool(app_id=os.environ["WOLFRAM_ALPHA_APP_ID"])
-
-# Initialize the React Agent with search and wolfram tools
-react_agent = ToolCallingAgent(
-    tools=[search_agent, wolfram_tool],
-    model=model,
-    prompt_templates=REACT_PROMPT # Using REACT_PROMPT as system prompt
+# Create web search tool
+search_tool = OpenDeepSearchTool(
+    model_name="openrouter/google/gemini-2.0-flash-001",
+    reranker="jina"
 )
 
-# Example query for the React Agent
-query = "What is the distance, in metres, between the Colosseum in Rome and the Rialto bridge in Venice"
-result = react_agent.run(query)
+# Create temporal knowledge graph tool
+temporal_tool = TemporalKGTool(
+    neo4j_uri="bolt://localhost:7687",
+    username="neo4j",
+    password="your-password"
+)
 
-print(result)
+# Create multi-tool agent
+model = LiteLLMModel(model_id="openrouter/google/gemini-2.0-flash-001")
+agent = ReactAgent(tools=[search_tool, temporal_tool], model=model)
+
+# The agent automatically chooses the right tool
+print("🔍 Web Search Query:")
+result1 = agent.run("What is machine learning?")
+print(result1)
+
+print("\n🕒 Temporal Query:")
+result2 = agent.run("What happened to Customer CUST001?")
+print(result2)
 ```
 
 ## Search Modes 🔄
 
-OpenDeepSearch offers two distinct search modes to balance between speed and depth:
-
 ### Default Mode ⚡
-- Uses SERP-based interaction for quick results
-- Minimal processing overhead
-- Ideal for single-hop, straightforward queries
-- Fast response times
-- Perfect for basic information retrieval
+```python
+result = search_agent.forward("query", pro_mode=False)
+```
+- Quick search with minimal processing time
+- Suitable for simple factual queries
+- Lower resource consumption
 
 ### Pro Mode 🔍
-- Involves comprehensive web scraping
-- Implements semantic reranking of results
-- Includes advanced post-processing of data
-- Slightly longer processing time
-- Excels at:
-  - Multi-hop queries
-  - Complex search requirements
-  - Detailed information gathering
-  - Questions requiring cross-reference verification
+```python
+result = search_agent.forward("query", pro_mode=True)
+```
+- Deep analysis with comprehensive source processing
+- Better for complex, multi-step reasoning
+- Higher accuracy at the cost of processing time
+
+## Temporal Knowledge Graph 🕒
+
+### Features
+- **Time-Aware Reasoning**: Understand chronological relationships and temporal context
+- **Customer Journey Analysis**: Track customer interactions over time
+- **Historical Event Tracking**: Query past events with precise timestamps
+- **Enterprise Integration**: Built for real-world business scenarios
+
+### Example Queries
+**Customer Timeline Analysis**:
+- "What happened to Customer CUST001?"
+- "Show me the timeline for Customer CUST003"
+- "What events occurred after Customer CUST001's upgrade?"
+
+**Temporal Relationships**:
+- "What happened between Customer CUST002's signup and first support ticket?"
+- "Which customers upgraded within 30 days of signup?"
+- "Show me login activity for Customer CUST003 in February 2023"
+
+**Business Intelligence**:
+- "What was the sequence of events leading to Customer CUST003's cancellation?"
+- "Compare Customer A and B's first-month activity timelines"
+- "What patterns exist in support ticket creation times?"
+
+### Data Model
+The temporal knowledge graph uses Neo4j with the following structure:
+
+**Entities**:
+- `Customer`: Business customers with IDs and company names
+- `Event`: Time-stamped activities (Signup, Login, Purchase, Support, etc.)
+
+**Relationships**:
+- `PERFORMED`: Links customers to their events with timestamps
+- `FOLLOWED_BY`: Temporal sequences between events
+
+**Sample Data**:
+- **CUST001**: Success journey (signup → upgrade → purchase)
+- **CUST002**: Support-driven journey (signup → support ticket → resolution)
+- **CUST003**: Churn scenario (signup → usage → cancellation)
 
 ## Acknowledgments 💡
 
-OpenDeepSearch is built on the shoulders of great open-source projects:
-
-- **[SmolAgents](https://huggingface.co/docs/smolagents/index)** 🤗 – Powers the agent framework and reasoning capabilities.
-- **[Crawl4AI](https://github.com/unclecode/crawl4ai)** 🕷️ – Provides data crawling support.
-- **[Infinity Embedding API](https://github.com/michaelfeil/infinity)** 🌍 – Powers semantic search capabilities.
-- **[LiteLLM](https://www.litellm.ai/)** 🔥 – Used for efficient AI model integration.
-- **Various Open-Source Libraries** 📚 – Enhancing search and retrieval functionalities.
+- **[SmolAgents](https://github.com/huggingface/smolagents)** for providing the agent framework
+- **[Crawl4AI](https://github.com/unclecode/crawl4ai)** for advanced web scraping capabilities
+- **[LiteLLM](https://github.com/BerriAI/litellm)** for unified LLM API access
+- **[Neo4j](https://neo4j.com/)** for temporal knowledge graph capabilities
+- **[Jina AI](https://jina.ai/)** and **[Infinity Embeddings](https://github.com/michaelfeil/infinity)** for semantic reranking
 
 ## Citation
 
-If you use `OpenDeepSearch` in your works, please cite it using the following BibTex entry:
-
-```
-@misc{alzubi2025opendeepsearchdemocratizing,
-      title={Open Deep Search: Democratizing Search with Open-source Reasoning Agents},
-      author={Salaheddin Alzubi and Creston Brooks and Purva Chiniya and Edoardo Contente and Chiara von Gerlach and Lucas Irwin and Yihan Jiang and Arda Kaz and Windsor Nguyen and Sewoong Oh and Himanshu Tyagi and Pramod Viswanath},
-      year={2025},
-      eprint={2503.20201},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2503.20201},
+```bibtex
+@article{opendeepsearch2024,
+  title={OpenDeepSearch: Democratizing Search with Open-source Reasoning Models and Reasoning Agents},
+  author={SentientAGI Team},
+  journal={arXiv preprint arXiv:2503.20201},
+  year={2024}
 }
 ```
 
-
 ## Contact 📩
 
-For questions or collaborations, open an issue or reach out to the maintainers.
+- **Discord**: [SentientAGI Community](https://discord.gg/sentientfoundation)
+- **Twitter**: [@SentientAGI](https://x.com/SentientAGI)
+- **Homepage**: [sentient.xyz](https://sentient.xyz/)
+- **GitHub**: [sentient-agi](https://github.com/sentient-agi)

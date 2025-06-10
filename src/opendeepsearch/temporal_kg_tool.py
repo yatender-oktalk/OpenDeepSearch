@@ -1,17 +1,24 @@
+from smolagents import Tool
 from typing import Dict, Any, Optional
 import re
 from datetime import datetime
 from neo4j import GraphDatabase
 
-class TemporalKGTool:
+class TemporalKGTool(Tool):
     name = "temporal_kg_search"
-    description = """Search temporal knowledge graph for time-sensitive information.
-    Use this tool when you need to find information about events, relationships, 
-    or data within specific time periods or chronological context."""
+    description = """Search temporal knowledge graph for time-sensitive customer information.
+    Use this tool when you need information about customer events, timelines, or historical data."""
+    inputs = {
+        "query": {
+            "type": "string", 
+            "description": "The temporal query to search for (e.g., 'What happened to Customer CUST001?')",
+        },
+    }
+    output_type = "string"
     
-    def __init__(self, neo4j_uri: str, username: str, password: str, model_name: str):
+    def __init__(self, neo4j_uri: str, username: str, password: str):
+        super().__init__()
         self.driver = GraphDatabase.driver(neo4j_uri, auth=(username, password))
-        self.model_name = model_name
         
     def _extract_temporal_constraints(self, query: str) -> Dict[str, Any]:
         """Simple regex-based temporal extraction for now"""
