@@ -4,9 +4,8 @@ def add_strategic_data():
     driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "maxx3169"))
     
     with driver.session() as session:
-        # Add more events to existing customers
+        # Add more events to CUST001
         session.run("""
-        // CUST001 - Add login and purchase activity
         MATCH (c:Customer {id: "CUST001"})
         CREATE (l1:Event:Login {timestamp: datetime("2023-01-16T09:30:00"), device: "desktop"})
         CREATE (l2:Event:Login {timestamp: datetime("2023-06-02T14:15:00"), device: "mobile"}) 
@@ -14,8 +13,10 @@ def add_strategic_data():
         CREATE (c)-[:PERFORMED {timestamp: datetime("2023-01-16T09:30:00")}]->(l1)
         CREATE (c)-[:PERFORMED {timestamp: datetime("2023-06-02T14:15:00")}]->(l2)
         CREATE (c)-[:PERFORMED {timestamp: datetime("2023-07-15")}]->(p1)
+        """)
         
-        // CUST002 - Resolve ticket and add follow-up activity  
+        # Add more events to CUST002
+        session.run("""
         MATCH (c2:Customer {id: "CUST002"})
         CREATE (tr:Event:TicketResolved {date: datetime("2023-04-18"), resolution: "billing correction"})
         CREATE (l3:Event:Login {timestamp: datetime("2023-04-20T11:00:00"), device: "desktop"})
@@ -23,7 +24,7 @@ def add_strategic_data():
         CREATE (c2)-[:PERFORMED {timestamp: datetime("2023-04-20T11:00:00")}]->(l3)
         """)
         
-        # Add a third customer with a different pattern (churn scenario)
+        # Create CUST003 with all events
         session.run("""
         CREATE (c3:Customer {id: "CUST003", name: "StartupXYZ"})
         CREATE (s3:Event:Signup {date: datetime("2023-02-01"), plan: "basic"})

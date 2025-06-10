@@ -6,7 +6,7 @@ from opendeepsearch.temporal_kg_tool import TemporalKGTool
 from litellm import completion, utils
 import os
 from dotenv import load_dotenv
-from opendeepsearch.prompts import SEARCH_SYSTEM_PROMPT
+from opendeepsearch.prompts import SEARCH_SYSTEM_PROMPT, TEMPORAL_REASONING_PROMPT
 import asyncio
 import nest_asyncio
 
@@ -26,6 +26,10 @@ class OpenDeepSearchAgent:
         temperature: float = 0.2, # Slight variation while maintaining reliability
         top_p: float = 0.3, # Focus on high-confidence tokens
         reranker: Optional[str] = "None", # Optional reranker identifier
+        enable_temporal_kg: bool = False,
+        neo4j_uri: Optional[str] = None,
+        neo4j_username: Optional[str] = None,
+        neo4j_password: Optional[str] = None,
     ):
         """
         Initialize an OpenDeepSearch agent that combines web search, content processing, and LLM capabilities.
@@ -54,6 +58,10 @@ class OpenDeepSearchAgent:
                 the output more focused on high-probability tokens.
             reranker (str, optional): Identifier for the reranker to use. If not provided,
                 uses the default reranker from SourceProcessor.
+            enable_temporal_kg (bool, default=False): Whether to enable the temporal knowledge graph tool.
+            neo4j_uri (str, optional): URI of the Neo4j database. Required if enable_temporal_kg is True.
+            neo4j_username (str, optional): Username for the Neo4j database. Required if enable_temporal_kg is True.
+            neo4j_password (str, optional): Password for the Neo4j database. Required if enable_temporal_kg is True.
         """
         # Initialize search API based on provider
         self.serp_search = create_search_api(
@@ -82,6 +90,19 @@ class OpenDeepSearchAgent:
         openai_base_url = os.environ.get("OPENAI_BASE_URL")
         if openai_base_url:
             utils.set_provider_config("openai", {"base_url": openai_base_url})
+
+        # Initialize temporal KG tool if enabled
+        self.temporal_tool = None
+        if enable_temporal_kg and neo4j_uri and neo4j_username and neo4j_password:
+            self.temporal_tool = TemporalKGTool(
+                neo4j_uri=neo4j_uri,
+                username=neo4j_username,
+                password=neo4j_password,
+                model_name=self.model
+            )
+            
+            # Update system prompt to include temporal reasoning
+            self.system_prompt += "\n\n" + TEMPORAL_REASONING_PROMPT
 
     async def search_and_build_context(
         self,
@@ -120,6 +141,20 @@ class OpenDeepSearchAgent:
         # Build and return context
         return build_context(processed_sources)
 
+    def _should_use_temporal_search(self, query: str) -> bool:
+        """Determine if query should use temporal knowledge graph"""
+        if not self.temporal_tool:
+            return False
+            
+        # Simple heuristics for temporal queries
+        temporal_indicators = [
+            'customer', 'timeline', 'what happened', 'between', 'after', 'before',
+            'events', 'sequence', 'history', 'journey', 'cust001', 'cust002', 'cust003'
+        ]
+        
+        query_lower = query.lower()
+        return any(indicator in query_lower for indicator in temporal_indicators)
+
     async def ask(
         self,
         query: str,
@@ -128,28 +163,41 @@ class OpenDeepSearchAgent:
     ) -> str:
         """
         Searches for information and generates an AI response to the query.
-
-        This method combines web search, context building, and AI completion to provide
-        informed answers to questions. It first gathers relevant information through search,
-        then uses an LLM to generate a response based on the collected context.
-
-        Args:
-            query (str): The question or query to answer.
-            max_sources (int, default=2): Maximum number of sources to include in the context.
-            pro_mode (bool, default=False): When enabled, performs a more comprehensive search
-                and analysis of sources.
-
-        Returns:
-            str: An AI-generated response that answers the query based on the gathered context.
+        Now includes temporal knowledge graph capabilities.
         """
-        # Get context from search results
+        # Check if this should use temporal search
+        if self._should_use_temporal_search(query):
+            try:
+                # Use temporal knowledge graph
+                temporal_result = self.temporal_tool.forward(query)
+                
+                # Prepare messages for the LLM with temporal context
+                messages = [
+                    {"role": "system", "content": self.system_prompt},
+                    {"role": "user", "content": f"Temporal Knowledge Graph Result:\n{temporal_result}\n\nQuestion: {query}"}
+                ]
+                
+                # Get completion from LLM
+                response = completion(
+                    model=self.model,
+                    messages=messages,
+                    temperature=self.temperature,
+                    top_p=self.top_p
+                )
+                
+                return response.choices[0].message.content
+                
+            except Exception as e:
+                # Fallback to web search if temporal search fails
+                print(f"Temporal search failed, falling back to web search: {e}")
+        
+        # Use regular web search (existing logic)
         context = await self.search_and_build_context(query, max_sources, pro_mode)
-        # Prepare messages for the LLM
         messages = [
             {"role": "system", "content": self.system_prompt},
             {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {query}"}
         ]
-        # Get completion from LLM
+        
         response = completion(
             model=self.model,
             messages=messages,
