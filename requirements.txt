@@ -9,4 +9,7 @@ wikipedia-api>=0.8.1
 pillow>=10.4.0
 smolagents>=1.9.2
 gradio==5.20.1
-
+neo4j-driver==5.28.1
+python-dateutil==2.8.2
+dateparser==1.2.1
+tzlocal==5.3.1

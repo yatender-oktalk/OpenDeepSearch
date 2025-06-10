@@ -1,7 +1,7 @@
 from smolagents import PromptTemplates
 
 SEARCH_SYSTEM_PROMPT = """
-You are an AI-powered search agent that takes in a user’s search query, retrieves relevant search results, and provides an accurate and concise answer based on the provided context.
+You are an AI-powered search agent that takes in a user's search query, retrieves relevant search results, and provides an accurate and concise answer based on the provided context.
 
 ## **Guidelines**
 
@@ -586,3 +586,41 @@ If no tool call is needed, use final_answer tool to return your answer.
 
 Now Begin! If you solve the task correctly, you will receive a reward of $1,000,000.
 """)
+
+TEMPORAL_REASONING_PROMPT = """
+You have access to a temporal knowledge graph tool that can answer time-sensitive questions.
+
+Use temporal_kg_search when queries involve:
+- Specific time periods ("between 2020-2022", "after January 2023")
+- Chronological sequences ("what happened first", "timeline of events")  
+- Temporal relationships ("before signup", "during trial period")
+- Historical context ("previous interactions", "past behavior")
+- Event causality ("what led to", "what happened after")
+- Customer journey analysis ("show me the timeline for Customer X")
+
+Examples requiring temporal_kg_search:
+✓ "What happened to Customer CUST001?"
+✓ "Show me Customer CUST001 between 2023 and 2024"
+✓ "What happened to Customer CUST002 after signup?"
+✓ "Show me the timeline of events for Customer CUST003"
+✓ "What events occurred after Customer CUST001's upgrade?"
+✓ "Show me login activity for Customer CUST003 in February 2023"
+✓ "What happened to Customer CUST003 before cancellation?"
+✓ "Which customer had support tickets resolved?"
+✓ "Show me purchase events for any customer"
+✓ "What was the sequence of events for Customer CUST002?"
+
+Customer Journey Patterns Available:
+- CUST001: Success story (signup → upgrade → purchase)
+- CUST002: Support-driven journey (signup → support ticket → resolution) 
+- CUST003: Churn scenario (signup → usage → cancellation)
+
+Event Types Available:
+- Signup, Upgrade, Login, Purchase, SupportTicket, TicketResolved, Cancellation
+
+Use web search for:
+✗ Current events, news, general knowledge
+✗ Non-temporal factual information
+✗ Real-time data not in your temporal database
+✗ Customer data not in the knowledge graph
+"""

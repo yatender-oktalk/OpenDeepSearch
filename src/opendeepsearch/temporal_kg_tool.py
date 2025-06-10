@@ -14,12 +14,75 @@ class TemporalKGTool:
         self.model_name = model_name
         
     def _extract_temporal_constraints(self, query: str) -> Dict[str, Any]:
-        """Extract time periods, dates, and temporal relationships from query"""
-        # Implementation for parsing temporal expressions
+        """Simple regex-based temporal extraction for now"""
+        constraints = {}
+        
+        # Look for customer IDs
+        customer_match = re.search(r'Customer (\w+)', query, re.IGNORECASE)
+        if customer_match:
+            constraints['customer_id'] = customer_match.group(1)
+            
+        # Look for year ranges
+        year_range = re.search(r'between (\d{4})[- ]?and?[- ]?(\d{4})', query, re.IGNORECASE)
+        if year_range:
+            constraints['start_year'] = year_range.group(1)
+            constraints['end_year'] = year_range.group(2)
+        
+        return constraints
         
     def _generate_cypher_query(self, query: str, temporal_constraints: Dict) -> str:
-        """Generate Cypher query based on natural language input and temporal constraints"""
-        # LLM-powered query generation with temporal awareness
+        """Simple hardcoded queries for MVP"""
+        
+        if 'customer_id' in temporal_constraints:
+            customer_id = temporal_constraints['customer_id']
+            
+            if 'start_year' in temporal_constraints:
+                # Date range query
+                return f"""
+                MATCH (c:Customer {{id: "{customer_id}"}})-[r:PERFORMED]->(e:Event)
+                WHERE e.date >= datetime("{temporal_constraints['start_year']}-01-01") 
+                  AND e.date <= datetime("{temporal_constraints['end_year']}-12-31")
+                RETURN c.name, e, labels(e) as event_labels, r.timestamp
+                ORDER BY r.timestamp
+                """
+            else:
+                # All events for customer
+                return f"""
+                MATCH (c:Customer {{id: "{customer_id}"}})-[r:PERFORMED]->(e:Event)
+                RETURN c.name, e, labels(e) as event_labels, r.timestamp
+                ORDER BY r.timestamp
+                """
+        
+        # Default fallback
+        return "MATCH (c:Customer)-[r:PERFORMED]->(e:Event) RETURN c.name, e, labels(e) as event_labels, r.timestamp LIMIT 5"
+        
+    def _format_temporal_results(self, records: list, query: str) -> str:
+        """Format results into readable text"""
+        if not records:
+            return "No temporal data found for this query."
+            
+        result_text = "Timeline of events:\n"
+        for record in records:
+            customer_name = record.get('c.name', 'Unknown')
+            event = record['e']
+            event_labels = record['event_labels']  # Now we have the labels
+            timestamp = record['r.timestamp']
+            
+            # Get the event type (exclude 'Event' label)
+            event_type = [label for label in event_labels if label != 'Event']
+            event_type = event_type[0] if event_type else 'Event'
+            
+            result_text += f"- {timestamp.strftime('%Y-%m-%d')}: {customer_name} - {event_type}"
+            
+            # Add event-specific details
+            if 'plan' in event:
+                result_text += f" (plan: {event['plan']})"
+            if 'from_plan' in event and 'to_plan' in event:
+                result_text += f" (from {event['from_plan']} to {event['to_plan']})"
+                
+            result_text += "\n"
+            
+        return result_text.strip()
         
     def forward(self, query: str) -> str:
         """Execute temporal knowledge graph search"""
@@ -35,7 +98,7 @@ class TemporalKGTool:
                 result = session.run(cypher_query)
                 records = [record.data() for record in result]
             
-            # 4. Format results for agent consumption
+            # 4. Format results
             return self._format_temporal_results(records, query)
             
         except Exception as e:
