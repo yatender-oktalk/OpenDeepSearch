@@ -588,35 +588,84 @@ Now Begin! If you solve the task correctly, you will receive a reward of $1,000,
 """)
 
 TEMPORAL_REASONING_PROMPT = """
-You have access to a temporal knowledge graph tool that can answer time-sensitive questions.
+You have access to a temporal knowledge graph tool that can answer time-sensitive questions about customer events and timelines.
 
 Use temporal_kg_search when queries involve:
-- Specific time periods ("between 2020-2022", "after January 2023")
-- Chronological sequences ("what happened first", "timeline of events")  
-- Temporal relationships ("before signup", "during trial period")
-- Historical context ("previous interactions", "past behavior")
-- Event causality ("what led to", "what happened after")
-- Customer journey analysis ("show me the timeline for Customer X")
+1. Direct Temporal Comparisons:
+   - "Compare signup dates between CUST001 and CUST002"
+   - "Who signed up first, CUST001 or CUST003?"
+   - "Show me the chronological order of purchases"
 
-Examples requiring temporal_kg_search:
-✓ "What happened to Customer CUST001?"
-✓ "Show me Customer CUST001 between 2023 and 2024"
-✓ "What happened to Customer CUST002 after signup?"
-✓ "Show me the timeline of events for Customer CUST003"
-✓ "What events occurred after Customer CUST001's upgrade?"
-✓ "Show me login activity for Customer CUST003 in February 2023"
-✓ "What happened to Customer CUST003 before cancellation?"
-✓ "Which customer had support tickets resolved?"
-✓ "Show me purchase events for any customer"
-✓ "What was the sequence of events for Customer CUST002?"
+2. Event Timeline Queries:
+   - "Show me the complete timeline for CUST003"
+   - "List all events for CUST001 in chronological order"
+   - "What happened to CUST002 between January and March 2023?"
 
-Customer Journey Patterns Available:
+3. Specific Event Queries:
+   - "When did CUST001 make their first purchase?"
+   - "Show me the upgrade event for CUST003"
+   - "What was CUST002's last login date?"
+
+4. Comparative Analysis:
+   - "Compare the purchase dates of CUST001 and CUST003"
+   - "Show me upgrade dates for all customers"
+   - "Which customer had the most support tickets?"
+
+5. Time-based Filtering:
+   - "Show me all CUST001 events in 2023"
+   - "List purchases made by CUST003 in Q2 2023"
+   - "What happened to CUST002 in January 2023?"
+
+6. Event Sequence Analysis:
+   - "Show me the sequence from signup to first purchase for CUST001"
+   - "What happened between CUST003's signup and upgrade?"
+   - "List events before CUST002's cancellation"
+
+7. Aggregate Temporal Queries:
+   - "Show me all purchase events across customers"
+   - "List all upgrades in 2023"
+   - "What were the most common events in Q1 2023?"
+
+8. Relative Time Queries:
+   - "Show me CUST001 events within 30 days of signup"
+   - "What happened to CUST003 after their upgrade?"
+   - "List events before CUST002's last login"
+
+Available Customer Data:
 - CUST001: Success story (signup → upgrade → purchase)
-- CUST002: Support-driven journey (signup → support ticket → resolution) 
+- CUST002: Support-driven journey (signup → support ticket → resolution)
 - CUST003: Churn scenario (signup → usage → cancellation)
 
 Event Types Available:
-- Signup, Upgrade, Login, Purchase, SupportTicket, TicketResolved, Cancellation
+- Signup (with plan type)
+- Upgrade (with from/to plans)
+- Login (with timestamp)
+- Purchase (with date)
+- SupportTicket (with created date)
+- TicketResolved (with resolution date)
+- Cancellation (with date)
+
+Query Capabilities:
+The tool uses intelligent LLM-based parsing to understand natural language queries and automatically:
+- Extracts customer IDs (CUST001, CUST002, etc.)
+- Identifies event types and temporal relationships
+- Determines query intent (single event, timeline, comparison, or aggregate)
+- Formats results appropriately (timeline, comparison table, or event details)
+
+Query Best Practices:
+1. Use natural language - the tool will parse and understand your intent
+2. Always specify customer IDs when querying specific customers
+3. Be specific about event types when possible
+4. Use temporal keywords like "first", "last", "before", "after", "between"
+5. For comparisons, mention multiple customers or "who" questions
+
+Example Queries:
+✓ "When did CUST001 make their first purchase?"
+✓ "Show me the complete timeline for CUST003"
+✓ "Who signed up first, CUST001 or CUST002?"
+✓ "What happened to CUST002 after their support ticket was resolved?"
+✓ "Compare the upgrade dates of all customers"
+✓ "Show me CUST003's events leading up to cancellation"
 
 Use web search for:
 ✗ Current events, news, general knowledge
