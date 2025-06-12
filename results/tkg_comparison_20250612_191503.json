@@ -1,0 +1,127 @@
+{
+  "baseline": [
+    {
+      "query": "What is machine learning?",
+      "category": "simple_factual",
+      "latency": 5.130965948104858,
+      "result_length": 292,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "Who is the CEO of OpenAI?",
+      "category": "simple_factual",
+      "latency": 27.12762689590454,
+      "result_length": 33,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "What happened to Customer CUST001?",
+      "category": "temporal_queries",
+      "latency": 3.5631918907165527,
+      "result_length": 52,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "Show me the timeline for Customer CUST003",
+      "category": "temporal_queries",
+      "latency": 2.827054977416992,
+      "result_length": 162,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "What events occurred after Customer CUST001's upgrade?",
+      "category": "temporal_queries",
+      "latency": 3.080477237701416,
+      "result_length": 143,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "Which customers upgraded within 30 days of signup?",
+      "category": "multi_hop_temporal",
+      "latency": 3.224540948867798,
+      "result_length": 192,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "What led to Customer CUST003's cancellation?",
+      "category": "multi_hop_temporal",
+      "latency": 3.377411127090454,
+      "result_length": 145,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    }
+  ],
+  "tkg_enhanced": [
+    {
+      "query": "What happened to Customer CUST001?",
+      "category": "temporal_queries",
+      "latency": 0.0,
+      "result_length": 20,
+      "info": {
+        "error": "Neo4j credentials missing",
+        "mode": "tkg_enhanced"
+      }
+    },
+    {
+      "query": "Show me the timeline for Customer CUST003",
+      "category": "temporal_queries",
+      "latency": 0.0,
+      "result_length": 20,
+      "info": {
+        "error": "Neo4j credentials missing",
+        "mode": "tkg_enhanced"
+      }
+    },
+    {
+      "query": "What events occurred after Customer CUST001's upgrade?",
+      "category": "temporal_queries",
+      "latency": 0.0,
+      "result_length": 20,
+      "info": {
+        "error": "Neo4j credentials missing",
+        "mode": "tkg_enhanced"
+      }
+    },
+    {
+      "query": "Which customers upgraded within 30 days of signup?",
+      "category": "multi_hop_temporal",
+      "latency": 0.0,
+      "result_length": 20,
+      "info": {
+        "error": "Neo4j credentials missing",
+        "mode": "tkg_enhanced"
+      }
+    },
+    {
+      "query": "What led to Customer CUST003's cancellation?",
+      "category": "multi_hop_temporal",
+      "latency": 0.0,
+      "result_length": 20,
+      "info": {
+        "error": "Neo4j credentials missing",
+        "mode": "tkg_enhanced"
+      }
+    }
+  ],
+  "timestamp": "2025-06-12T19:14:14.623605"
+}

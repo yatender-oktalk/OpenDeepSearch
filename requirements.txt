@@ -13,3 +13,6 @@ neo4j-driver==5.28.1
 python-dateutil==2.8.2
 dateparser==1.2.1
 tzlocal==5.3.1
+torch==2.7.1
+loguru
+nest_asyncio

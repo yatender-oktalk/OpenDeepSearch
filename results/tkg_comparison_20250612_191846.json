@@ -1,0 +1,147 @@
+{
+  "baseline": [
+    {
+      "query": "What is machine learning?",
+      "category": "simple_factual",
+      "latency": 3.800971031188965,
+      "result_length": 280,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "Who is the CEO of OpenAI?",
+      "category": "simple_factual",
+      "latency": 24.548930168151855,
+      "result_length": 33,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "What happened to Customer CUST001?",
+      "category": "temporal_queries",
+      "latency": 3.2804160118103027,
+      "result_length": 195,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "Show me the timeline for Customer CUST003",
+      "category": "temporal_queries",
+      "latency": 2.7597711086273193,
+      "result_length": 162,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "What events occurred after Customer CUST001's upgrade?",
+      "category": "temporal_queries",
+      "latency": 3.6642661094665527,
+      "result_length": 55,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "Which customers upgraded within 30 days of signup?",
+      "category": "multi_hop_temporal",
+      "latency": 3.471794843673706,
+      "result_length": 297,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    },
+    {
+      "query": "What led to Customer CUST003's cancellation?",
+      "category": "multi_hop_temporal",
+      "latency": 3.4129879474639893,
+      "result_length": 142,
+      "info": {
+        "tool_calls": 1,
+        "mode": "baseline"
+      }
+    }
+  ],
+  "tkg_enhanced": [
+    {
+      "query": "What happened to Customer CUST001?",
+      "category": "temporal_queries",
+      "latency": 5.681511163711548,
+      "result_length": 38,
+      "info": {
+        "mode": "tkg_enhanced",
+        "tools_available": [
+          "search",
+          "temporal_kg"
+        ],
+        "agent_type": "CodeAgent"
+      }
+    },
+    {
+      "query": "Show me the timeline for Customer CUST003",
+      "category": "temporal_queries",
+      "latency": 4.57595419883728,
+      "result_length": 229,
+      "info": {
+        "mode": "tkg_enhanced",
+        "tools_available": [
+          "search",
+          "temporal_kg"
+        ],
+        "agent_type": "CodeAgent"
+      }
+    },
+    {
+      "query": "What events occurred after Customer CUST001's upgrade?",
+      "category": "temporal_queries",
+      "latency": 4.589348077774048,
+      "result_length": 38,
+      "info": {
+        "mode": "tkg_enhanced",
+        "tools_available": [
+          "search",
+          "temporal_kg"
+        ],
+        "agent_type": "CodeAgent"
+      }
+    },
+    {
+      "query": "Which customers upgraded within 30 days of signup?",
+      "category": "multi_hop_temporal",
+      "latency": 4.065661191940308,
+      "result_length": 79,
+      "info": {
+        "mode": "tkg_enhanced",
+        "tools_available": [
+          "search",
+          "temporal_kg"
+        ],
+        "agent_type": "CodeAgent"
+      }
+    },
+    {
+      "query": "What led to Customer CUST003's cancellation?",
+      "category": "multi_hop_temporal",
+      "latency": 37.88449692726135,
+      "result_length": 193,
+      "info": {
+        "mode": "tkg_enhanced",
+        "tools_available": [
+          "search",
+          "temporal_kg"
+        ],
+        "agent_type": "CodeAgent"
+      }
+    }
+  ],
+  "timestamp": "2025-06-12T19:17:04.632331"
+}
