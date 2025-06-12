@@ -390,14 +390,19 @@ nix develop
 nix-shell
 ```
 
-2. Start Neo4j:
-```bash
-service neo4j start
-```
+The shell will automatically:
+- Set up the required environment variables
+- Create Neo4j data and log directories
+- Start Neo4j if it's not already running
 
-3. Run the application:
+2. Run the application:
 ```bash
 python -m opendeepsearch.main
+```
+
+To stop Neo4j when you're done:
+```bash
+neo4j stop
 ```
 
 #### Building Docker Image with Nix
