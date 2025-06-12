@@ -371,3 +371,81 @@ entities = {
 ---
 
 *This README serves as the comprehensive technical specification and context document for the Temporal Knowledge Graph enhancement to OpenDeepSearch.*
+
+## Development & Deployment
+
+### Using Nix
+
+#### Prerequisites
+- [Nix](https://nixos.org/download.html) installed on your system
+- [Nix Flakes](https://nixos.wiki/wiki/Flakes) enabled
+
+#### Development Environment
+1. Enter the development shell:
+```bash
+# Using flakes (recommended)
+nix develop
+
+# Using legacy shell.nix
+nix-shell
+```
+
+2. Start Neo4j:
+```bash
+service neo4j start
+```
+
+3. Run the application:
+```bash
+python -m opendeepsearch.main
+```
+
+#### Building Docker Image with Nix
+1. Build the Docker image:
+```bash
+# Using flakes
+nix build .#dockerImage
+
+# The image will be available at ./result
+```
+
+2. Load the image into Docker:
+```bash
+docker load < result
+```
+
+### Using Docker
+
+#### Quick Start
+1. Build and start the containers:
+```bash
+docker-compose up --build
+```
+
+2. Access the services:
+- Neo4j Browser: http://localhost:7474
+- Neo4j Bolt: localhost:7687
+- Application: http://localhost:8000
+
+3. Stop the services:
+```bash
+docker-compose down
+```
+
+#### Environment Variables
+The following environment variables can be configured:
+- `NEO4J_AUTH`: Neo4j authentication (default: neo4j/password)
+- `NEO4J_URI`: Neo4j connection URI (default: bolt://localhost:7687)
+- `NEO4J_USERNAME`: Neo4j username (default: neo4j)
+- `NEO4J_PASSWORD`: Neo4j password (default: password)
+- `TEMPORAL_KG_ENABLED`: Enable temporal knowledge graph (default: true)
+
+#### Data Persistence
+The Docker setup includes two volumes:
+- `neo4j_data`: Stores Neo4j database files
+- `neo4j_logs`: Stores Neo4j logs
+
+To remove all data:
+```bash
+docker-compose down -v
+```
