@@ -123,7 +123,7 @@ Return only the JSON, no other text.
             return self._fallback_parse(query)
     
     def _fallback_parse(self, query: str) -> Dict[str, Any]:
-        """Simple fallback parsing for when LLM fails"""
+        """Improved fallback parsing for when LLM fails"""
         constraints = {
             "customer_ids": [],
             "event_types": [],
@@ -137,22 +137,52 @@ Return only the JSON, no other text.
         customer_matches = re.findall(r'CUST\d+', query, re.IGNORECASE)
         constraints["customer_ids"] = [match.upper() for match in customer_matches]
         
-        # Extract event types
+        # Enhanced event type detection with natural language mapping
+        event_mappings = {
+            'signup': 'Signup',
+            'sign up': 'Signup', 
+            'signed up': 'Signup',
+            'registration': 'Signup',
+            'register': 'Signup',
+            'upgrade': 'Upgrade',
+            'upgraded': 'Upgrade',
+            'login': 'Login',
+            'logged in': 'Login',
+            'purchase': 'Purchase',
+            'bought': 'Purchase',
+            'buy': 'Purchase',
+            'support': 'SupportTicket',
+            'ticket': 'SupportTicket',
+            'resolved': 'TicketResolved',
+            'cancellation': 'Cancellation',
+            'cancel': 'Cancellation',
+            'cancelled': 'Cancellation'
+        }
+        
+        # Check for event types using both exact matches and natural language
+        query_lower = query.lower()
         for event_type in self.VALID_EVENT_TYPES:
-            if event_type.lower() in query.lower():
+            if event_type.lower() in query_lower:
+                constraints["event_types"].append(event_type)
+        
+        # Check natural language mappings
+        for phrase, event_type in event_mappings.items():
+            if phrase in query_lower and event_type not in constraints["event_types"]:
                 constraints["event_types"].append(event_type)
         
         # Check for sequence indicators
-        if any(word in query.lower() for word in ['first', 'earliest']):
+        if any(word in query_lower for word in ['first', 'earliest']):
             constraints["sequence_type"] = "first"
             constraints["intent"] = "SINGLE_EVENT"
-        elif any(word in query.lower() for word in ['last', 'latest']):
+        elif any(word in query_lower for word in ['last', 'latest']):
             constraints["sequence_type"] = "last"
             constraints["intent"] = "SINGLE_EVENT"
             constraints["order"] = "DESC"
         
-        # Check for comparison
-        if len(constraints["customer_ids"]) > 1 or "who" in query.lower():
+        # Check for comparison indicators
+        comparison_indicators = ['who', 'which', 'compare', 'between', 'versus', 'vs']
+        if (len(constraints["customer_ids"]) > 1 or 
+            any(indicator in query_lower for indicator in comparison_indicators)):
             constraints["comparison"] = True
             constraints["intent"] = "COMPARISON"
         
