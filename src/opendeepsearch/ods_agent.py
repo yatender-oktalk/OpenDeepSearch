@@ -146,14 +146,26 @@ class OpenDeepSearchAgent:
         if not self.temporal_tool:
             return False
             
-        # Simple heuristics for temporal queries
-        temporal_indicators = [
-            'customer', 'timeline', 'what happened', 'between', 'after', 'before',
-            'events', 'sequence', 'history', 'journey', 'cust001', 'cust002', 'cust003'
+        # SEC filing indicators
+        sec_indicators = [
+            'sec filing', '10-k', '10-q', '8-k', 'proxy statement', 'def 14a',
+            'filing date', 'amendment', 'filing schedule', 'filing pattern',
+            'compare.*filing', 'filing.*compar', 'earlier.*filed', 'filed.*earlier'
+        ]
+        
+        # Company indicators
+        company_indicators = [
+            'apple', 'microsoft', 'meta', 'google', 'adobe', 'netflix', 'amazon',
+            'aapl', 'msft', 'googl', 'nflx', 'amzn'
         ]
         
         query_lower = query.lower()
-        return any(indicator in query_lower for indicator in temporal_indicators)
+        
+        # Check for SEC + company combination
+        has_sec = any(indicator in query_lower for indicator in sec_indicators)
+        has_company = any(indicator in query_lower for indicator in company_indicators)
+        
+        return has_sec or (has_company and any(word in query_lower for word in ['filing', 'sec', 'compare']))
 
     async def ask(
         self,

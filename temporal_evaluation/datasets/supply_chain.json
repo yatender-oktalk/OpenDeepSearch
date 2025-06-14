@@ -1,0 +1,1380 @@
+{
+  "metadata": {
+    "domain": "supply_chain",
+    "description": "Supply chain disruption events including port congestion, shipping delays, factory shutdowns, and recovery timelines",
+    "version": "1.0",
+    "created_at": "2025-06-14T13:26:25.543001",
+    "schema_version": "1.0",
+    "total_entities": 28,
+    "total_events": 70,
+    "date_range": {
+      "start": "2020-02-01",
+      "end": "2024-12-24"
+    },
+    "event_types": [
+      "disruption_start",
+      "disruption_end"
+    ],
+    "data_sources": [
+      {
+        "name": "Maritime Trade Data",
+        "url": null,
+        "description": "Simulated supply chain disruption events based on real patterns",
+        "accessed_at": "2025-06-14T13:26:25.543014"
+      }
+    ]
+  },
+  "entities": [
+    {
+      "id": "PORT_LOS_ANGELES",
+      "type": "port",
+      "name": "Port of Los Angeles",
+      "properties": {
+        "country": "US",
+        "region": "West Coast",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_LONG_BEACH",
+      "type": "port",
+      "name": "Port of Long Beach",
+      "properties": {
+        "country": "US",
+        "region": "West Coast",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_SHANGHAI",
+      "type": "port",
+      "name": "Port of Shanghai",
+      "properties": {
+        "country": "China",
+        "region": "Asia Pacific",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_SHENZHEN",
+      "type": "port",
+      "name": "Port of Shenzhen",
+      "properties": {
+        "country": "China",
+        "region": "Asia Pacific",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_ROTTERDAM",
+      "type": "port",
+      "name": "Port of Rotterdam",
+      "properties": {
+        "country": "Netherlands",
+        "region": "Europe",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_HAMBURG",
+      "type": "port",
+      "name": "Port of Hamburg",
+      "properties": {
+        "country": "Germany",
+        "region": "Europe",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_SINGAPORE",
+      "type": "port",
+      "name": "Port of Singapore",
+      "properties": {
+        "country": "Singapore",
+        "region": "Asia Pacific",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_HONG_KONG",
+      "type": "port",
+      "name": "Port of Hong Kong",
+      "properties": {
+        "country": "Hong Kong",
+        "region": "Asia Pacific",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_ANTWERP",
+      "type": "port",
+      "name": "Port of Antwerp",
+      "properties": {
+        "country": "Belgium",
+        "region": "Europe",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "PORT_FELIXSTOWE",
+      "type": "port",
+      "name": "Port of Felixstowe",
+      "properties": {
+        "country": "UK",
+        "region": "Europe",
+        "type": "seaport"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_MAERSK",
+      "type": "shipping_company",
+      "name": "Maersk",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_MSC",
+      "type": "shipping_company",
+      "name": "MSC",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_COSCO",
+      "type": "shipping_company",
+      "name": "COSCO",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_HAPAG-LLOYD",
+      "type": "shipping_company",
+      "name": "Hapag-Lloyd",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_ONE",
+      "type": "shipping_company",
+      "name": "ONE",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_EVERGREEN",
+      "type": "shipping_company",
+      "name": "Evergreen",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_YANG_MING",
+      "type": "shipping_company",
+      "name": "Yang Ming",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_HMM",
+      "type": "shipping_company",
+      "name": "HMM",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_PIL",
+      "type": "shipping_company",
+      "name": "PIL",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "CARRIER_ZIM",
+      "type": "shipping_company",
+      "name": "ZIM",
+      "properties": {
+        "industry": "Maritime Shipping",
+        "type": "container_carrier"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_SHENZHEN",
+      "type": "manufacturing_hub",
+      "name": "Shenzhen",
+      "properties": {
+        "country": "China",
+        "primary_industry": "Electronics",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_TAIWAN",
+      "type": "manufacturing_hub",
+      "name": "Taiwan",
+      "properties": {
+        "country": "Taiwan",
+        "primary_industry": "Semiconductors",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_VIETNAM",
+      "type": "manufacturing_hub",
+      "name": "Vietnam",
+      "properties": {
+        "country": "Vietnam",
+        "primary_industry": "Textiles",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_MEXICO",
+      "type": "manufacturing_hub",
+      "name": "Mexico",
+      "properties": {
+        "country": "Mexico",
+        "primary_industry": "Automotive",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_EASTERN_EUROPE",
+      "type": "manufacturing_hub",
+      "name": "Eastern Europe",
+      "properties": {
+        "country": "Poland",
+        "primary_industry": "Automotive",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_BANGLADESH",
+      "type": "manufacturing_hub",
+      "name": "Bangladesh",
+      "properties": {
+        "country": "Bangladesh",
+        "primary_industry": "Textiles",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_THAILAND",
+      "type": "manufacturing_hub",
+      "name": "Thailand",
+      "properties": {
+        "country": "Thailand",
+        "primary_industry": "Electronics",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "HUB_MALAYSIA",
+      "type": "manufacturing_hub",
+      "name": "Malaysia",
+      "properties": {
+        "country": "Malaysia",
+        "primary_industry": "Electronics",
+        "type": "manufacturing_region"
+      },
+      "domain": "supply_chain"
+    }
+  ],
+  "events": [
+    {
+      "id": "DISRUPTION_START_0",
+      "entity_id": "HUB_SHENZHEN",
+      "event_type": "disruption_start",
+      "date": "2020-02-01",
+      "timestamp": "2020-02-01T00:00:00",
+      "details": "COVID-19 Factory Shutdowns begins",
+      "properties": {
+        "disruption_type": "pandemic_shutdown",
+        "severity": "high",
+        "disruption_name": "COVID-19 Factory Shutdowns",
+        "expected_duration": 120
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_1",
+      "entity_id": "HUB_SHENZHEN",
+      "event_type": "disruption_end",
+      "date": "2020-05-31",
+      "timestamp": "2020-05-31T00:00:00",
+      "details": "COVID-19 Factory Shutdowns ends",
+      "properties": {
+        "disruption_type": "pandemic_shutdown",
+        "severity": "high",
+        "disruption_name": "COVID-19 Factory Shutdowns",
+        "actual_duration": 120
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_2",
+      "entity_id": "HUB_TAIWAN",
+      "event_type": "disruption_start",
+      "date": "2020-02-01",
+      "timestamp": "2020-02-01T00:00:00",
+      "details": "COVID-19 Factory Shutdowns begins",
+      "properties": {
+        "disruption_type": "pandemic_shutdown",
+        "severity": "high",
+        "disruption_name": "COVID-19 Factory Shutdowns",
+        "expected_duration": 120
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_3",
+      "entity_id": "HUB_TAIWAN",
+      "event_type": "disruption_end",
+      "date": "2020-05-31",
+      "timestamp": "2020-05-31T00:00:00",
+      "details": "COVID-19 Factory Shutdowns ends",
+      "properties": {
+        "disruption_type": "pandemic_shutdown",
+        "severity": "high",
+        "disruption_name": "COVID-19 Factory Shutdowns",
+        "actual_duration": 120
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_4",
+      "entity_id": "PORT_ROTTERDAM",
+      "event_type": "disruption_start",
+      "date": "2021-03-23",
+      "timestamp": "2021-03-23T00:00:00",
+      "details": "Suez Canal Blockage begins",
+      "properties": {
+        "disruption_type": "canal_blockage",
+        "severity": "critical",
+        "disruption_name": "Suez Canal Blockage",
+        "expected_duration": 6
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_5",
+      "entity_id": "PORT_ROTTERDAM",
+      "event_type": "disruption_end",
+      "date": "2021-03-29",
+      "timestamp": "2021-03-29T00:00:00",
+      "details": "Suez Canal Blockage ends",
+      "properties": {
+        "disruption_type": "canal_blockage",
+        "severity": "critical",
+        "disruption_name": "Suez Canal Blockage",
+        "actual_duration": 6
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_6",
+      "entity_id": "PORT_HAMBURG",
+      "event_type": "disruption_start",
+      "date": "2021-03-23",
+      "timestamp": "2021-03-23T00:00:00",
+      "details": "Suez Canal Blockage begins",
+      "properties": {
+        "disruption_type": "canal_blockage",
+        "severity": "critical",
+        "disruption_name": "Suez Canal Blockage",
+        "expected_duration": 6
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_7",
+      "entity_id": "PORT_HAMBURG",
+      "event_type": "disruption_end",
+      "date": "2021-03-29",
+      "timestamp": "2021-03-29T00:00:00",
+      "details": "Suez Canal Blockage ends",
+      "properties": {
+        "disruption_type": "canal_blockage",
+        "severity": "critical",
+        "disruption_name": "Suez Canal Blockage",
+        "actual_duration": 6
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_8",
+      "entity_id": "PORT_SHANGHAI",
+      "event_type": "disruption_start",
+      "date": "2022-03-28",
+      "timestamp": "2022-03-28T00:00:00",
+      "details": "Shanghai Port Lockdown begins",
+      "properties": {
+        "disruption_type": "covid_lockdown",
+        "severity": "high",
+        "disruption_name": "Shanghai Port Lockdown",
+        "expected_duration": 65
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_9",
+      "entity_id": "PORT_SHANGHAI",
+      "event_type": "disruption_end",
+      "date": "2022-06-01",
+      "timestamp": "2022-06-01T00:00:00",
+      "details": "Shanghai Port Lockdown ends",
+      "properties": {
+        "disruption_type": "covid_lockdown",
+        "severity": "high",
+        "disruption_name": "Shanghai Port Lockdown",
+        "actual_duration": 65
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_10",
+      "entity_id": "PORT_LOS_ANGELES",
+      "event_type": "disruption_start",
+      "date": "2021-08-01",
+      "timestamp": "2021-08-01T00:00:00",
+      "details": "LA/Long Beach Congestion begins",
+      "properties": {
+        "disruption_type": "port_congestion",
+        "severity": "high",
+        "disruption_name": "LA/Long Beach Congestion",
+        "expected_duration": 211
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_11",
+      "entity_id": "PORT_LOS_ANGELES",
+      "event_type": "disruption_end",
+      "date": "2022-02-28",
+      "timestamp": "2022-02-28T00:00:00",
+      "details": "LA/Long Beach Congestion ends",
+      "properties": {
+        "disruption_type": "port_congestion",
+        "severity": "high",
+        "disruption_name": "LA/Long Beach Congestion",
+        "actual_duration": 211
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_12",
+      "entity_id": "PORT_LONG_BEACH",
+      "event_type": "disruption_start",
+      "date": "2021-08-01",
+      "timestamp": "2021-08-01T00:00:00",
+      "details": "LA/Long Beach Congestion begins",
+      "properties": {
+        "disruption_type": "port_congestion",
+        "severity": "high",
+        "disruption_name": "LA/Long Beach Congestion",
+        "expected_duration": 211
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_13",
+      "entity_id": "PORT_LONG_BEACH",
+      "event_type": "disruption_end",
+      "date": "2022-02-28",
+      "timestamp": "2022-02-28T00:00:00",
+      "details": "LA/Long Beach Congestion ends",
+      "properties": {
+        "disruption_type": "port_congestion",
+        "severity": "high",
+        "disruption_name": "LA/Long Beach Congestion",
+        "actual_duration": 211
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_14",
+      "entity_id": "PORT_SHANGHAI",
+      "event_type": "disruption_start",
+      "date": "2020-11-04",
+      "timestamp": "2020-11-04T00:00:00",
+      "details": "Capacity Shortage disruption begins",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "expected_duration": 3,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_15",
+      "entity_id": "PORT_SHANGHAI",
+      "event_type": "disruption_end",
+      "date": "2020-11-07",
+      "timestamp": "2020-11-07T00:00:00",
+      "details": "Capacity Shortage disruption ends",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "actual_duration": 3,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_16",
+      "entity_id": "CARRIER_EVERGREEN",
+      "event_type": "disruption_start",
+      "date": "2020-11-11",
+      "timestamp": "2020-11-11T00:00:00",
+      "details": "Equipment Failure disruption begins",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "low",
+        "expected_duration": 14,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_17",
+      "entity_id": "CARRIER_EVERGREEN",
+      "event_type": "disruption_end",
+      "date": "2020-11-25",
+      "timestamp": "2020-11-25T00:00:00",
+      "details": "Equipment Failure disruption ends",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "low",
+        "actual_duration": 14,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_18",
+      "entity_id": "HUB_EASTERN_EUROPE",
+      "event_type": "disruption_start",
+      "date": "2021-02-10",
+      "timestamp": "2021-02-10T00:00:00",
+      "details": "Capacity Shortage disruption begins",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "expected_duration": 10,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_19",
+      "entity_id": "HUB_EASTERN_EUROPE",
+      "event_type": "disruption_end",
+      "date": "2021-02-20",
+      "timestamp": "2021-02-20T00:00:00",
+      "details": "Capacity Shortage disruption ends",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "actual_duration": 10,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_20",
+      "entity_id": "CARRIER_HMM",
+      "event_type": "disruption_start",
+      "date": "2021-03-17",
+      "timestamp": "2021-03-17T00:00:00",
+      "details": "Labor Strike disruption begins",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "medium",
+        "expected_duration": 5,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_21",
+      "entity_id": "CARRIER_HMM",
+      "event_type": "disruption_end",
+      "date": "2021-03-22",
+      "timestamp": "2021-03-22T00:00:00",
+      "details": "Labor Strike disruption ends",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "medium",
+        "actual_duration": 5,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_22",
+      "entity_id": "HUB_MEXICO",
+      "event_type": "disruption_start",
+      "date": "2021-04-21",
+      "timestamp": "2021-04-21T00:00:00",
+      "details": "Weather Delay disruption begins",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "low",
+        "expected_duration": 14,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_23",
+      "entity_id": "HUB_MEXICO",
+      "event_type": "disruption_end",
+      "date": "2021-05-05",
+      "timestamp": "2021-05-05T00:00:00",
+      "details": "Weather Delay disruption ends",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "low",
+        "actual_duration": 14,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_24",
+      "entity_id": "CARRIER_PIL",
+      "event_type": "disruption_start",
+      "date": "2021-05-05",
+      "timestamp": "2021-05-05T00:00:00",
+      "details": "Labor Strike disruption begins",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "expected_duration": 23,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_25",
+      "entity_id": "CARRIER_PIL",
+      "event_type": "disruption_end",
+      "date": "2021-05-28",
+      "timestamp": "2021-05-28T00:00:00",
+      "details": "Labor Strike disruption ends",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "actual_duration": 23,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_26",
+      "entity_id": "PORT_SHENZHEN",
+      "event_type": "disruption_start",
+      "date": "2021-09-29",
+      "timestamp": "2021-09-29T00:00:00",
+      "details": "Capacity Shortage disruption begins",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "high",
+        "expected_duration": 7,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_27",
+      "entity_id": "PORT_SHENZHEN",
+      "event_type": "disruption_end",
+      "date": "2021-10-06",
+      "timestamp": "2021-10-06T00:00:00",
+      "details": "Capacity Shortage disruption ends",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "high",
+        "actual_duration": 7,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_28",
+      "entity_id": "HUB_EASTERN_EUROPE",
+      "event_type": "disruption_start",
+      "date": "2021-11-17",
+      "timestamp": "2021-11-17T00:00:00",
+      "details": "Equipment Failure disruption begins",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "low",
+        "expected_duration": 12,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_29",
+      "entity_id": "HUB_EASTERN_EUROPE",
+      "event_type": "disruption_end",
+      "date": "2021-11-29",
+      "timestamp": "2021-11-29T00:00:00",
+      "details": "Equipment Failure disruption ends",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "low",
+        "actual_duration": 12,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_30",
+      "entity_id": "CARRIER_ONE",
+      "event_type": "disruption_start",
+      "date": "2021-12-08",
+      "timestamp": "2021-12-08T00:00:00",
+      "details": "Cyber Attack disruption begins",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "medium",
+        "expected_duration": 5,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_31",
+      "entity_id": "CARRIER_ONE",
+      "event_type": "disruption_end",
+      "date": "2021-12-13",
+      "timestamp": "2021-12-13T00:00:00",
+      "details": "Cyber Attack disruption ends",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "medium",
+        "actual_duration": 5,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_32",
+      "entity_id": "PORT_ROTTERDAM",
+      "event_type": "disruption_start",
+      "date": "2022-05-18",
+      "timestamp": "2022-05-18T00:00:00",
+      "details": "Regulatory Delay disruption begins",
+      "properties": {
+        "disruption_type": "regulatory_delay",
+        "severity": "high",
+        "expected_duration": 18,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_33",
+      "entity_id": "PORT_ROTTERDAM",
+      "event_type": "disruption_end",
+      "date": "2022-06-05",
+      "timestamp": "2022-06-05T00:00:00",
+      "details": "Regulatory Delay disruption ends",
+      "properties": {
+        "disruption_type": "regulatory_delay",
+        "severity": "high",
+        "actual_duration": 18,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_34",
+      "entity_id": "PORT_ANTWERP",
+      "event_type": "disruption_start",
+      "date": "2022-08-03",
+      "timestamp": "2022-08-03T00:00:00",
+      "details": "Labor Strike disruption begins",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "expected_duration": 10,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_35",
+      "entity_id": "PORT_ANTWERP",
+      "event_type": "disruption_end",
+      "date": "2022-08-13",
+      "timestamp": "2022-08-13T00:00:00",
+      "details": "Labor Strike disruption ends",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "actual_duration": 10,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_36",
+      "entity_id": "HUB_VIETNAM",
+      "event_type": "disruption_start",
+      "date": "2022-10-12",
+      "timestamp": "2022-10-12T00:00:00",
+      "details": "Equipment Failure disruption begins",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "high",
+        "expected_duration": 17,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_37",
+      "entity_id": "HUB_VIETNAM",
+      "event_type": "disruption_end",
+      "date": "2022-10-29",
+      "timestamp": "2022-10-29T00:00:00",
+      "details": "Equipment Failure disruption ends",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "high",
+        "actual_duration": 17,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_38",
+      "entity_id": "PORT_HONG_KONG",
+      "event_type": "disruption_start",
+      "date": "2022-11-23",
+      "timestamp": "2022-11-23T00:00:00",
+      "details": "Capacity Shortage disruption begins",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "high",
+        "expected_duration": 22,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_39",
+      "entity_id": "PORT_HONG_KONG",
+      "event_type": "disruption_end",
+      "date": "2022-12-15",
+      "timestamp": "2022-12-15T00:00:00",
+      "details": "Capacity Shortage disruption ends",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "high",
+        "actual_duration": 22,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_40",
+      "entity_id": "HUB_THAILAND",
+      "event_type": "disruption_start",
+      "date": "2023-03-01",
+      "timestamp": "2023-03-01T00:00:00",
+      "details": "Labor Strike disruption begins",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "expected_duration": 13,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_41",
+      "entity_id": "HUB_THAILAND",
+      "event_type": "disruption_end",
+      "date": "2023-03-14",
+      "timestamp": "2023-03-14T00:00:00",
+      "details": "Labor Strike disruption ends",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "actual_duration": 13,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_42",
+      "entity_id": "PORT_FELIXSTOWE",
+      "event_type": "disruption_start",
+      "date": "2023-05-24",
+      "timestamp": "2023-05-24T00:00:00",
+      "details": "Equipment Failure disruption begins",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "medium",
+        "expected_duration": 6,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_43",
+      "entity_id": "PORT_FELIXSTOWE",
+      "event_type": "disruption_end",
+      "date": "2023-05-30",
+      "timestamp": "2023-05-30T00:00:00",
+      "details": "Equipment Failure disruption ends",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "medium",
+        "actual_duration": 6,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_44",
+      "entity_id": "HUB_SHENZHEN",
+      "event_type": "disruption_start",
+      "date": "2023-06-07",
+      "timestamp": "2023-06-07T00:00:00",
+      "details": "Weather Delay disruption begins",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "low",
+        "expected_duration": 2,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_45",
+      "entity_id": "HUB_SHENZHEN",
+      "event_type": "disruption_end",
+      "date": "2023-06-09",
+      "timestamp": "2023-06-09T00:00:00",
+      "details": "Weather Delay disruption ends",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "low",
+        "actual_duration": 2,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_46",
+      "entity_id": "CARRIER_MAERSK",
+      "event_type": "disruption_start",
+      "date": "2023-08-16",
+      "timestamp": "2023-08-16T00:00:00",
+      "details": "Capacity Shortage disruption begins",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "high",
+        "expected_duration": 27,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_47",
+      "entity_id": "CARRIER_MAERSK",
+      "event_type": "disruption_end",
+      "date": "2023-09-12",
+      "timestamp": "2023-09-12T00:00:00",
+      "details": "Capacity Shortage disruption ends",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "high",
+        "actual_duration": 27,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_48",
+      "entity_id": "CARRIER_MAERSK",
+      "event_type": "disruption_start",
+      "date": "2023-09-06",
+      "timestamp": "2023-09-06T00:00:00",
+      "details": "Capacity Shortage disruption begins",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "expected_duration": 8,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_49",
+      "entity_id": "CARRIER_MAERSK",
+      "event_type": "disruption_end",
+      "date": "2023-09-14",
+      "timestamp": "2023-09-14T00:00:00",
+      "details": "Capacity Shortage disruption ends",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "actual_duration": 8,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_50",
+      "entity_id": "CARRIER_YANG_MING",
+      "event_type": "disruption_start",
+      "date": "2023-09-20",
+      "timestamp": "2023-09-20T00:00:00",
+      "details": "Capacity Shortage disruption begins",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "expected_duration": 7,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_51",
+      "entity_id": "CARRIER_YANG_MING",
+      "event_type": "disruption_end",
+      "date": "2023-09-27",
+      "timestamp": "2023-09-27T00:00:00",
+      "details": "Capacity Shortage disruption ends",
+      "properties": {
+        "disruption_type": "capacity_shortage",
+        "severity": "low",
+        "actual_duration": 7,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_52",
+      "entity_id": "PORT_ROTTERDAM",
+      "event_type": "disruption_start",
+      "date": "2024-01-03",
+      "timestamp": "2024-01-03T00:00:00",
+      "details": "Equipment Failure disruption begins",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "high",
+        "expected_duration": 24,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_53",
+      "entity_id": "PORT_ROTTERDAM",
+      "event_type": "disruption_end",
+      "date": "2024-01-27",
+      "timestamp": "2024-01-27T00:00:00",
+      "details": "Equipment Failure disruption ends",
+      "properties": {
+        "disruption_type": "equipment_failure",
+        "severity": "high",
+        "actual_duration": 24,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_54",
+      "entity_id": "HUB_VIETNAM",
+      "event_type": "disruption_start",
+      "date": "2024-05-15",
+      "timestamp": "2024-05-15T00:00:00",
+      "details": "Labor Strike disruption begins",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "expected_duration": 13,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_55",
+      "entity_id": "HUB_VIETNAM",
+      "event_type": "disruption_end",
+      "date": "2024-05-28",
+      "timestamp": "2024-05-28T00:00:00",
+      "details": "Labor Strike disruption ends",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "actual_duration": 13,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_56",
+      "entity_id": "CARRIER_PIL",
+      "event_type": "disruption_start",
+      "date": "2024-05-29",
+      "timestamp": "2024-05-29T00:00:00",
+      "details": "Weather Delay disruption begins",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "low",
+        "expected_duration": 2,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_57",
+      "entity_id": "CARRIER_PIL",
+      "event_type": "disruption_end",
+      "date": "2024-05-31",
+      "timestamp": "2024-05-31T00:00:00",
+      "details": "Weather Delay disruption ends",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "low",
+        "actual_duration": 2,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_58",
+      "entity_id": "PORT_LOS_ANGELES",
+      "event_type": "disruption_start",
+      "date": "2024-07-03",
+      "timestamp": "2024-07-03T00:00:00",
+      "details": "Labor Strike disruption begins",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "expected_duration": 4,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_59",
+      "entity_id": "PORT_LOS_ANGELES",
+      "event_type": "disruption_end",
+      "date": "2024-07-07",
+      "timestamp": "2024-07-07T00:00:00",
+      "details": "Labor Strike disruption ends",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "actual_duration": 4,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_60",
+      "entity_id": "PORT_SINGAPORE",
+      "event_type": "disruption_start",
+      "date": "2024-07-10",
+      "timestamp": "2024-07-10T00:00:00",
+      "details": "Cyber Attack disruption begins",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "medium",
+        "expected_duration": 30,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_61",
+      "entity_id": "PORT_SINGAPORE",
+      "event_type": "disruption_end",
+      "date": "2024-08-09",
+      "timestamp": "2024-08-09T00:00:00",
+      "details": "Cyber Attack disruption ends",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "medium",
+        "actual_duration": 30,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_62",
+      "entity_id": "CARRIER_ZIM",
+      "event_type": "disruption_start",
+      "date": "2024-08-07",
+      "timestamp": "2024-08-07T00:00:00",
+      "details": "Labor Strike disruption begins",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "expected_duration": 7,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_63",
+      "entity_id": "CARRIER_ZIM",
+      "event_type": "disruption_end",
+      "date": "2024-08-14",
+      "timestamp": "2024-08-14T00:00:00",
+      "details": "Labor Strike disruption ends",
+      "properties": {
+        "disruption_type": "labor_strike",
+        "severity": "high",
+        "actual_duration": 7,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_64",
+      "entity_id": "HUB_EASTERN_EUROPE",
+      "event_type": "disruption_start",
+      "date": "2024-09-11",
+      "timestamp": "2024-09-11T00:00:00",
+      "details": "Cyber Attack disruption begins",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "high",
+        "expected_duration": 26,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_65",
+      "entity_id": "HUB_EASTERN_EUROPE",
+      "event_type": "disruption_end",
+      "date": "2024-10-07",
+      "timestamp": "2024-10-07T00:00:00",
+      "details": "Cyber Attack disruption ends",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "high",
+        "actual_duration": 26,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_66",
+      "entity_id": "PORT_SINGAPORE",
+      "event_type": "disruption_start",
+      "date": "2024-11-20",
+      "timestamp": "2024-11-20T00:00:00",
+      "details": "Weather Delay disruption begins",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "medium",
+        "expected_duration": 2,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_67",
+      "entity_id": "PORT_SINGAPORE",
+      "event_type": "disruption_end",
+      "date": "2024-11-22",
+      "timestamp": "2024-11-22T00:00:00",
+      "details": "Weather Delay disruption ends",
+      "properties": {
+        "disruption_type": "weather_delay",
+        "severity": "medium",
+        "actual_duration": 2,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_START_68",
+      "entity_id": "CARRIER_ZIM",
+      "event_type": "disruption_start",
+      "date": "2024-11-27",
+      "timestamp": "2024-11-27T00:00:00",
+      "details": "Cyber Attack disruption begins",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "medium",
+        "expected_duration": 27,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    },
+    {
+      "id": "DISRUPTION_END_69",
+      "entity_id": "CARRIER_ZIM",
+      "event_type": "disruption_end",
+      "date": "2024-12-24",
+      "timestamp": "2024-12-24T00:00:00",
+      "details": "Cyber Attack disruption ends",
+      "properties": {
+        "disruption_type": "cyber_attack",
+        "severity": "medium",
+        "actual_duration": 27,
+        "generated": true
+      },
+      "domain": "supply_chain"
+    }
+  ],
+  "relationships": []
+}

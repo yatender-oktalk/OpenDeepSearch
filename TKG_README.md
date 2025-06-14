@@ -454,3 +454,23 @@ To remove all data:
 ```bash
 docker-compose down -v
 ```
+
+## Evaluation stretigies
+
+temporal_evaluation/
+├── datasets/
+│   ├── financial_data.json
+│   ├── sec_filings.json
+│   ├── clinical_trials.json
+│   └── supply_chain.json
+├── financial_data/
+│   ├── collect_data.py          # Creates datasets/financial_data.json
+│   ├── load_dataset.py          # Loads from datasets/financial_data.json to Neo4j
+│   ├── generate_queries.py
+│   ├── run_evaluation.py
+│   └── analyze_results.py
+├── shared/
+│   ├── dataset_schema.py        # Standard dataset format
+│   ├── neo4j_loader.py         # Generic Neo4j loader
+│   └── base_evaluator.py
+└── setup_evaluation.py         # One-click setup from datasets
