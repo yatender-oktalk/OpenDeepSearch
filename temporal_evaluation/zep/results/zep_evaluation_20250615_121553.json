@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "evaluation_type": "zep_temporal_knowledge_graph",
+    "total_queries": 5,
+    "timestamp": "2025-06-15T12:15:53.022743",
+    "baseline": "Web Search + LLM",
+    "enhanced": "Zep Temporal KG",
+    "sec_filings_loaded": 150
+  },
+  "results": [
+    {
+      "query_id": 1,
+      "query": "Which companies show irregular filing patterns compared to their historical schedule?",
+      "baseline": {
+        "response": "I cannot complete this task.  The task requires access to a dataset of companies and their filing schedules, which is not available using the provided tools.",
+        "time": 1.4088656902313232,
+        "analysis": {
+          "temporal_score": 0.0,
+          "capabilities": {
+            "pattern_detection": 0,
+            "temporal_correlation": 0,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": false,
+          "has_quantitative_insights": false,
+          "has_temporal_context": false,
+          "has_zep_features": false
+        }
+      },
+      "enhanced": {
+        "response": "\ud83e\udde0 Zep Temporal Knowledge Graph Results:\n\n\ud83d\udcca Memory Context: Building temporal relationships...\n\n\ud83d\udd17 Knowledge Graph Relationships (7 active):\n\n1. Temporal Fact:\n   Unknown Company submitted a Unknown Filing filing on 2024-01-01.\n   Valid From: 2024-01-01T00:00:00Z\n\n2. Temporal Fact:\n   On 2024-01-01, Unknown Company submitted a Unknown Filing filing to the Securities and Exchange Commission.\n   Valid From: 2024-01-01T00:00:00Z\n\n3. Temporal Fact:\n   On 2024-02-20, Microsoft Corporation filed a 10-K form with the Securities and Exchange Commission.\n   Valid From: 2024-02-20T00:00:00Z\n\n4. Temporal Fact:\n   On 2024-05-10, Microsoft Corporation filed a 8-K form with the Securities and Exchange Commission.\n   Valid From: 2024-05-10T00:00:00Z\n\n5. Temporal Fact:\n   On 2024-03-25, Meta Platforms Inc. filed a 10-Q form with the Securities and Exchange Commission.\n   Valid From: 2024-03-25T00:00:00Z\n\n6. Temporal Fact:\n   Apple Inc. filed 8-K\n   Valid From: 2025-05-12T00:00:00Z\n\n7. Temporal Fact:\n   ...",
+        "time": 0.7830691337585449,
+        "analysis": {
+          "temporal_score": 37.4,
+          "capabilities": {
+            "pattern_detection": 0,
+            "temporal_correlation": 12,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": true,
+          "has_quantitative_insights": true,
+          "has_temporal_context": true,
+          "has_zep_features": true,
+          "zep_activated": true
+        },
+        "zep_activated": true
+      },
+      "improvements": {
+        "temporal_intelligence": 37.4,
+        "time_difference": -0.6257965564727783
+      }
+    },
+    {
+      "query_id": 2,
+      "query": "Show me Apple's SEC filing timeline and patterns",
+      "baseline": {
+        "response": "Apple's SEC filings show a pattern of regular annual (10-K) and quarterly (10-Q) filings.  Additional filings (8-K) occur as needed to report significant events.",
+        "time": 9.294642925262451,
+        "analysis": {
+          "temporal_score": 2.4,
+          "capabilities": {
+            "pattern_detection": 12,
+            "temporal_correlation": 0,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": false,
+          "has_quantitative_insights": true,
+          "has_temporal_context": false,
+          "has_zep_features": false
+        }
+      },
+      "enhanced": {
+        "response": "\ud83e\udde0 Zep Temporal Knowledge Graph Results:\n\n\ud83d\udcca Memory Context: Building temporal relationships...\n\n\ud83d\udd17 Knowledge Graph Relationships (6 active):\n\n1. Temporal Fact:\n   Apple Inc. filed a 10-Q SEC filing on 2025-01-31\n   Valid From: 2025-01-31T00:00:00Z\n\n2. Temporal Fact:\n   On 2024-02-20, Microsoft Corporation filed a 10-K form with the Securities and Exchange Commission.\n   Valid From: 2024-02-20T00:00:00Z\n\n3. Temporal Fact:\n   On 2024-03-25, Meta Platforms Inc. filed a 10-Q form with the Securities and Exchange Commission.\n   Valid From: 2024-03-25T00:00:00Z\n\n4. Temporal Fact:\n   On 2024-01-01, Unknown Company submitted a Unknown Filing filing to the Securities and Exchange Commission.\n   Valid From: 2024-01-01T00:00:00Z\n\n5. Temporal Fact:\n   On 2024-05-10, Microsoft Corporation filed a 8-K form with the Securities and Exchange Commission.\n   Valid From: 2024-05-10T00:00:00Z\n\n6. Temporal Fact:\n   Unknown Company submitted a Unknown Filing filing on 2024-01-01.\n   Valid From: 2024-01-01T00:0...",
+        "time": 0.8513269424438477,
+        "analysis": {
+          "temporal_score": 37.4,
+          "capabilities": {
+            "pattern_detection": 0,
+            "temporal_correlation": 12,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": true,
+          "has_quantitative_insights": true,
+          "has_temporal_context": true,
+          "has_zep_features": true,
+          "zep_activated": true
+        },
+        "zep_activated": true
+      },
+      "improvements": {
+        "temporal_intelligence": 35.0,
+        "time_difference": -8.443315982818604
+      }
+    },
+    {
+      "query_id": 3,
+      "query": "Compare filing frequencies between Microsoft and Apple over time",
+      "baseline": {
+        "response": "Based on the available data, Microsoft filed 1969 patent families in 2018 and Apple filed 1310 in the same year.  Apple's highest filing year was 2012 with 1892 families.  Precise comparison over time isn't possible due to inconsistent data formatting.",
+        "time": 13.933312892913818,
+        "analysis": {
+          "temporal_score": 2.4,
+          "capabilities": {
+            "pattern_detection": 12,
+            "temporal_correlation": 0,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": false,
+          "has_quantitative_insights": true,
+          "has_temporal_context": true,
+          "has_zep_features": false
+        }
+      },
+      "enhanced": {
+        "response": "\ud83e\udde0 Zep Temporal Knowledge Graph Results:\n\n\ud83d\udcca Memory Context: Building temporal relationships...\n\n\ud83d\udd17 Knowledge Graph Relationships (7 active):\n\n1. Temporal Fact:\n   On 2024-02-20, Microsoft Corporation filed a 10-K form with the Securities and Exchange Commission.\n   Valid From: 2024-02-20T00:00:00Z\n\n2. Temporal Fact:\n   Apple Inc. filed 10-K\n   Valid From: 2024-11-01T00:00:00Z\n\n3. Temporal Fact:\n   Apple Inc. filed a 10-Q SEC filing on 2025-01-31\n   Valid From: 2025-01-31T00:00:00Z\n\n4. Temporal Fact:\n   On 2024-03-25, Meta Platforms Inc. filed a 10-Q form with the Securities and Exchange Commission.\n   Valid From: 2024-03-25T00:00:00Z\n\n5. Temporal Fact:\n   On 2024-01-01, Unknown Company submitted a Unknown Filing filing to the Securities and Exchange Commission.\n   Valid From: 2024-01-01T00:00:00Z\n\n6. Temporal Fact:\n   Apple Inc. filed 8-K\n   Valid From: 2025-05-12T00:00:00Z\n\n7. Temporal Fact:\n   On 2024-05-10, Microsoft Corporation filed a 8-K form with the Securities and Exchange Commis...",
+        "time": 0.9674777984619141,
+        "analysis": {
+          "temporal_score": 37.4,
+          "capabilities": {
+            "pattern_detection": 0,
+            "temporal_correlation": 12,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": true,
+          "has_quantitative_insights": true,
+          "has_temporal_context": true,
+          "has_zep_features": true,
+          "zep_activated": true
+        },
+        "zep_activated": true
+      },
+      "improvements": {
+        "temporal_intelligence": 35.0,
+        "time_difference": -12.965835094451904
+      }
+    },
+    {
+      "query_id": 4,
+      "query": "Find companies with unusual gaps between quarterly filings",
+      "baseline": {
+        "response": "My search for companies with unusual gaps between quarterly filings yielded some examples of companies with delayed filings due to SEC enforcement actions, but a comprehensive list requires access to a database of quarterly filing timestamps to calculate and identify consistent irregularities.",
+        "time": 9.410558938980103,
+        "analysis": {
+          "temporal_score": 12.0,
+          "capabilities": {
+            "pattern_detection": 24,
+            "temporal_correlation": 0,
+            "anomaly_detection": 36,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": false,
+          "has_quantitative_insights": false,
+          "has_temporal_context": true,
+          "has_zep_features": false
+        }
+      },
+      "enhanced": {
+        "response": "\ud83e\udde0 Zep Temporal Knowledge Graph Results:\n\n\ud83d\udcca Memory Context: Building temporal relationships...\n\n\ud83d\udd17 Knowledge Graph Relationships (6 active):\n\n1. Temporal Fact:\n   Unknown Company submitted a Unknown Filing filing on 2024-01-01.\n   Valid From: 2024-01-01T00:00:00Z\n\n2. Temporal Fact:\n   On 2024-02-20, Microsoft Corporation filed a 10-K form with the Securities and Exchange Commission.\n   Valid From: 2024-02-20T00:00:00Z\n\n3. Temporal Fact:\n   On 2024-01-01, Unknown Company submitted a Unknown Filing filing to the Securities and Exchange Commission.\n   Valid From: 2024-01-01T00:00:00Z\n\n4. Temporal Fact:\n   Apple Inc. filed a 10-Q SEC filing on 2025-01-31\n   Valid From: 2025-01-31T00:00:00Z\n\n5. Temporal Fact:\n   On 2024-03-25, Meta Platforms Inc. filed a 10-Q form with the Securities and Exchange Commission.\n   Valid From: 2024-03-25T00:00:00Z\n\n6. Temporal Fact:\n   On 2024-05-10, Microsoft Corporation filed a 8-K form with the Securities and Exchange Commission.\n   Valid From: 2024-05-10T00:0...",
+        "time": 1.0399034023284912,
+        "analysis": {
+          "temporal_score": 37.4,
+          "capabilities": {
+            "pattern_detection": 0,
+            "temporal_correlation": 12,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": true,
+          "has_quantitative_insights": true,
+          "has_temporal_context": true,
+          "has_zep_features": true,
+          "zep_activated": true
+        },
+        "zep_activated": true
+      },
+      "improvements": {
+        "temporal_intelligence": 25.4,
+        "time_difference": -8.370655536651611
+      }
+    },
+    {
+      "query_id": 5,
+      "query": "Identify seasonal patterns in SEC filing submissions",
+      "baseline": {
+        "response": "Based on available web search results, SEC filing submissions exhibit seasonal patterns primarily due to annual reporting deadlines and regulatory requirements.  Specific data on filing frequency and seasonality is not readily accessible without access to a dedicated SEC filing dataset.",
+        "time": 7.738314867019653,
+        "analysis": {
+          "temporal_score": 4.8,
+          "capabilities": {
+            "pattern_detection": 24,
+            "temporal_correlation": 0,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": false,
+          "has_quantitative_insights": false,
+          "has_temporal_context": false,
+          "has_zep_features": false
+        }
+      },
+      "enhanced": {
+        "response": "\ud83e\udde0 Zep Temporal Knowledge Graph Results:\n\n\ud83d\udcca Memory Context: Building temporal relationships...\n\n\ud83d\udd17 Knowledge Graph Relationships (5 active):\n\n1. Temporal Fact:\n   Apple Inc. filed a 10-Q SEC filing on 2025-01-31\n   Valid From: 2025-01-31T00:00:00Z\n\n2. Temporal Fact:\n   On 2024-02-20, Microsoft Corporation filed a 10-K form with the Securities and Exchange Commission.\n   Valid From: 2024-02-20T00:00:00Z\n\n3. Temporal Fact:\n   On 2024-03-25, Meta Platforms Inc. filed a 10-Q form with the Securities and Exchange Commission.\n   Valid From: 2024-03-25T00:00:00Z\n\n4. Temporal Fact:\n   On 2024-01-01, Unknown Company submitted a Unknown Filing filing to the Securities and Exchange Commission.\n   Valid From: 2024-01-01T00:00:00Z\n\n5. Temporal Fact:\n   On 2024-05-10, Microsoft Corporation filed a 8-K form with the Securities and Exchange Commission.\n   Valid From: 2024-05-10T00:00:00Z\n\n\ud83c\udfe2 Relevant Entities (5 found):\n\n1. Entity: SEC\n   Summary: The SEC (Securities and Exchange Commission) is a regulat...",
+        "time": 0.8418707847595215,
+        "analysis": {
+          "temporal_score": 37.4,
+          "capabilities": {
+            "pattern_detection": 0,
+            "temporal_correlation": 12,
+            "anomaly_detection": 0,
+            "predictive_analysis": 0,
+            "temporal_reasoning": 0
+          },
+          "has_structured_analysis": true,
+          "has_quantitative_insights": true,
+          "has_temporal_context": true,
+          "has_zep_features": true,
+          "zep_activated": true
+        },
+        "zep_activated": true
+      },
+      "improvements": {
+        "temporal_intelligence": 32.6,
+        "time_difference": -6.896444082260132
+      }
+    }
+  ]
+}
