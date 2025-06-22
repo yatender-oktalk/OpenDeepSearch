@@ -1,0 +1,468 @@
+{
+  "metadata": {
+    "domain": "sec_filings",
+    "evaluation_type": "quantitative_analysis",
+    "total_queries": 5,
+    "timestamp": "2025-06-15T00:13:26.034679",
+    "model": "gemini/gemini-1.5-flash",
+    "baseline": "Web Search + LLM (Serper API + Gemini 1.5 Flash)",
+    "enhanced": "Web Search + LLM + Temporal Knowledge Graph (Gemini 1.5 Flash)"
+  },
+  "statistical_analysis": {
+    "precision_score": {
+      "baseline": {
+        "mean": 1.2,
+        "median": 0.0,
+        "std": 1.6431676725154984,
+        "min": 0.0,
+        "max": 3.0
+      },
+      "enhanced": {
+        "mean": 15.355303442412472,
+        "median": 23.705722070844686,
+        "std": 12.719698152840072,
+        "min": 0.0,
+        "max": 25.925925925925924
+      },
+      "improvement_percentage": 1179.6086202010395
+    },
+    "completeness_score": {
+      "baseline": {
+        "mean": 0,
+        "median": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "enhanced": {
+        "mean": 60,
+        "median": 100,
+        "std": 54.772255750516614,
+        "min": 0,
+        "max": 100
+      },
+      "improvement_percentage": 100
+    },
+    "confidence_score": {
+      "baseline": {
+        "mean": 0,
+        "median": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "enhanced": {
+        "mean": 0,
+        "median": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "improvement_percentage": 0
+    },
+    "specific_dates_count": {
+      "baseline": {
+        "mean": 0,
+        "median": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "enhanced": {
+        "mean": 13,
+        "median": 15,
+        "std": 13.038404810405298,
+        "min": 0,
+        "max": 30
+      },
+      "improvement_percentage": 100
+    },
+    "filing_types_mentioned": {
+      "baseline": {
+        "mean": 0.4,
+        "median": 0,
+        "std": 0.5477225575051661,
+        "min": 0,
+        "max": 1
+      },
+      "enhanced": {
+        "mean": 0.8,
+        "median": 1,
+        "std": 0.4472135954999579,
+        "min": 0,
+        "max": 1
+      },
+      "improvement_percentage": 100.0
+    },
+    "structured_entries": {
+      "baseline": {
+        "mean": 0,
+        "median": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0
+      },
+      "enhanced": {
+        "mean": 11.4,
+        "median": 15,
+        "std": 10.714476188783099,
+        "min": 0,
+        "max": 22
+      },
+      "improvement_percentage": 100
+    },
+    "response_time": {
+      "baseline": {
+        "mean": 9.529879426956176,
+        "median": 9.130062103271484,
+        "std": 1.5090629053521356,
+        "min": 8.310254096984863,
+        "max": 12.12054181098938
+      },
+      "enhanced": {
+        "mean": 6.9786214351654055,
+        "median": 3.9589691162109375,
+        "std": 4.554395323698816,
+        "min": 3.4149508476257324,
+        "max": 12.450022220611572
+      },
+      "improvement_percentage": -26.771146595772173
+    },
+    "word_count": {
+      "baseline": {
+        "mean": 29,
+        "median": 34,
+        "std": 19.836834424877374,
+        "min": 3,
+        "max": 47
+      },
+      "enhanced": {
+        "mean": 228.2,
+        "median": 243,
+        "std": 212.700963796594,
+        "min": 14,
+        "max": 497
+      },
+      "improvement_percentage": 686.8965517241379
+    }
+  },
+  "summary_improvements": {
+    "precision_improvement": "1179.6%",
+    "completeness_improvement": "100.0%",
+    "temporal_data_improvement": "100.0%",
+    "structured_data_improvement": "100.0%",
+    "response_time_change": "-26.8%"
+  },
+  "detailed_results": [
+    {
+      "query_id": 1,
+      "query": "Show me Apple's 10-Q filings",
+      "baseline_response": "Apple's 10-Q filings can be found on the SEC's EDGAR database (www.sec.gov/edgar) by searching for 'Apple' and filtering for filings of type '10-Q'.  Alternatively, they may be available on Apple's Investor Relations website (investor.apple.com/sec-filings).",
+      "enhanced_response": "SEC Filing Results:\n\n1. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2025-05-02\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n2. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2025-01-31\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n3. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2024-08-02\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n4. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2024-05-03\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n5. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2024-02-02\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n6. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2023-08-04\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n7. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2023-05-05\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n8. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2023-02-03\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n9. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2022-07-29\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n10. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2022-04-29\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n11. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2022-01-28\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n12. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2021-07-28\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n13. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2021-04-29\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n14. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2021-01-28\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n15. Company: Apple Inc. (AAPL)\n   Filing Type: 10-Q\n   Date: 2020-07-31\n   Description: Apple Inc. filed 10-Q\n--------------------------------------------------\n",
+      "baseline_metrics": {
+        "specific_dates_count": 0,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 1,
+        "company_names_count": 0,
+        "ticker_symbols_count": 2,
+        "structured_entries": 0,
+        "numbered_items": 0,
+        "tabular_data": 0,
+        "numerical_comparisons": 0,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 258,
+        "word_count": 34,
+        "sentence_count": 6,
+        "error_indicators": 0,
+        "data_availability": 0,
+        "precision_score": 3.0,
+        "completeness_score": 0,
+        "confidence_score": 0,
+        "response_time": 9.417484045028687
+      },
+      "enhanced_metrics": {
+        "specific_dates_count": 15,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 1,
+        "company_names_count": 0,
+        "ticker_symbols_count": 16,
+        "structured_entries": 15,
+        "numbered_items": 15,
+        "tabular_data": 45,
+        "numerical_comparisons": 0,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 2427,
+        "word_count": 243,
+        "sentence_count": 45,
+        "error_indicators": 0,
+        "data_availability": 1,
+        "precision_score": 25.925925925925924,
+        "completeness_score": 100,
+        "confidence_score": 0,
+        "response_time": 3.62321400642395
+      },
+      "improvement_metrics": {
+        "precision_improvement": 22.925925925925924,
+        "completeness_improvement": 100,
+        "dates_improvement": 15,
+        "structure_improvement": 15,
+        "time_difference": -5.794270038604736
+      },
+      "timestamp": "2025-06-15T00:04:16.506526"
+    },
+    {
+      "query_id": 2,
+      "query": "Compare filing frequency between Apple and Meta over the last 2 years",
+      "baseline_response": "Apple had 3 filings, while Meta had 2 filings in the last two years.",
+      "enhanced_response": "Apple had 15 filings, while Meta had 10 filings over the last two years.",
+      "baseline_metrics": {
+        "specific_dates_count": 0,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 0,
+        "company_names_count": 0,
+        "ticker_symbols_count": 0,
+        "structured_entries": 0,
+        "numbered_items": 0,
+        "tabular_data": 0,
+        "numerical_comparisons": 1,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 68,
+        "word_count": 14,
+        "sentence_count": 1,
+        "error_indicators": 0,
+        "data_availability": 0,
+        "precision_score": 0.0,
+        "completeness_score": 0,
+        "confidence_score": 0,
+        "response_time": 8.310254096984863
+      },
+      "enhanced_metrics": {
+        "specific_dates_count": 0,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 0,
+        "company_names_count": 0,
+        "ticker_symbols_count": 0,
+        "structured_entries": 0,
+        "numbered_items": 0,
+        "tabular_data": 0,
+        "numerical_comparisons": 1,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 72,
+        "word_count": 14,
+        "sentence_count": 1,
+        "error_indicators": 0,
+        "data_availability": 0,
+        "precision_score": 0.0,
+        "completeness_score": 0,
+        "confidence_score": 0,
+        "response_time": 11.445950984954834
+      },
+      "improvement_metrics": {
+        "precision_improvement": 0.0,
+        "completeness_improvement": 0,
+        "dates_improvement": 0,
+        "structure_improvement": 0,
+        "time_difference": 3.1356968879699707
+      },
+      "timestamp": "2025-06-15T00:06:36.265083"
+    },
+    {
+      "query_id": 3,
+      "query": "Which companies filed 10-K reports most recently?",
+      "baseline_response": "['Coca-Cola', 'Amazon', 'NVIDIA']",
+      "enhanced_response": "SEC Filing Results:\n\n\ud83d\udcca Tesla Inc. (TSLA):\n  1. Filing Type: 10-K | Date: 2025-04-30 | Tesla Inc. filed 10-K/A\n------------------------------------------------------------\n\n\ud83d\udcca Shopify Inc. (SHOP):\n  1. Filing Type: 10-K | Date: 2025-04-29 | Shopify Inc. filed 10-K/A\n------------------------------------------------------------\n\n\ud83d\udcca Home Depot Inc. (HD):\n  1. Filing Type: 10-K | Date: 2025-03-21 | Home Depot Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Walmart Inc. (WMT):\n  1. Filing Type: 10-K | Date: 2025-03-14 | Walmart Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Target Corporation (TGT):\n  1. Filing Type: 10-K | Date: 2025-03-12 | Target Corporation filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Salesforce Inc. (CRM):\n  1. Filing Type: 10-K | Date: 2025-03-05 | Salesforce Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Zoom Video Communications (ZOOM):\n  1. Filing Type: 10-K | Date: 2025-02-28 | Zoom Video Communications filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Goldman Sachs Group Inc (GS):\n  1. Filing Type: 10-K | Date: 2025-02-27 | Goldman Sachs Group Inc filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Pfizer Inc. (PFE):\n  1. Filing Type: 10-K | Date: 2025-02-27 | Pfizer Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca UnitedHealth Group Inc. (UNH):\n  1. Filing Type: 10-K | Date: 2025-02-27 | UnitedHealth Group Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca NVIDIA Corporation (NVDA):\n  1. Filing Type: 10-K | Date: 2025-02-26 | NVIDIA Corporation filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Bank of America Corp (BAC):\n  1. Filing Type: 10-K | Date: 2025-02-25 | Bank of America Corp filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Wells Fargo & Company (WFC):\n  1. Filing Type: 10-K | Date: 2025-02-25 | Wells Fargo & Company filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Merck & Co. Inc. (MRK):\n  1. Filing Type: 10-K | Date: 2025-02-25 | Merck & Co. Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Block Inc. (SQ):\n  1. Filing Type: 10-K | Date: 2025-02-24 | Block Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Morgan Stanley (MS):\n  1. Filing Type: 10-K | Date: 2025-02-21 | Morgan Stanley filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Citigroup Inc. (C):\n  1. Filing Type: 10-K | Date: 2025-02-21 | Citigroup Inc. filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Abbott Laboratories (ABT):\n  1. Filing Type: 10-K | Date: 2025-02-21 | Abbott Laboratories filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Chevron Corporation (CVX):\n  1. Filing Type: 10-K | Date: 2025-02-21 | Chevron Corporation filed 10-K\n------------------------------------------------------------\n\n\ud83d\udcca Thermo Fisher Scientific (TMO):\n  1. Filing Type: 10-K | Date: 2025-02-20 | Thermo Fisher Scientific filed 10-K\n------------------------------------------------------------\n\n",
+      "baseline_metrics": {
+        "specific_dates_count": 0,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 0,
+        "company_names_count": 0,
+        "ticker_symbols_count": 0,
+        "structured_entries": 0,
+        "numbered_items": 0,
+        "tabular_data": 0,
+        "numerical_comparisons": 0,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 33,
+        "word_count": 3,
+        "sentence_count": 0,
+        "error_indicators": 0,
+        "data_availability": 0,
+        "precision_score": 0.0,
+        "completeness_score": 0,
+        "confidence_score": 0,
+        "response_time": 12.12054181098938
+      },
+      "enhanced_metrics": {
+        "specific_dates_count": 20,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 1,
+        "company_names_count": 4,
+        "ticker_symbols_count": 20,
+        "structured_entries": 20,
+        "numbered_items": 0,
+        "tabular_data": 40,
+        "numerical_comparisons": 0,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 3261,
+        "word_count": 367,
+        "sentence_count": 42,
+        "error_indicators": 0,
+        "data_availability": 1,
+        "precision_score": 23.705722070844686,
+        "completeness_score": 100,
+        "confidence_score": 0,
+        "response_time": 3.4149508476257324
+      },
+      "improvement_metrics": {
+        "precision_improvement": 23.705722070844686,
+        "completeness_improvement": 100,
+        "dates_improvement": 20,
+        "structure_improvement": 20,
+        "time_difference": -8.705590963363647
+      },
+      "timestamp": "2025-06-15T00:08:51.807100"
+    },
+    {
+      "query_id": 4,
+      "query": "Show me all 8-K filings from 2024 sorted by date",
+      "baseline_response": "To view all 8-K filings from 2024 sorted by date, please visit the SEC's EDGAR database or other financial data websites such as those mentioned in the previous search results (e.g., Strategy.com, company investor relations pages).  These sites typically offer search and sorting functionalities for SEC filings.",
+      "enhanced_response": "SEC Filing Results:\n\n\ud83d\udcca Morgan Stanley (MS):\n  1. Filing Type: 8-K | Date: 2024-12-20 | Morgan Stanley filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Home Depot Inc. (HD):\n  1. Filing Type: 8-K | Date: 2024-12-19 | Home Depot Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Pfizer Inc. (PFE):\n  1. Filing Type: 8-K | Date: 2024-12-17 | Pfizer Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Coca-Cola Company (KO):\n  1. Filing Type: 8-K | Date: 2024-12-16 | Coca-Cola Company filed 8-K\n  2. Filing Type: 8-K | Date: 2024-12-11 | Coca-Cola Company filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca AbbVie Inc. (ABBV):\n  1. Filing Type: 8-K | Date: 2024-12-13 | AbbVie Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Qualcomm Inc. (QCOM):\n  1. Filing Type: 8-K | Date: 2024-12-12 | Qualcomm Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca JPMorgan Chase & Co. (JPM):\n  1. Filing Type: 8-K | Date: 2024-12-12 | JPMorgan Chase & Co. filed 8-K\n  2. Filing Type: 8-K | Date: 2024-11-29 | JPMorgan Chase & Co. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Costco Wholesale Corp (COST):\n  1. Filing Type: 8-K | Date: 2024-12-12 | Costco Wholesale Corp filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Microsoft Corporation (MSFT):\n  1. Filing Type: 8-K | Date: 2024-12-11 | Microsoft Corporation filed 8-K\n  2. Filing Type: 8-K | Date: 2024-12-03 | Microsoft Corporation filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Oracle Corporation (ORCL):\n  1. Filing Type: 8-K | Date: 2024-12-11 | Oracle Corporation filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Adobe Inc. (ADBE):\n  1. Filing Type: 8-K | Date: 2024-12-11 | Adobe Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca PepsiCo Inc. (PEP):\n  1. Filing Type: 8-K | Date: 2024-12-11 | PepsiCo Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Salesforce Inc. (CRM):\n  1. Filing Type: 8-K | Date: 2024-12-10 | Salesforce Inc. filed 8-K\n  2. Filing Type: 8-K | Date: 2024-12-03 | Salesforce Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Chevron Corporation (CVX):\n  1. Filing Type: 8-K | Date: 2024-12-10 | Chevron Corporation filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Intel Corporation (INTC):\n  1. Filing Type: 8-K | Date: 2024-12-05 | Intel Corporation filed 8-K\n  2. Filing Type: 8-K | Date: 2024-12-03 | Intel Corporation filed 8-K\n  3. Filing Type: 8-K | Date: 2024-11-27 | Intel Corporation filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca UnitedHealth Group Inc. (UNH):\n  1. Filing Type: 8-K | Date: 2024-12-04 | UnitedHealth Group Inc. filed 8-K\n  2. Filing Type: 8-K | Date: 2024-12-03 | UnitedHealth Group Inc. filed 8-K\n  3. Filing Type: 8-K | Date: 2024-11-26 | UnitedHealth Group Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Wells Fargo & Company (WFC):\n  1. Filing Type: 8-K | Date: 2024-12-03 | Wells Fargo & Company filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Citigroup Inc. (C):\n  1. Filing Type: 8-K | Date: 2024-12-03 | Citigroup Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Zoom Video Communications (ZOOM):\n  1. Filing Type: 8-K | Date: 2024-11-25 | Zoom Video Communications filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Merck & Co. Inc. (MRK):\n  1. Filing Type: 8-K | Date: 2024-11-22 | Merck & Co. Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Walmart Inc. (WMT):\n  1. Filing Type: 8-K | Date: 2024-11-22 | Walmart Inc. filed 8-K\n------------------------------------------------------------\n\n\ud83d\udcca Starbucks Corporation (SBUX):\n  1. Filing Type: 8-K | Date: 2024-11-21 | Starbucks Corporation filed 8-K\n------------------------------------------------------------\n\n",
+      "baseline_metrics": {
+        "specific_dates_count": 0,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 1,
+        "company_names_count": 0,
+        "ticker_symbols_count": 3,
+        "structured_entries": 0,
+        "numbered_items": 0,
+        "tabular_data": 0,
+        "numerical_comparisons": 0,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 312,
+        "word_count": 47,
+        "sentence_count": 5,
+        "error_indicators": 0,
+        "data_availability": 0,
+        "precision_score": 3.0,
+        "completeness_score": 0,
+        "confidence_score": 0,
+        "response_time": 9.130062103271484
+      },
+      "enhanced_metrics": {
+        "specific_dates_count": 30,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 1,
+        "company_names_count": 13,
+        "ticker_symbols_count": 22,
+        "structured_entries": 22,
+        "numbered_items": 0,
+        "tabular_data": 60,
+        "numerical_comparisons": 0,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 4114,
+        "word_count": 497,
+        "sentence_count": 60,
+        "error_indicators": 0,
+        "data_availability": 1,
+        "precision_score": 24.144869215291752,
+        "completeness_score": 100,
+        "confidence_score": 0,
+        "response_time": 3.9589691162109375
+      },
+      "improvement_metrics": {
+        "precision_improvement": 21.144869215291752,
+        "completeness_improvement": 100,
+        "dates_improvement": 30,
+        "structure_improvement": 22,
+        "time_difference": -5.171092987060547
+      },
+      "timestamp": "2025-06-15T00:11:04.902719"
+    },
+    {
+      "query_id": 5,
+      "query": "Compare Apple and Microsoft's quarterly filing patterns",
+      "baseline_response": "Both Apple and Microsoft release quarterly financial reports. Apple's fiscal year is consistent, running from late September to late September, with predictable quarterly periods. Microsoft's information is less complete, but it appears their filing dates are less predictable and include various filing types beyond quarterly earnings reports.",
+      "enhanced_response": "\nApple 10-Q Filing Pattern:  Average interval between filings: -124 days\nMicrosoft 10-Q Filing Pattern: Average interval between filings: -118 days\n",
+      "baseline_metrics": {
+        "specific_dates_count": 0,
+        "date_ranges_count": 0,
+        "temporal_keywords": 0,
+        "filing_types_mentioned": 0,
+        "company_names_count": 0,
+        "ticker_symbols_count": 0,
+        "structured_entries": 0,
+        "numbered_items": 0,
+        "tabular_data": 0,
+        "numerical_comparisons": 2,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 344,
+        "word_count": 47,
+        "sentence_count": 3,
+        "error_indicators": 0,
+        "data_availability": 0,
+        "precision_score": 0.0,
+        "completeness_score": 0,
+        "confidence_score": 0,
+        "response_time": 8.67105507850647
+      },
+      "enhanced_metrics": {
+        "specific_dates_count": 0,
+        "date_ranges_count": 0,
+        "temporal_keywords": 2,
+        "filing_types_mentioned": 1,
+        "company_names_count": 0,
+        "ticker_symbols_count": 0,
+        "structured_entries": 0,
+        "numbered_items": 0,
+        "tabular_data": 0,
+        "numerical_comparisons": 0,
+        "ranking_indicators": 0,
+        "uncertainty_phrases": 0,
+        "confidence_phrases": 0,
+        "response_length": 148,
+        "word_count": 20,
+        "sentence_count": 0,
+        "error_indicators": 0,
+        "data_availability": 0,
+        "precision_score": 3.0,
+        "completeness_score": 0,
+        "confidence_score": 0,
+        "response_time": 12.450022220611572
+      },
+      "improvement_metrics": {
+        "precision_improvement": 3.0,
+        "completeness_improvement": 0,
+        "dates_improvement": 0,
+        "structure_improvement": 0,
+        "time_difference": 3.7789671421051025
+      },
+      "timestamp": "2025-06-15T00:13:26.031044"
+    }
+  ]
+}

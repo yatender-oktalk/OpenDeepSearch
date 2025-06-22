@@ -16,5 +16,13 @@ tzlocal==5.3.1
 torch==2.7.1
 loguru
 nest_asyncio
+neo4j
+python-dotenv
+zep-python
+graphiti-ai
+typing-extensions
+datetime
+json5
+re
 faker
 psycopg2-binary
