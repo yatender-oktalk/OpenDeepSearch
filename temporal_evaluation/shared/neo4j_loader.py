@@ -111,7 +111,6 @@ def load_all_datasets():
     dataset_files = [
         'datasets/financial_data.json',
         'datasets/sec_filings.json',
-        'datasets/clinical_trials.json',
         'datasets/supply_chain.json'
     ]
     

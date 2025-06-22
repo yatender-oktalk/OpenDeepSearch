@@ -5,9 +5,7 @@ def create_all_datasets():
     """Create all datasets"""
     
     domains = [
-        ('financial_data', 'Financial Markets'),
         ('sec_filings', 'SEC Filings'),
-        ('clinical_trials', 'Clinical Trials'),
         ('supply_chain', 'Supply Chain')
     ]
     
