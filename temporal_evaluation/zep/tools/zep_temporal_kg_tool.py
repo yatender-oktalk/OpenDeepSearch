@@ -1,4 +1,7 @@
 # Update: temporal_evaluation/zep/tools/zep_temporal_kg_tool.py
+# This is the tool that is used to search the Zep knowledge graph for temporal facts.
+# It is used to search the Zep knowledge graph for temporal facts for report_new.md
+
 from smolagents import Tool
 from typing import Dict, Any, Optional, List
 import json

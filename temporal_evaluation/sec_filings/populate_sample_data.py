@@ -1,3 +1,5 @@
+# Not using this for ZEP yet
+
 from neo4j import GraphDatabase
 import os
 from datetime import datetime, timedelta

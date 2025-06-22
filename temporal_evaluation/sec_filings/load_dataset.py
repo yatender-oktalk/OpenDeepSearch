@@ -1,3 +1,5 @@
+# Not using this for ZEP as this was the small dataset
+
 import os
 import sys
 

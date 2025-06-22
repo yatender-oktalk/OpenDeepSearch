@@ -1,4 +1,4 @@
-# Create: temporal_evaluation/zep/load_sec_data_to_zep.py
+# Create: temporal_evaluation/zep/load_sec_data_to_zep_enhanced.py
 import json
 import os
 import sys
@@ -15,7 +15,6 @@ def load_sec_filings_to_zep():
     
     print("🚀 Loading SEC filing data into Zep...")
     
-    # Initialize Zep tool (you'll need to get API key from Zep)
     zep_tool = ZepTemporalKGTool(
         api_key=os.getenv('ZEP_API_KEY'),  # Get from https://www.getzep.com/
         base_url=os.getenv('ZEP_BASE_URL')  # Optional: for self-hosted

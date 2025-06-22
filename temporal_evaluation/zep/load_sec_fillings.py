@@ -1,4 +1,5 @@
 # Replace the entire content of temporal_evaluation/zep/load_sec_fillings.py:
+# Using right now for ZEP evaluation for report_new.md
 from tools.zep_temporal_kg_tool import ZepTemporalKGTool
 import json
 import time
