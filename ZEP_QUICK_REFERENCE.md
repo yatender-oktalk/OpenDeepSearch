@@ -38,7 +38,7 @@ echo "LITELLM_MODEL=gemini/gemini-1.5-flash" >> .env
 ### 3. Load Data
 ```bash
 cd temporal_evaluation/zep
-python load_sec_data_to_zep.py
+python load_sec_data.py
 ```
 
 ### 4. Test Setup
