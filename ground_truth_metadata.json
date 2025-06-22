@@ -1,0 +1,22 @@
+{
+  "generated_at": "2025-06-14T19:33:19.180869",
+  "total_questions": 11,
+  "question_types": [
+    "cross_domain_timeline",
+    "customer_journey",
+    "category_analysis",
+    "location_comparison",
+    "temporal_reasoning",
+    "domain_comparison",
+    "temporal_sequence",
+    "temporal_filter",
+    "location_filter",
+    "aggregation"
+  ],
+  "domains": [
+    "both",
+    "covid",
+    "ecommerce"
+  ],
+  "neo4j_connected": false
+}

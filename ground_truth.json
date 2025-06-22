@@ -1,0 +1,155 @@
+[
+  {
+    "question": "What COVID-19 events occurred in Brazil?",
+    "type": "location_filter",
+    "domain": "covid",
+    "ground_truth": {
+      "type": "entity_filter",
+      "entity_type": "CovidEvent",
+      "filter_field": "location",
+      "filter_value": "Brazil",
+      "expected_count": ">= 1"
+    },
+    "neo4j_query": "\n                        MATCH (e:CovidEvent)\n                        WHERE e.location = 'Brazil'\n                        RETURN e.description, e.timestamp, e.location\n                        ORDER BY e.timestamp\n                    "
+  },
+  {
+    "question": "What COVID-19 events occurred in France?",
+    "type": "location_filter",
+    "domain": "covid",
+    "ground_truth": {
+      "type": "entity_filter",
+      "entity_type": "CovidEvent",
+      "filter_field": "location",
+      "filter_value": "France",
+      "expected_count": ">= 1"
+    },
+    "neo4j_query": "\n                        MATCH (e:CovidEvent)\n                        WHERE e.location = 'France'\n                        RETURN e.description, e.timestamp, e.location\n                        ORDER BY e.timestamp\n                    "
+  },
+  {
+    "question": "What was the activity timeline for customer cust_001?",
+    "type": "customer_journey",
+    "domain": "ecommerce",
+    "ground_truth": {
+      "type": "customer_timeline",
+      "customer_id": "cust_001",
+      "expected_fields": [
+        "event_type",
+        "timestamp",
+        "description"
+      ]
+    },
+    "neo4j_query": "\n                    MATCH (c:Customer {customer_id: 'cust_001'})-[:PERFORMED]->(e:EcommerceEvent)\n                    RETURN e.event_type, e.timestamp, e.description\n                    ORDER BY e.timestamp\n                "
+  },
+  {
+    "question": "What was the chronological sequence of major COVID-19 events?",
+    "type": "temporal_sequence",
+    "domain": "covid",
+    "ground_truth": {
+      "type": "temporal_ordering",
+      "entity_type": "CovidEvent",
+      "order_field": "timestamp",
+      "expected_count": ">= 3"
+    },
+    "neo4j_query": "\n                MATCH (e:CovidEvent)\n                RETURN e.description, e.timestamp, e.location\n                ORDER BY e.timestamp\n                LIMIT 10\n            "
+  },
+  {
+    "question": "How many customers made purchases?",
+    "type": "aggregation",
+    "domain": "ecommerce",
+    "ground_truth": {
+      "type": "count_aggregation",
+      "expected_count": 1,
+      "aggregation_type": "distinct_customers_with_purchases"
+    },
+    "neo4j_query": "\n                MATCH (c:Customer)-[:PERFORMED]->(e:EcommerceEvent)\n                WHERE e.event_type = 'purchase'\n                RETURN count(DISTINCT c.customer_id) as customer_count\n            "
+  },
+  {
+    "question": "Which domain has more events: COVID-19 or e-commerce?",
+    "type": "domain_comparison",
+    "domain": "both",
+    "ground_truth": {
+      "type": "domain_comparison",
+      "covid_count": 500,
+      "ecommerce_count": 300,
+      "winner": "covid"
+    },
+    "neo4j_query": "\n                MATCH (e:Event)\n                RETURN e.domain, count(e) as count\n            "
+  },
+  {
+    "question": "What are the most popular product categories?",
+    "type": "category_analysis",
+    "domain": "ecommerce",
+    "ground_truth": {
+      "type": "category_ranking",
+      "categories": [
+        "Electronics",
+        "Clothing",
+        "Books",
+        "Food",
+        "Health"
+      ],
+      "expected_fields": [
+        "category",
+        "count"
+      ]
+    },
+    "neo4j_query": "\n                    MATCH (e:EcommerceEvent)\n                    WHERE e.product_category IS NOT NULL\n                    RETURN e.product_category as category, count(e) as count\n                    ORDER BY count DESC\n                "
+  },
+  {
+    "question": "Which customers signed up in 2023?",
+    "type": "temporal_filter",
+    "domain": "ecommerce",
+    "ground_truth": {
+      "type": "temporal_filter",
+      "start_date": "2023-01-01",
+      "end_date": "2023-12-31",
+      "event_type": "signup"
+    },
+    "neo4j_query": "\n                MATCH (c:Customer)-[:PERFORMED]->(e:EcommerceEvent)\n                WHERE e.event_type = 'signup' \n                AND e.timestamp >= date('2023-01-01') \n                AND e.timestamp <= date('2023-12-31')\n                RETURN c.customer_id, e.timestamp\n                ORDER BY e.timestamp\n            "
+  },
+  {
+    "question": "Compare COVID-19 events between Brazil and France",
+    "type": "location_comparison",
+    "domain": "covid",
+    "ground_truth": {
+      "type": "location_comparison",
+      "location1": "Brazil",
+      "location2": "France",
+      "comparison_fields": [
+        "event_count",
+        "timeline"
+      ]
+    },
+    "neo4j_query": "\n                    MATCH (e:CovidEvent)\n                    WHERE e.location IN ['Brazil', 'France']\n                    RETURN e.location, count(e) as count, collect(e.timestamp) as timestamps\n                "
+  },
+  {
+    "question": "What was the first recorded COVID-19 event in the dataset and where did it occur?",
+    "type": "temporal_reasoning",
+    "domain": "covid",
+    "ground_truth": {
+      "type": "first_event",
+      "expected_description": "First COVID case reported",
+      "expected_location": "Brazil",
+      "expected_date": "2020-01-15"
+    },
+    "neo4j_query": "\n                    MATCH (e:CovidEvent)\n                    RETURN e.description, e.location, e.timestamp\n                    ORDER BY e.timestamp\n                    LIMIT 1\n                "
+  },
+  {
+    "question": "Compare the timeline of COVID-19 events with e-commerce activities",
+    "type": "cross_domain_timeline",
+    "domain": "both",
+    "ground_truth": {
+      "type": "cross_domain_analysis",
+      "requires_fields": [
+        "domain",
+        "timestamp",
+        "event_type"
+      ],
+      "expected_domains": [
+        "covid",
+        "ecommerce"
+      ]
+    },
+    "neo4j_query": "\n                MATCH (e:Event)\n                RETURN e.domain, e.timestamp, e.event_type\n                ORDER BY e.timestamp\n            "
+  }
+]
