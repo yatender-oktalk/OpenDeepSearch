@@ -26,3 +26,4 @@ json5
 re
 faker
 psycopg2-binary
+numpy
