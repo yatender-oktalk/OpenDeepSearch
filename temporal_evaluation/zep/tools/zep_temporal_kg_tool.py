@@ -44,7 +44,8 @@ class ZepTemporalKGTool(Tool):
             raise ValueError("ZEP_API_KEY is required")
             
         self.client = Zep(api_key=self.api_key)
-        self.user_id = "sec_analyst_user"
+        # self.user_id = "sec_analyst_user"
+        self.user_id = "sec_analyst_user_2"
         self.session_id = f"sec_filing_session_{uuid.uuid4().hex[:8]}"
         
         # Initialize user and session

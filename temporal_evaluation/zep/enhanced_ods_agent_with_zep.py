@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from datetime import datetime
 
 # Add project root to path
@@ -29,10 +30,7 @@ def create_zep_enhanced_agent():
         search_provider="serper"
     )
     
-    zep_tool = ZepTemporalKGTool(
-        api_key=os.getenv('ZEP_API_KEY'),
-        base_url=os.getenv('ZEP_BASE_URL')
-    )
+    zep_tool = ZepTemporalKGTool()
     
     # Enhanced system prompt for Zep integration
     enhanced_model = LiteLLMModel(
@@ -96,6 +94,7 @@ def test_zep_agent():
     print("\n🧪 Testing Zep temporal intelligence...")
     
     for i, query in enumerate(test_queries, 1):
+        time.sleep(120)
         print(f"\n[{i}/7] Testing: {query}")
         print("-" * 60)
         

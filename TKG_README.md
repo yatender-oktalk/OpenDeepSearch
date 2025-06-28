@@ -463,7 +463,7 @@ temporal_evaluation/
 │   ├── sec_filings.json
 │   ├── clinical_trials.json
 │   └── supply_chain.json
-├── financial_data/
+├── sec_fillings/
 │   ├── collect_data.py          # Creates datasets/financial_data.json
 │   ├── load_dataset.py          # Loads from datasets/financial_data.json to Neo4j
 │   ├── generate_queries.py
