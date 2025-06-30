@@ -65,7 +65,7 @@ Recent work suggests that implementation quality may be more critical than archi
 
 #### **3.1.3 Zep TKG (Advanced Temporal)**
 - **Architecture**: Bi-temporal knowledge graph (Graphiti engine)
-- **Dataset**: 150 representative SEC filings with temporal relationships
+- **Dataset**: 587 representative SEC filings with temporal relationships
 - **Advantages**: Temporal reasoning, fact validation, pattern detection
 - **Features**: Automated relationship extraction, anomaly detection
 
@@ -203,7 +203,7 @@ SEC Filing Results:
 **Key Insight:** GraphRAG significantly outperforms Zep TKG (93.67 vs 42.05) despite both being "structured approaches." This **123% performance difference** demonstrates that **implementation quality matters more than architectural sophistication**.
 
 **Factors Contributing to GraphRAG Success:**
-- **Comprehensive dataset**: 25,606 vs ~150 facts in Zep
+- **Comprehensive dataset**: 25,606 vs ~587 facts in Zep
 - **Clean data schema**: Structured company-filing relationships
 - **Perfect data quality**: 100% filing type extraction success
 - **Optimized queries**: LLM-generated Cypher for precise retrieval
@@ -254,7 +254,7 @@ This represents an **acceptable 19% performance cost** for significant operation
 ### **6.1 Current Limitations**
 
 - **Domain-specific evaluation**: SEC filings may not generalize to other domains
-- **Scale constraints**: Zep TKG limited to 150 filings vs 25,606 in GraphRAG
+- **Scale constraints**: Zep TKG limited to 587 filings vs 25,606 in GraphRAG
 - **Static vs. dynamic trade-off**: GraphRAG limited to pre-loaded data
 - **Implementation variance**: Results may vary with different TKG implementations
 
