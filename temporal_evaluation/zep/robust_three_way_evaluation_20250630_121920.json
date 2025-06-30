@@ -1,0 +1,203 @@
+{
+  "opendeepsearch_results": [
+    [
+      "apple_2024_10q",
+      "SystemResponse(system_name='OpenDeepSearch', query=\"What are Apple's exact 10-Q filing dates for 2024?\", response=\"Apple's 10-Q filing dates for 2024 are: February 2, 2024, May 03, 2024, and August 2, 2024.\", response_time=4.099135875701904, extracted_dates={'2024-08-02', '2024-02-02', '2024-05-03'}, extracted_entities={'Apple Inc.'}, extracted_filing_types={'10-Q', '4', '3'}, extracted_years={'2024'}, extracted_patterns=[], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=1.0, recall=1.0, f1_score=1.0, mrr=0.4166666666666667, hits_at_k=1.0, temporal_accuracy=1.0, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=0.5, weighted_score=121.25000000000001)"
+    ],
+    [
+      "microsoft_2024_10k",
+      "SystemResponse(system_name='OpenDeepSearch', query='When did Microsoft file its 2024 annual report (10-K)?', response='July 30, 2024', response_time=3.3842010498046875, extracted_dates={'2024-07-30'}, extracted_entities=set(), extracted_filing_types={'4', '3'}, extracted_years={'2024'}, extracted_patterns=[], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=1.0, recall=1.0, f1_score=1.0, mrr=0.3333333333333333, hits_at_k=1.0, temporal_accuracy=1.0, temporal_reasoning=0.0, entity_precision=0.0, entity_recall=0.0, weighted_score=105.0)"
+    ],
+    [
+      "apple_vs_microsoft",
+      "SystemResponse(system_name='OpenDeepSearch', query='Compare the number of SEC filings between Apple and Microsoft in 2024', response='I am unable to determine the exact number of SEC filings for Apple and Microsoft in 2024. Both companies have filed at least the standard annual (10-K) and quarterly (10-Q) reports, but the number of other filings (8-K) is not available through web search.', response_time=31.91010808944702, extracted_dates=set(), extracted_entities={'Apple Inc.', 'Microsoft Corporation'}, extracted_filing_types={'4', '10-Q', '8-K', '10-K'}, extracted_years=set(), extracted_patterns=['quarterly', 'annual'], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=1.0, recall=1.0, f1_score=1.0, mrr=0.75, hits_at_k=0.0, temporal_accuracy=1.0, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=1.0, weighted_score=121.25000000000001)"
+    ],
+    [
+      "meta_recent_10k",
+      "SystemResponse(system_name='OpenDeepSearch', query=\"Show me Meta's recent 10-K filings\", response=\"Meta's 10-K filings can be found on the SEC website, Nasdaq.com, MarketBeat.com, and AnnualReports.com.\", response_time=3.078911066055298, extracted_dates=set(), extracted_entities={'Meta Platforms Inc.'}, extracted_filing_types={'10-K'}, extracted_years=set(), extracted_patterns=['annual'], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=1.0, recall=1.0, f1_score=1.0, mrr=0.5, hits_at_k=0.0, temporal_accuracy=1.0, temporal_reasoning=0.5, entity_precision=1.0, entity_recall=0.5, weighted_score=120.0)"
+    ],
+    [
+      "tesla_q1_2024",
+      "SystemResponse(system_name='OpenDeepSearch', query=\"List Tesla's SEC filings from Q1 2024\", response=\"['10-Q for Q1 2024', '8-K: Tesla, Inc. First Quarter 2024 Update, dated April 23, 2024']\", response_time=10.581443071365356, extracted_dates={'2024-04-23'}, extracted_entities={'Tesla Inc.'}, extracted_filing_types={'3', '10-Q', '4', '8-K'}, extracted_years={'2024'}, extracted_patterns=['Q1'], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.25, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.5, entity_precision=1.0, entity_recall=0.5, weighted_score=61.25000000000001)"
+    ]
+  ],
+  "graphrag_results": [
+    [
+      "apple_2024_10q",
+      "SystemResponse(system_name='GraphRAG', query=\"What are Apple's exact 10-Q filing dates for 2024?\", response='February 2, 2024, May 3, 2024, August 2, 2024', response_time=3.2931151390075684, extracted_dates={'2024-08-02', '2024-02-02', '2024-05-03'}, extracted_entities=set(), extracted_filing_types={'4', '3'}, extracted_years={'2024'}, extracted_patterns=[], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=1.0, recall=1.0, f1_score=1.0, mrr=0.36666666666666664, hits_at_k=1.0, temporal_accuracy=1.0, temporal_reasoning=0.0, entity_precision=0.0, entity_recall=0.0, weighted_score=105.5)"
+    ],
+    [
+      "microsoft_2024_10k",
+      "SystemResponse(system_name='GraphRAG', query='When did Microsoft file its 2024 annual report (10-K)?', response='SEC Filing Results:\\n\\n1. Company: Microsoft Corporation (MSFT)\\n   Filing Type: 10-K\\n   Date: 2024-07-30\\n   Description: Microsoft Corporation filed 10-K\\n--------------------------------------------------\\n', response_time=2.2393441200256348, extracted_dates={'2024-07-30'}, extracted_entities={'Microsoft Corporation'}, extracted_filing_types={'3', '4', '10-K'}, extracted_years={'2024'}, extracted_patterns=[], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=1.0, recall=1.0, f1_score=1.0, mrr=0.5, hits_at_k=1.0, temporal_accuracy=1.0, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=0.5, weighted_score=122.50000000000001)"
+    ],
+    [
+      "apple_vs_microsoft",
+      "SystemResponse(system_name='GraphRAG', query='Compare the number of SEC filings between Apple and Microsoft in 2024', response='Apple and Microsoft have the same number of SEC filings in 2024.', response_time=4.559467077255249, extracted_dates=set(), extracted_entities={'Apple Inc.', 'Microsoft Corporation'}, extracted_filing_types={'4'}, extracted_years=set(), extracted_patterns=[], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=1.0, recall=1.0, f1_score=1.0, mrr=0.75, hits_at_k=0.0, temporal_accuracy=1.0, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=1.0, weighted_score=121.25000000000001)"
+    ],
+    [
+      "meta_recent_10k",
+      "SystemResponse(system_name='GraphRAG', query=\"Show me Meta's recent 10-K filings\", response='SEC Filing Results:\\n\\n1. Company: Meta Platforms Inc. (META)\\n   Filing Type: 10-K\\n   Date: 2025-01-30\\n   Description: Meta Platforms Inc. filed 10-K\\n--------------------------------------------------\\n2. Company: Meta Platforms Inc. (META)\\n   Filing Type: 10-K\\n   Date: 2024-02-02\\n   Description: Meta Platforms Inc. filed 10-K\\n--------------------------------------------------\\n', response_time=1.9273121356964111, extracted_dates={'2024-02-02', '2025-01-30'}, extracted_entities={'Meta Platforms Inc.'}, extracted_filing_types={'3', '4', '10-K', '5'}, extracted_years={'2024', '2025'}, extracted_patterns=[], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.16666666666666666, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=0.5, weighted_score=52.5)"
+    ],
+    [
+      "tesla_q1_2024",
+      "SystemResponse(system_name='GraphRAG', query=\"List Tesla's SEC filings from Q1 2024\", response='SEC Filing Results:\\n\\n1. Company: Tesla Inc. (TSLA)\\n   Filing Type: 8-K\\n   Date: 2024-01-02\\n   Description: Tesla Inc. filed 8-K\\n--------------------------------------------------\\n2. Company: Tesla Inc. (TSLA)\\n   Filing Type: 8-K\\n   Date: 2024-01-24\\n   Description: Tesla Inc. filed 8-K\\n--------------------------------------------------\\n3. Company: Tesla Inc. (TSLA)\\n   Filing Type: 10-K\\n   Date: 2024-01-29\\n   Description: Tesla Inc. filed 10-K\\n--------------------------------------------------\\n4. Company: Tesla Inc. (TSLA)\\n   Filing Type: 4\\n   Date: 2024-02-02\\n   Description: Tesla Inc. filed 4\\n--------------------------------------------------\\n5. Company: Tesla Inc. (TSLA)\\n   Filing Type: 4\\n   Date: 2024-02-23\\n   Description: Tesla Inc. filed 4\\n--------------------------------------------------\\n6. Company: Tesla Inc. (TSLA)\\n   Filing Type: 4\\n   Date: 2024-03-04\\n   Description: Tesla Inc. filed 4\\n--------------------------------------------------\\n7. Company: Tesla Inc. (TSLA)\\n   Filing Type: 4\\n   Date: 2024-03-07\\n   Description: Tesla Inc. filed 4\\n--------------------------------------------------\\n8. Company: Tesla Inc. (TSLA)\\n   Filing Type: 4\\n   Date: 2024-03-14\\n   Description: Tesla Inc. filed 4\\n--------------------------------------------------\\n', response_time=2.0977818965911865, extracted_dates={'2024-01-24', '2024-01-29', '2024-01-02', '2024-02-02', '2024-03-04', '2024-03-07', '2024-03-14', '2024-02-23'}, extracted_entities={'Tesla Inc.'}, extracted_filing_types={'4', '10-K', '3', '8-K', '5'}, extracted_years={'2024'}, extracted_patterns=[], data_validation={}, zep_capabilities={})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.05555555555555555, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=0.5, weighted_score=50.83333333333334)"
+    ]
+  ],
+  "zep_results": [
+    [
+      "apple_2024_10q",
+      "SystemResponse(system_name='Zep', query=\"What are Apple's exact 10-Q filing dates for 2024?\", response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (3 active):\\n\\n1. Temporal Fact:\\n   Apple Inc. filed 10-K\\n   Valid From: 2024-11-01T00:00:00Z\\n\\n2. Temporal Fact:\\n   Snap Inc. filed a 10-Q SEC filing on 2025-04-30\\n   Valid From: 2025-04-30T00:00:00Z\\n\\n3. Temporal Fact:\\n   Amazon.com Inc. filed 10-Q\\n   Valid From: 2025-05-02T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: 10-Q\\n   Summary: Zoom Video Communications has filed multiple SEC reports in 2023, including 10-Q, 8-K, and DEF 14A forms. Notably, they filed a 10-Q on November 23, 2022, and other filings throughout 2023. These fili...\\n\\n2. Entity: Lyft Inc.\\n   Summary: Lyft Inc. has been actively filing SEC reports in 2023, including multiple 8-K and 10-Q filings throughout the year. The company filed 8-K reports on April 27, 2023, March 27, 2023, and earlier dates,...\\n\\n3. Entity: 10-K\\n   Summary: The entity is a 10-K filing, but the provided messages do not contain any information about a 10-K filing for this entity. The messages include filings for Uber Technologies Inc. and Lyft Inc. with va...\\n\\n4. Entity: Apple Inc.\\n   Summary: Apple Inc. has ongoing SEC filings in 2023, including 8-K, 10-Q, 10-K, and DEF 14A reports. The filings are dated from January to August 2023, with the latest being a 8-K filed on August 8, 2022. The ...\\n\\n5. Entity: 10-K/A\\n   Summary: The entity '10-K/A' is a type of SEC filing associated with Tesla Inc. It was filed on 2025-04-30, indicating an amended annual report (10-K/A) submitted by Tesla Inc. The entity is related to SEC fil...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=1.054621934890747, extracted_dates={'2024-11-01', '2023-04-27', '2023-03-27', '2022-08-08', '2025-05-02', '2022-11-23', '2025-04-30'}, extracted_entities={'Apple Inc.', 'Tesla Inc.'}, extracted_filing_types={'DEF 14A', '4', '10-K', '8-K', '3', '5', '10-Q'}, extracted_years={'2022', '2024', '2023', '2025'}, extracted_patterns=['annual'], data_validation={'has_future_dates': False, 'has_wrong_entities': True, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 1.0, 'issues': ['Response contains incorrect entities - data source issue']}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 0.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=0.0, f1_score=0.0, mrr=0.025, hits_at_k=0.0, temporal_accuracy=0.4, temporal_reasoning=0.0, entity_precision=0.5, entity_recall=0.5, weighted_score=18.375000000000004)"
+    ],
+    [
+      "microsoft_2024_10k",
+      "SystemResponse(system_name='Zep', query='When did Microsoft file its 2024 annual report (10-K)?', response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (1 active):\\n\\n1. Temporal Fact:\\n   Microsoft Corporation filed a 8-K SEC filing on 2025-04-30\\n   Valid From: 2025-04-30T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: 10-K/A\\n   Summary: The entity '10-K/A' is a type of SEC filing associated with Tesla Inc. It was filed on 2025-04-30, indicating an amended annual report (10-K/A) submitted by Tesla Inc. The entity is related to SEC fil...\\n\\n2. Entity: 10-Q\\n   Summary: Zoom Video Communications has filed multiple SEC reports in 2023, including 10-Q, 8-K, and DEF 14A forms. Notably, they filed a 10-Q on November 23, 2022, and other filings throughout 2023. These fili...\\n\\n3. Entity: Microsoft Corporation\\n   Summary: Microsoft Corporation has filed multiple SEC reports in 2023, including 8-K, 10-Q, and 10-K filings. Notable filings include an 8-K on 2023-07-26, a 10-Q on 2023-04-25, and a 10-K on 2022-07-28. These...\\n\\n4. Entity: 10-K\\n   Summary: The entity is a 10-K filing, but the provided messages do not contain any information about a 10-K filing for this entity. The messages include filings for Uber Technologies Inc. and Lyft Inc. with va...\\n\\n5. Entity: META\\n   Summary: Meta Platforms Inc. has been actively filing SEC reports, including 8-K, 10-Q, and DEF 14A filings, from April 2024 through October 2024. Notable filings include a 10-Q on 2024-10-31, an 8-K on 2024-1...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=1.0673439502716064, extracted_dates={'2022-07-28', '2024-10-31', '2023-04-25', '2022-11-23', '2025-04-30', '2023-07-26'}, extracted_entities={'Meta Platforms Inc.', 'Tesla Inc.', 'Microsoft Corporation'}, extracted_filing_types={'DEF 14A', '4', '10-K', '8-K', '3', '5', '10-Q'}, extracted_years={'2022', '2024', '2023', '2025'}, extracted_patterns=['annual'], data_validation={'has_future_dates': False, 'has_wrong_entities': True, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 1.0, 'issues': ['Response contains incorrect entities - data source issue']}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 0.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=0.0, f1_score=0.0, mrr=0.037037037037037035, hits_at_k=0.0, temporal_accuracy=0.4, temporal_reasoning=1.0, entity_precision=0.3333333333333333, entity_recall=0.5, weighted_score=31.88888888888889)"
+    ],
+    [
+      "apple_vs_microsoft",
+      "SystemResponse(system_name='Zep', query='Compare the number of SEC filings between Apple and Microsoft in 2024', response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (1 active):\\n\\n1. Temporal Fact:\\n   Microsoft Corporation filed a 8-K SEC filing on 2025-04-30\\n   Valid From: 2025-04-30T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: Apple Inc.\\n   Summary: Apple Inc. has ongoing SEC filings in 2023, including 8-K, 10-Q, 10-K, and DEF 14A reports. The filings are dated from January to August 2023, with the latest being a 8-K filed on August 8, 2022. The ...\\n\\n2. Entity: Microsoft Corporation\\n   Summary: Microsoft Corporation has filed multiple SEC reports in 2023, including 8-K, 10-Q, and 10-K filings. Notable filings include an 8-K on 2023-07-26, a 10-Q on 2023-04-25, and a 10-K on 2022-07-28. These...\\n\\n3. Entity: SEC Analyst\\n   Summary: user with the id of sec_analyst_user_2, name of SEC Analyst and email sec_analyst@example.com.\\n\\n4. Entity: MSFT\\n   Summary: Microsoft Corporation, with ticker symbol MSFT, has filed multiple SEC reports including 8-K, 10-Q, and 10-K filings. Notable filings include 10-Q reports on 2023-04-25 and 2023-01-24, and 8-K reports...\\n\\n5. Entity: META\\n   Summary: Meta Platforms Inc. has been actively filing SEC reports, including 8-K, 10-Q, and DEF 14A filings, from April 2024 through October 2024. Notable filings include a 10-Q on 2024-10-31, an 8-K on 2024-1...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=1.0544302463531494, extracted_dates={'2022-07-28', '2024-10-31', '2023-04-25', '2022-08-08', '2023-01-24', '2025-04-30', '2023-07-26'}, extracted_entities={'Apple Inc.', 'Meta Platforms Inc.', 'Microsoft Corporation'}, extracted_filing_types={'DEF 14A', '4', '10-K', '8-K', '3', '5', '10-Q'}, extracted_years={'2022', '2024', '2023', '2025'}, extracted_patterns=[], data_validation={'has_future_dates': False, 'has_wrong_entities': False, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 1.2, 'issues': []}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 0.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.1125, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.0, entity_precision=0.6666666666666666, entity_recall=1.0, weighted_score=53.35416666666666)"
+    ],
+    [
+      "meta_recent_10k",
+      "SystemResponse(system_name='Zep', query=\"Show me Meta's recent 10-K filings\", response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (3 active):\\n\\n1. Temporal Fact:\\n   Meta Platforms Inc. filed 10-K\\n   Valid From: 2025-01-30T00:00:00Z\\n\\n2. Temporal Fact:\\n   Meta Platforms Inc. filed 10-Q\\n   Valid From: 2025-05-01T00:00:00Z\\n\\n3. Temporal Fact:\\n   Meta Platforms Inc. filed 8-K\\n   Valid From: 2025-05-30T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: 10-K\\n   Summary: The entity is a 10-K filing, but the provided messages do not contain any information about a 10-K filing for this entity. The messages include filings for Uber Technologies Inc. and Lyft Inc. with va...\\n\\n2. Entity: META\\n   Summary: Meta Platforms Inc. has been actively filing SEC reports, including 8-K, 10-Q, and DEF 14A filings, from April 2024 through October 2024. Notable filings include a 10-Q on 2024-10-31, an 8-K on 2024-1...\\n\\n3. Entity: 10-K/A\\n   Summary: The entity '10-K/A' is a type of SEC filing associated with Tesla Inc. It was filed on 2025-04-30, indicating an amended annual report (10-K/A) submitted by Tesla Inc. The entity is related to SEC fil...\\n\\n4. Entity: Meta Platforms Inc.\\n   Summary: Meta Platforms Inc. has been actively filing SEC reports, including 8-K, 10-Q, and other forms, with recent filings in early 2024. These filings include 8-K reports on 2024-02-14, 2024-04-24, 2024-05-...\\n\\n5. Entity: Zoom Video Communications\\n   Summary: Zoom Video Communications has been actively filing SEC reports throughout early 2023, including various 8-K, 10-Q, 10-K, and other filings. Recent filings include a 10-K on 2023-03-02, and multiple 8-...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=1.4229788780212402, extracted_dates={'2025-05-30', '2025-05-01', '2024-10-31', '2023-03-02', '2024-04-24', '2024-02-14', '2025-01-30', '2025-04-30'}, extracted_entities={'Meta Platforms Inc.', 'Tesla Inc.'}, extracted_filing_types={'DEF 14A', '4', '10-K', '8-K', '3', '5', '10-Q'}, extracted_years={'2024', '2023', '2025'}, extracted_patterns=['annual', 'recent'], data_validation={'has_future_dates': False, 'has_wrong_entities': True, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 1.0, 'issues': ['Response contains incorrect entities - data source issue']}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 0.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.05555555555555555, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=1.0, entity_precision=0.5, entity_recall=0.5, weighted_score=60.83333333333335)"
+    ],
+    [
+      "tesla_q1_2024",
+      "SystemResponse(system_name='Zep', query=\"List Tesla's SEC filings from Q1 2024\", response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (1 active):\\n\\n1. Temporal Fact:\\n   Tesla Inc. filed 8-K\\n   Valid From: 2025-05-16T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: TSLA\\n   Summary: Tesla Inc., identified by the ticker symbol TSLA, has actively filed multiple SEC reports between January 2023 and June 2023. These filings include 8-K, 10-Q, and DEF 14A reports, demonstrating ongoin...\\n\\n2. Entity: Tesla Inc.\\n   Summary: Tesla Inc. has been actively filing SEC reports, including multiple 8-K filings on various dates in 2023, a 10-Q on October 24, 2022, and a DEF 14A on June 23, 2022. These filings indicate ongoing com...\\n\\n3. Entity: Uber Technologies Inc.\\n   Summary: Uber Technologies Inc. has been actively filing SEC reports throughout 2023, including multiple 8-K and 10-Q filings. The filings from February to April 2023 indicate ongoing regulatory compliance and...\\n\\n4. Entity: META\\n   Summary: Meta Platforms Inc. has been actively filing SEC reports, including 8-K, 10-Q, and DEF 14A filings, from April 2024 through October 2024. Notable filings include a 10-Q on 2024-10-31, an 8-K on 2024-1...\\n\\n5. Entity: Meta Platforms Inc.\\n   Summary: Meta Platforms Inc. has been actively filing SEC reports, including 8-K, 10-Q, and other forms, with recent filings in early 2024. These filings include 8-K reports on 2024-02-14, 2024-04-24, 2024-05-...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=1.050159215927124, extracted_dates={'2024-10-31', '2022-06-23', '2024-04-24', '2022-10-24', '2024-02-14', '2025-05-16'}, extracted_entities={'Meta Platforms Inc.', 'Tesla Inc.'}, extracted_filing_types={'DEF 14A', '4', '3', '8-K', '5', '10-Q'}, extracted_years={'2022', '2024', '2023', '2025'}, extracted_patterns=['recent'], data_validation={'has_future_dates': False, 'has_wrong_entities': False, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 1.2, 'issues': []}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 0.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.0625, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.0, entity_precision=0.5, entity_recall=0.5, weighted_score=45.9375)"
+    ],
+    [
+      "zep_temporal_validity",
+      "SystemResponse(system_name='Zep', query=\"Show me the temporal validity periods for Apple's SEC filings\", response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (2 active):\\n\\n1. Temporal Fact:\\n   Apple Inc. filed 10-K\\n   Valid From: 2024-11-01T00:00:00Z\\n\\n2. Temporal Fact:\\n   Snap Inc. filed a 10-Q SEC filing on 2025-04-30\\n   Valid From: 2025-04-30T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: Uber Technologies Inc.\\n   Summary: Uber Technologies Inc. has been actively filing SEC reports throughout 2023, including multiple 8-K and 10-Q filings. The filings from February to April 2023 indicate ongoing regulatory compliance and...\\n\\n2. Entity: Apple Inc.\\n   Summary: Apple Inc. has ongoing SEC filings in 2023, including 8-K, 10-Q, 10-K, and DEF 14A reports. The filings are dated from January to August 2023, with the latest being a 8-K filed on August 8, 2022. The ...\\n\\n3. Entity: SEC Analyst\\n   Summary: user with the id of sec_analyst_user_2, name of SEC Analyst and email sec_analyst@example.com.\\n\\n4. Entity: NVDA\\n   Summary: NVIDIA Corporation, ticker symbol NVDA, has been actively filing SEC reports in 2023, including 10-Q, 8-K, and S-3 forms. The filings are frequent, with multiple reports filed throughout the year, ind...\\n\\n5. Entity: AAPL\\n   Summary: Apple Inc., represented by the ticker symbol AAPL, has filed multiple SEC reports in 2023, including 8-K, 10-Q, and 10-K filings. Notable filings include a 10-Q on February 3, 2023, and 8-K reports on...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=0.9837498664855957, extracted_dates={'2024-11-01', '2022-08-08', '2025-04-30', '2023-02-03'}, extracted_entities={'Apple Inc.'}, extracted_filing_types={'DEF 14A', '4', '10-K', '8-K', '3', '5', '10-Q'}, extracted_years={'2022', '2024', '2023', '2025'}, extracted_patterns=[], data_validation={'has_future_dates': False, 'has_wrong_entities': True, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 1.0, 'issues': ['Response contains incorrect entities - data source issue']}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 0.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.2, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=1.0, weighted_score=57.99999999999999)"
+    ],
+    [
+      "zep_pattern_detection",
+      "SystemResponse(system_name='Zep', query='Identify companies with irregular filing patterns compared to their historical schedule', response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (3 active):\\n\\n1. Temporal Fact:\\n   Oracle Corporation filed 8-K\\n   Valid From: 2025-05-23T00:00:00Z\\n\\n2. Temporal Fact:\\n   Company Uber Technologies Inc. filed a 8-K SEC filing on 2025-06-02\\n   Valid From: 2025-06-02T00:00:00Z\\n\\n3. Temporal Fact:\\n   Company Uber Technologies Inc. filed a 8-K SEC filing on 2025-06-06\\n   Valid From: 2025-06-06T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: 10-K\\n   Summary: The entity is a 10-K filing, but the provided messages do not contain any information about a 10-K filing for this entity. The messages include filings for Uber Technologies Inc. and Lyft Inc. with va...\\n\\n2. Entity: SEC Analyst\\n   Summary: user with the id of sec_analyst_user_2, name of SEC Analyst and email sec_analyst@example.com.\\n\\n3. Entity: Alphabet Inc.\\n   Summary: Alphabet Inc. has maintained an active SEC filing schedule in 2023, with multiple filings including 8-K, 10-Q, and 10-K reports. Recent filings include 8-K reports on February 2, 2023, and earlier in ...\\n\\n4. Entity: CRM\\n   Summary: Salesforce Inc. has been actively filing SEC reports in 2023, including multiple 10-Q and 8-K filings, as well as a DEF 14A and a 10-K. The latest filings in 2023 are an 8-K on 2023-11-29, a 10-Q on 2...\\n\\n5. Entity: S-3\\n   Summary: The entity 'S-3' is associated with the SEC filing type 'S-3' filed by NVIDIA Corporation on 2023-02-28. This filing is part of the company's regular SEC submissions, indicating compliance and financi...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=0.9941911697387695, extracted_dates={'2023-02-28', '2025-06-02', '2023-11-29', '2025-05-23', '2025-06-06', '2023-02-02'}, extracted_entities={'Alphabet Inc.'}, extracted_filing_types={'DEF 14A', '4', '10-K', '8-K', '3', '5', '10-Q'}, extracted_years={'2023', '2025'}, extracted_patterns=['recent'], data_validation={'has_future_dates': True, 'has_wrong_entities': False, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 1.0, 'issues': ['Response contains future dates (2025) - data source issue']}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 1.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.0, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.0, entity_precision=0.0, entity_recall=0.0, weighted_score=35.0)"
+    ],
+    [
+      "zep_multi_hop_reasoning",
+      "SystemResponse(system_name='Zep', query='If a company delays their 10-Q filing, what other filings are likely to be affected?', response=\"\ud83e\udde0 Zep Temporal Knowledge Graph Results:\\n\\n\ud83d\udcca Memory Context: Building temporal relationships...\\n\\n\ud83d\udd17 Knowledge Graph Relationships (1 active):\\n\\n1. Temporal Fact:\\n   Amazon.com Inc. filed 10-Q\\n   Valid From: 2025-05-02T00:00:00Z\\n\\n\ud83c\udfe2 Relevant Entities (5 found):\\n\\n1. Entity: 10-Q\\n   Summary: Zoom Video Communications has filed multiple SEC reports in 2023, including 10-Q, 8-K, and DEF 14A forms. Notably, they filed a 10-Q on November 23, 2022, and other filings throughout 2023. These fili...\\n\\n2. Entity: CRM\\n   Summary: Salesforce Inc. has been actively filing SEC reports in 2023, including multiple 10-Q and 8-K filings, as well as a DEF 14A and a 10-K. The latest filings in 2023 are an 8-K on 2023-11-29, a 10-Q on 2...\\n\\n3. Entity: 10-K\\n   Summary: The entity is a 10-K filing, but the provided messages do not contain any information about a 10-K filing for this entity. The messages include filings for Uber Technologies Inc. and Lyft Inc. with va...\\n\\n4. Entity: 10-K/A\\n   Summary: The entity '10-K/A' is a type of SEC filing associated with Tesla Inc. It was filed on 2025-04-30, indicating an amended annual report (10-K/A) submitted by Tesla Inc. The entity is related to SEC fil...\\n\\n5. Entity: NVDA\\n   Summary: NVIDIA Corporation, ticker symbol NVDA, has been actively filing SEC reports in 2023, including 10-Q, 8-K, and S-3 forms. The filings are frequent, with multiple reports filed throughout the year, ind...\\n\\n\ud83c\udfaf Zep's Temporal Intelligence Features:\\n\u2705 Query-specific entity and relationship search\\n\u2705 Temporal fact tracking with validity periods\\n\u2705 Automatic fact invalidation when contradictions occur\\n\u2705 Semantic + temporal + graph hybrid search\\n\u2705 Entity extraction and relationship building\\n\", response_time=0.9653060436248779, extracted_dates={'2025-05-02', '2022-11-23', '2025-04-30', '2023-11-29'}, extracted_entities={'Tesla Inc.'}, extracted_filing_types={'DEF 14A', '4', '10-K', '8-K', '3', '5', '10-Q'}, extracted_years={'2022', '2023', '2025'}, extracted_patterns=['annual'], data_validation={'has_future_dates': True, 'has_wrong_entities': True, 'has_temporal_facts': True, 'has_validity_tracking': True, 'data_quality_score': 0.8, 'issues': ['Response contains future dates (2025) - data source issue', 'Response contains incorrect entities - data source issue']}, zep_capabilities={'temporal_validity_tracking': 0.5, 'pattern_detection': 0.0, 'multi_hop_reasoning': 1.0, 'fact_invalidation': 1.0, 'bi_temporal_modeling': 1.0, 'memory_context': 1.0})",
+      "EvaluationMetrics(precision=0.0, recall=1.0, f1_score=0.0, mrr=0.06666666666666667, hits_at_k=0.0, temporal_accuracy=0.5, temporal_reasoning=0.0, entity_precision=1.0, entity_recall=0.3333333333333333, weighted_score=49.33333333333333)"
+    ]
+  ],
+  "zep_capability_analysis": {
+    "average_scores": {
+      "temporal_validity_tracking": 0.5,
+      "pattern_detection": 0.125,
+      "multi_hop_reasoning": 1.0,
+      "fact_invalidation": 1.0,
+      "bi_temporal_modeling": 1.0,
+      "memory_context": 1.0
+    },
+    "overall_capability_score": 0.7708333333333334,
+    "strengths": [
+      "temporal_validity_tracking",
+      "multi_hop_reasoning",
+      "fact_invalidation",
+      "bi_temporal_modeling",
+      "memory_context"
+    ],
+    "weaknesses": [
+      "pattern_detection"
+    ],
+    "total_queries_evaluated": 8
+  },
+  "data_integrity_report": {
+    "status": "issues_detected",
+    "total_issues": 7,
+    "issue_types": {
+      "data_source": 5,
+      "future_dates": 2
+    },
+    "unique_issues": [
+      "Response contains future dates (2025) - data source issue",
+      "Response contains incorrect entities - data source issue"
+    ],
+    "recommendations": [
+      "Fix data source to use actual SEC filing dates, not future dates",
+      "Verify Zep temporal knowledge graph data integration"
+    ]
+  },
+  "statistical_analysis": {
+    "descriptive_statistics": {
+      "opendeepsearch": {
+        "mean": 105.75,
+        "std": 23.08408542697761,
+        "median": 120.0,
+        "min": 61.25000000000001,
+        "max": 121.25000000000001
+      },
+      "graphrag": {
+        "mean": 90.51666666666668,
+        "std": 32.28623717795419,
+        "median": 105.5,
+        "min": 50.83333333333334,
+        "max": 122.50000000000001
+      },
+      "zep": {
+        "mean": 42.077777777777776,
+        "std": 15.22800313486009,
+        "median": 45.9375,
+        "min": 18.375000000000004,
+        "max": 60.83333333333335
+      }
+    },
+    "significance_tests": {
+      "opendeepsearch_vs_graphrag": {
+        "t_statistic": 0.7676205584241349,
+        "p_value": 0.464763556875596,
+        "significant": "False",
+        "interpretation": "OpenDeepSearch vs GraphRAG performance difference"
+      },
+      "opendeepsearch_vs_zep": {
+        "t_statistic": 4.604849181182993,
+        "p_value": 0.0017443625868995595,
+        "significant": "True",
+        "interpretation": "OpenDeepSearch vs Zep performance difference"
+      },
+      "graphrag_vs_zep": {
+        "t_statistic": 2.7138727921237096,
+        "p_value": 0.026498781849505583,
+        "significant": "True",
+        "interpretation": "GraphRAG vs Zep performance difference"
+      }
+    },
+    "effect_sizes": {
+      "opendeepsearch_vs_graphrag": 0.48548586867812366,
+      "opendeepsearch_vs_zep": 2.9123623388199262,
+      "graphrag_vs_zep": 1.7164038606143182
+    },
+    "sample_sizes": {
+      "opendeepsearch": 5,
+      "graphrag": 5,
+      "zep": 5
+    }
+  },
+  "comparative_analysis": {},
+  "evaluation_metadata": {
+    "start_time": "2025-06-30T12:15:43.943007",
+    "api_rate_limit": 10,
+    "min_delay": 6.0,
+    "model": "gemini/gemini-2.0-flash",
+    "api_protection": "exponential_backoff",
+    "max_retries": 3,
+    "end_time": "2025-06-30T12:19:20.327947",
+    "total_api_calls": 12,
+    "rate_limit_violations": 0
+  }
+}
