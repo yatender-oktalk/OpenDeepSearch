@@ -1267,13 +1267,13 @@ if __name__ == "__main__":
     QUERIES_PER_CATEGORY = 1  # 1 query per category for safety
     CATEGORIES_TO_TEST = [
         'edge_cases'
-        # 'complex_reasoning', 
-        # 'precision_recall',
-        # 'enterprise_scenarios',
-        # 'cross_domain',
-        # 'scalability',
-        # 'uncertainty',
-        # 'baseline_validation'
+        'complex_reasoning', 
+        'precision_recall',
+        'enterprise_scenarios',
+        'cross_domain',
+        'scalability',
+        'uncertainty',
+        'baseline_validation'
     ]  # All 8 categories for complete academic coverage
     
     # Calculate ultra-conservative API usage estimate
